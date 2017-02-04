@@ -1,0 +1,41 @@
+﻿{
+	"games": [
+	{
+		"id": "1",
+		"icon": "0",
+		"name": "Raúl dice",
+		"description": "Seguimos las indicaciones de Raúl para encontrar el animal que nos pide.\n\nUsamos las direcciones espaciales arriba, abajo, derecha e izquierda.",
+		"prefabName":"RaulActivity"
+	}, {
+		"id": "2",
+		"icon": "1",
+		"name": "Títeres",
+		"description": "Seguimos las indicaciones para ubicar los títeres en el escenario.\n\nDesarrollar la direccionalidad y la lateralidad usando distintos puntos de referencia.",
+		"prefabName":"TiteresActivity"
+	}, {
+		"id": "3",
+		"icon": "2",
+		"name": "Rompecabezas",
+		"description": "Acomodamos las piezas en la posición adecuada para completar el rompecabezas\n\nResolver problemas espaciales usando imágenes mentales y gráficas.", 
+		"prefabName":"RompecabezasActivity"
+	}, {
+		"id": "4",
+		"icon": "3",
+		"name": "Recorridos",
+		"description": "Indicamos un camino para que el muñeco llegue a destino.\n\nProgramar recorridos usando nociones espaciales.",
+		"prefabName":"RecorridosActivity"
+	}, {
+		"id": "5",
+		"icon": "4",
+		"name": "Plagas",
+		"description": "Escribimos las coordenadas para atrapar a los topos.\n\nUbicar objetos o describir su posición usando sistemas de coordenadas.",
+		"prefabName":"PlagasActivity"
+	}, {
+		"id": "6",
+		"icon": "5",
+		"name": "Envíos",
+		"description": "Medimos distancias y usamos la escala para enviar el barco a destino.\n\nMedir distancias usando puntos de referencia y escalas.",
+		"prefabName":"EnviosActivity"
+	}
+]
+}

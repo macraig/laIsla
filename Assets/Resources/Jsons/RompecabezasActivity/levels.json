@@ -1,0 +1,20 @@
+﻿{
+	"levels": [
+	{
+		"hasTwoRoads": "false",
+		"partQuantity": "6",
+		"distractionParts": "0"
+	}, {
+		"hasTwoRoads": "false",
+		"partQuantity": "6",
+		"distractionParts": "2"
+	}, {
+		"hasTwoRoads": "true",
+		"partQuantity": "6",
+		"distractionParts": "0"
+	}, {
+		"hasTwoRoads": "true",
+		"partQuantity": "6",
+		"distractionParts": "2"
+	}]
+}
