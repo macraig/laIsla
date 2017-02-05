@@ -3,12 +3,12 @@ using SimpleJSON;
 using System.Collections.Generic;
 using Assets.Scripts.Common;
 
-public class PlagasLevel {
+public class TravesiaLevel {
 	bool withTime;
 	int moleQuantity;
 	List<int> spawnTimes, molesInSpawn;
 
-	public PlagasLevel(JSONClass source) {
+	public TravesiaLevel(JSONClass source) {
 		withTime = source["withTime"].AsBool;
 
 		if(withTime){

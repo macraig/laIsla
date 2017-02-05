@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 using System.Threading;
 using System;
 
-public class PlagasActivityView : LevelView {
+public class TravesiaActivityView : LevelView {
 	public Button okBtn;
 	public List<Image> tiles, clocks;
 	public List<GameObject> lives;
@@ -22,7 +22,7 @@ public class PlagasActivityView : LevelView {
 	private const int GRASS_SPRITE = 0, SMACKED_MOLE_SPRITE = 7;
 
 	private AudioClip whackSound, whackMoleSound;
-	private PlagasActivityModel model;
+	private TravesiaActivityModel model;
 
 
 	bool timerActive = false;
@@ -149,7 +149,7 @@ public class PlagasActivityView : LevelView {
 	}
 
 	public void Start(){
-		model = new PlagasActivityModel();
+		model = new TravesiaActivityModel();
 		tileSprites = Resources.LoadAll<Sprite>("Sprites/PlagasActivity/tiles");
 		whackSound = Resources.Load<AudioClip> ("Audio/PlagasActivity/whack");
 		whackMoleSound = Resources.Load<AudioClip> ("Audio/PlagasActivity/whackedMole");
@@ -181,14 +181,14 @@ public class PlagasActivityView : LevelView {
 		}
 	}
 
-	void TimeLevel(PlagasLevel lvl) {
+	void TimeLevel(TravesiaLevel lvl) {
 		TimerTiles(lvl);
 
-		List<PlagaTile> modelTiles = model.GetTiles();
+		List<TravesiaTile> modelTiles = model.GetTiles();
 
 		//Set two starting veggies.
-		for(int i = 0; i < PlagasActivityModel.VEGETABLES_IN_START; i++) {
-			int slot = model.GetFreeSlot();
+		for(int i = 0; i < TravesiaActivityModel.VEGETABLES_IN_START; i++) {
+			int slot = model.GetFreeRow();
 
 			tiles[slot].sprite = tileSprites[veggieRandomizer.Next()];
 			modelTiles[slot].AppearInitVeggie();
@@ -197,11 +197,11 @@ public class PlagasActivityView : LevelView {
 		StartTimer(true);
 	}
 
-	void TimerTiles(PlagasLevel lvl) {
+	void TimerTiles(TravesiaLevel lvl) {
 		int randomSpawn = lvl.RandomSpawnTime();
 		int moleQuantity = lvl.MolesInSpawn(randomSpawn);
 		for(int i = 0; i < moleQuantity; i++) {
-			int freeSlot = model.GetFreeSlot();
+			int freeSlot = model.GetFreeRow();
 			model.SetTimerTile(freeSlot, randomSpawn);
 		}
 	}
@@ -222,11 +222,11 @@ public class PlagasActivityView : LevelView {
 
 	void UpdateView() {
 		model.DecreaseTimer();
-		List<PlagaTile> modelTiles = model.GetTiles();
+		List<TravesiaTile> modelTiles = model.GetTiles();
 		bool newTimerSet = false;
 
 		for(int i = 0; i < modelTiles.Count; i++) {
-			PlagaTile tile = modelTiles[i];
+			TravesiaTile tile = modelTiles[i];
 			clocks[i].GetComponentInChildren<Text>(true).text = tile.GetTimer().ToString();
 
 			//si tiene que aparecer un vegetal.
@@ -262,13 +262,13 @@ public class PlagasActivityView : LevelView {
 		return tileSprites[Array.IndexOf(tileSprites, sprite) + 3];
 	}
 
-	void NormalLevel(PlagasLevel lvl) {
+	void NormalLevel(TravesiaLevel lvl) {
 		PlaceMoles(lvl.MoleQuantity());
 	}
 
 	void PlaceMoles(int moleQuantity) {
 		for(int i = 0; i < moleQuantity; i++) {
-			int nextSpot = model.GetFreeSlot();
+			int nextSpot = model.GetFreeRow();
 			tiles[nextSpot].sprite = tileSprites[moleRandomizer.Next()];
 		}
 	}
