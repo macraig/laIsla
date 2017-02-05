@@ -3,9 +3,9 @@
 	{
 		"id": "1",
 		"icon": "0",
-		"name": "Raúl dice",
+		"name": "Travesía Mercantil",
 		"description": "Seguimos las indicaciones de Raúl para encontrar el animal que nos pide.\n\nUsamos las direcciones espaciales arriba, abajo, derecha e izquierda.",
-		"prefabName":"RaulActivity"
+		"prefabName":"TravesiaActivity"
 	}, {
 		"id": "2",
 		"icon": "1",
