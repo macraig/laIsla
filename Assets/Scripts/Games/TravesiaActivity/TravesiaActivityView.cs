@@ -13,7 +13,7 @@ using System;
 public class TravesiaActivityView : LevelView {
 	public Button okBtn;
 	public List<Image> tiles, clocks;
-	public Text letter, number;
+	public Text letter, number, board;
 	public List<Toggle> actions;
 
 	private Sprite[] tileSprites;
@@ -23,15 +23,25 @@ public class TravesiaActivityView : LevelView {
 	private TravesiaActivityModel model;
 
 	override public void Next(bool first = false){
+		if(first) model.NewSend();
 		UpdateView();
 		ResetLetterNumber();
 		keyboardActive = true;
 		CheckOk();
 
-		//TODO consigna.
+		model.CheckSend();
+
+		SetSend(model.SendCol(), model.SendRow());
 
 		if(model.GameEnded()) {
 			EndGame(60, 0, 1250);
+		}
+	}
+
+	void SetSend(int col, int row) {
+		if(col == -1 && row == -1) board.text = "No hay envíos disponibles.";
+		else {
+			board.text = "Enviar provisiones al puerto " + model.GetColumnString(col) + model.GetRowString(row) + ".";
 		}
 	}
 
@@ -70,11 +80,27 @@ public class TravesiaActivityView : LevelView {
 
 		model.CleanRows();
 
-		//TODO get and remove done ships.
+		List<TravesiaEvent> doneShips = model.GetAndRemoveDoneShips();
 
 		model.CheckForRandomEvents();
 
+		if(action == TravesiaAction.SEND) model.NewSend();
+
+		//TODO do something with done ships and remove Next() call.
+		DoSomethingWithDoneShips(doneShips);
 		Next();
+	}
+
+	void DoSomethingWithDoneShips(List<TravesiaEvent> doneShips) {
+		foreach(TravesiaEvent doneShip in doneShips) {
+			if(doneShip.isShipCorrect){
+				//TODO correct.
+				model.Correct();
+			} else {
+				//TODO wrong.
+				model.Wrong();
+			}
+		}
 	}
 
 	TravesiaAction CurrentAction() {
@@ -181,7 +207,7 @@ public class TravesiaActivityView : LevelView {
 	void OnGUI() {
 		Event e = Event.current;
 		if (e.isKey && e.type == EventType.KeyUp && keyboardActive) {
-			if (e.keyCode >= KeyCode.A && e.keyCode <= KeyCode.F) {
+			if (e.keyCode >= KeyCode.A && e.keyCode <= KeyCode.I) {
 				Debug.Log ("Detected key code: " + e.keyCode);
 				LetterClick(e.keyCode.ToString());
 			} else if (e.keyCode == KeyCode.Return) {
