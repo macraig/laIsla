@@ -63,7 +63,7 @@ public class TravesiaActivityModel : LevelModel {
 	}
 
 	public int GetSlot(int row, int column) {
-		return row * GRID_ROWS + column;
+		return row * GRID_COLS + column;
 	}
 
 	public void AdvanceOne() {

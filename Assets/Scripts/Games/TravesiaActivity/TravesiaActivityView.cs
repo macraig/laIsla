@@ -151,6 +151,8 @@ public class TravesiaActivityView : LevelView {
 
 		foreach(List<TravesiaEvent> rowEvents in rows) {
 			foreach(TravesiaEvent rowEvent in rowEvents) {
+				Debug.Log("Event in row " + rowEvent.row + " col " + rowEvent.col);
+
 				//for each event, place corresponding sprite and clock.
 				int slot = model.GetSlot(rowEvent.row, rowEvent.col);
 
