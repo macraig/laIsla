@@ -13,31 +13,25 @@ using System;
 public class TravesiaActivityView : LevelView {
 	public Button okBtn;
 	public List<Image> tiles, clocks;
-	public List<GameObject> lives;
 	public Text letter, number;
+	public List<Toggle> actions;
 
 	private Sprite[] tileSprites;
 	private bool keyboardActive;
-	private Randomizer veggieRandomizer = Randomizer.New(3, 1), moleRandomizer = Randomizer.New(6, 4);
-	private const int GRASS_SPRITE = 0, SMACKED_MOLE_SPRITE = 7;
+	private const int WATER_SPRITE = 0, START_MONSTER_SPRITES = 6, START_SHIP_SPRITES = 6, DIFFERENT_SHIP_SPRITES = 3;
 
-	private AudioClip whackSound, whackMoleSound;
 	private TravesiaActivityModel model;
 
-
-	bool timerActive = false;
-
 	override public void Next(bool first = false){
+		UpdateView();
+		ResetLetterNumber();
+		keyboardActive = true;
+		CheckOk();
+
+		//TODO consigna.
+
 		if(model.GameEnded()) {
 			EndGame(60, 0, 1250);
-		} else {
-			ClocksActive(false);
-			ResetTiles();
-			ResetLetterNumber();
-			SetCurrentLevel();
-			keyboardActive = true;
-
-			CheckOk();
 		}
 	}
 
@@ -63,214 +57,100 @@ public class TravesiaActivityView : LevelView {
 	}
 
 	public void OkClick() {
-		PlayWhackSound ();
-		Invoke ("CheckWhack",0.5f);
-
-	}
-
-	private void CheckWhack(){
 		int row = model.GetRow(number.text);
-		int column = model.GetColumn(letter.text);
+		int col = model.GetColumn(letter.text);
+		TravesiaAction action = CurrentAction();
 
-		if(model.HasTime()){
-			
-			TimeOkClick(row, column);
-			SetLives(model.GetLives());
-		} else {
-			NoTimeOkClick(row, column);
-//			SetLives(0);
+		if(!model.ExecuteAction(row, col, action)) {
+			model.Wrong();
+			PlayWrongSound();
 		}
+
+		model.AdvanceOne();
+
+		model.CleanRows();
+
+		//TODO get and remove done ships.
+
+		model.CheckForRandomEvents();
+
+		Next();
 	}
 
-	void SetLives(int livesModel) {
-		for(int i = 0; i < lives.Count; i++) {
-//			lives[i].SetActive(livesModel > i);
-			lives[i].GetComponent<Button>().interactable = (livesModel > i);
+	TravesiaAction CurrentAction() {
+		int idx = actions.FindIndex(t => t.isOn);
+		switch(idx) {
+		case 0:
+			return TravesiaAction.SEND;
+		case 1:
+			return TravesiaAction.REPAIR;
+		case 2:
+			return TravesiaAction.PROVISION;
+		case 3:
+			return TravesiaAction.ATTACK;
 		}
+
+		return TravesiaAction.SEND;
 	}
 
 	void ResetTiles() {
-		foreach(var tile in tiles) {
-			tile.sprite = tileSprites[GRASS_SPRITE];
-		}
-	}
-
-	void NoTimeOkClick(int row, int column) {
-		int slot = model.GetSlot(row, column);
-		if(tiles[slot].sprite != tileSprites[GRASS_SPRITE] && tiles[slot].sprite != tileSprites[SMACKED_MOLE_SPRITE]){
-			//correct
-			model.Correct();
-			SmackMole(slot);
-
-			CheckEndLevel();
-		} else {
-			PlayWrongSound();
-		}
-	}
-
-	void TimeOkClick(int row, int column) {
-		if (model.IsCorrectTime(row, column)){
-//			model.Correct();
-//			PlayRightSound();
-			SmackMole(model.GetSlot(row, column));
-			//ShowRightAnswerAnimation();
-
-			CheckEndLevel();
-		} else {
-			//ShowWrongAnswerAnimation();
-			PlayWrongSound();
-//			model.Wrong();
-			model.OneLessLife();
-
-			if(model.NoMoreLives()){
-				timerActive = false;
-				EndGame(60, 0, 1250);
+		for(int row = 0; row < TravesiaActivityModel.GRID_ROWS; row++) {
+			for (int col = 1; col < TravesiaActivityModel.GRID_COLS - 1; col++) {
+				tiles[model.GetSlot(row, col)].sprite = tileSprites[WATER_SPRITE];
 			}
-		}
-	}
-
-	void SmackMole(int slot) {
-		
-		PlayWhackedMoleSound ();
-		tiles[slot].sprite = tileSprites[SMACKED_MOLE_SPRITE];
-		clocks[slot].gameObject.SetActive(false);
-
-		ResetLetterNumber();
-		CheckOk();
-	}
-
-	void CheckEndLevel() {
-		if(model.IsLevelEnded()){
-			if(timerActive) timerActive = false;
-			keyboardActive = false;
-			ShowRightAnswerAnimation();
-			model.NextLvl();
 		}
 	}
 
 	public void Start(){
 		model = new TravesiaActivityModel();
-		tileSprites = Resources.LoadAll<Sprite>("Sprites/PlagasActivity/tiles");
-		whackSound = Resources.Load<AudioClip> ("Audio/PlagasActivity/whack");
-		whackMoleSound = Resources.Load<AudioClip> ("Audio/PlagasActivity/whackedMole");
-		timerActive = false;
+		tileSprites = Resources.LoadAll<Sprite>("Sprites/TravesiaActivity/tiles");
+		ResetTiles();
 		Begin();
-	}
-
-	private void PlayWhackSound(){
-		SoundController.GetController ().PlayClip (whackSound);
-	}
-
-
-	private void PlayWhackedMoleSound(){
-		SoundController.GetController ().PlayClip (whackMoleSound);
 	}
 
 	public void Begin(){
 		ShowExplanation();
 	}
 
-	private void SetCurrentLevel() {
-		//deberia ser con herencia, pero odio c# :)
-		if(model.HasTime()){
-			lives.ForEach ((GameObject g) => g.SetActive (true));
-			TimeLevel(model.CurrentLvl());
-			SetLives(model.GetLives());
-		} else {
-			NormalLevel(model.CurrentLvl());
-		}
-	}
-
-	void TimeLevel(TravesiaLevel lvl) {
-		TimerTiles(lvl);
-
-		List<TravesiaTile> modelTiles = model.GetTiles();
-
-		//Set two starting veggies.
-		for(int i = 0; i < TravesiaActivityModel.VEGETABLES_IN_START; i++) {
-			int slot = model.GetFreeRow();
-
-			tiles[slot].sprite = tileSprites[veggieRandomizer.Next()];
-			modelTiles[slot].AppearInitVeggie();
-		}
-
-		StartTimer(true);
-	}
-
-	void TimerTiles(TravesiaLevel lvl) {
-		int randomSpawn = lvl.RandomSpawnTime();
-		int moleQuantity = lvl.MolesInSpawn(randomSpawn);
-		for(int i = 0; i < moleQuantity; i++) {
-			int freeSlot = model.GetFreeRow();
-			model.SetTimerTile(freeSlot, randomSpawn);
-		}
-	}
-
-	void StartTimer(bool first = false) {
-		StartCoroutine(TimerFunction(first));
-		timerActive = true;
-	}
-
-	public IEnumerator TimerFunction(bool first = false) {
-		yield return new WaitForSeconds(1);
-		Debug.Log("segundo");
-
-		UpdateView();
-
-		if(timerActive) StartTimer();
-	}
-
+	//Repaint method.
 	void UpdateView() {
-		model.DecreaseTimer();
-		List<TravesiaTile> modelTiles = model.GetTiles();
-		bool newTimerSet = false;
+		ClocksActive(false);
+		ResetTiles();
+		List<List<TravesiaEvent>> rows = model.GetRows();
 
-		for(int i = 0; i < modelTiles.Count; i++) {
-			TravesiaTile tile = modelTiles[i];
-			clocks[i].GetComponentInChildren<Text>(true).text = tile.GetTimer().ToString();
+		foreach(List<TravesiaEvent> rowEvents in rows) {
+			foreach(TravesiaEvent rowEvent in rowEvents) {
+				//for each event, place corresponding sprite and clock.
+				int slot = model.GetSlot(rowEvent.row, rowEvent.col);
 
-			//si tiene que aparecer un vegetal.
-			if(tile.HasToAppear()){
-				tiles[i].sprite = tileSprites[veggieRandomizer.Next()];
-				modelTiles[i].AppearVeggie();
-
-				if(!newTimerSet){
-					newTimerSet = true;
-
-					TimerTiles(model.CurrentLvl());
+				switch(rowEvent.GetState()) {
+				case TravesiaEventState.SHIP:
+					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES)];
+					clocks[slot].gameObject.SetActive(true);
+					clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
+					break;
+				case TravesiaEventState.WRECKED_SHIP:
+					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 1];
+					clocks[slot].gameObject.SetActive(true);
+					clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
+					break;
+				case TravesiaEventState.SUNK_SHIP:
+					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 2];
+					break;
+				case TravesiaEventState.MONSTER:
+					tiles[slot].sprite = tileSprites[START_MONSTER_SPRITES + rowEvent.GetObjectNumber()];
+					break;
 				}
 			}
-
-			//si sale vegetal y aparece topo.
-			if(tile.MoleHasToAppear()){
-				tiles[i].sprite = GetMoleFromVeggie(tiles[i].sprite);
-				modelTiles[i].AppearMole();
-				clocks[i].gameObject.SetActive(true);
-				clocks[i].GetComponentInChildren<Text>(true).text = tile.GetTimer().ToString();
-			}
-
-			//si se termino el tiempo y no le pego.
-			if(tile.TimeDoneAndNotSmacked()){
-				tiles[i].sprite = tileSprites[GRASS_SPRITE];
-				clocks[i].gameObject.SetActive(false);
-				modelTiles[i].DissapearMole();
-			}
 		}
 	}
 
-	Sprite GetMoleFromVeggie(Sprite sprite) {
-		return tileSprites[Array.IndexOf(tileSprites, sprite) + 3];
+	Sprite GetWreckedShip(Sprite sprite) {
+		return tileSprites[Array.IndexOf(tileSprites, sprite) + 1];
 	}
 
-	void NormalLevel(TravesiaLevel lvl) {
-		PlaceMoles(lvl.MoleQuantity());
-	}
-
-	void PlaceMoles(int moleQuantity) {
-		for(int i = 0; i < moleQuantity; i++) {
-			int nextSpot = model.GetFreeRow();
-			tiles[nextSpot].sprite = tileSprites[moleRandomizer.Next()];
-		}
+	Sprite GetDestroyedShip(Sprite sprite) {
+		return tileSprites[Array.IndexOf(tileSprites, sprite) + 2];
 	}
 
 	public void LetterClick(string l){
@@ -290,7 +170,7 @@ public class TravesiaActivityView : LevelView {
 	}
 
 	bool CanSubmit() {
-		return letter.text.Length == 1 && number.text.Length == 1;
+		return letter.text.Length == 1 && number.text.Length == 1 && actions.Exists(t => t.isOn);
 	}
 
 	override public void RestartGame(){
