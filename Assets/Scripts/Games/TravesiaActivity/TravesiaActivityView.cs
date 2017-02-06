@@ -229,6 +229,19 @@ public class TravesiaActivityView : LevelView {
 	public GameObject logPanel;
 
 	public void OpenLog(){
-		
+		logPanel.SetActive(true);
+
+		PopulateLog();
+	}
+
+	void PopulateLog() {
+		List<TravesiaEvent> doneShips = model.GetDoneEvents();
+		List<TravesiaEvent> onGoingShips = model.GetOnGoingShipEvents();
+
+		//TODO populate log with this events.
+	}
+
+	public void CloseLog(){
+		logPanel.SetActive(false);
 	}
 }
