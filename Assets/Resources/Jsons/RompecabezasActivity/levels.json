@@ -2,19 +2,19 @@
 	"levels": [
 	{
 		"hasTwoRoads": "false",
-		"partQuantity": "6",
+		"partQuantity": "14",
 		"distractionParts": "0"
 	}, {
 		"hasTwoRoads": "false",
-		"partQuantity": "6",
+		"partQuantity": "13",
 		"distractionParts": "2"
 	}, {
 		"hasTwoRoads": "true",
-		"partQuantity": "6",
+		"partQuantity": "10",
 		"distractionParts": "0"
 	}, {
 		"hasTwoRoads": "true",
-		"partQuantity": "6",
+		"partQuantity": "10",
 		"distractionParts": "2"
 	}]
 }

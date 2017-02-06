@@ -87,6 +87,11 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 			clock.gameObject.SetActive(true);
 			SetClock();
 			StartTimer(true);
+
+			SetStartParts(lvl.StartParts());
+			SetEndParts(lvl.EndParts());
+
+			SetDraggers(lvl.DraggerParts());
 		}
 
 		void StartTimer(bool first = false) {
@@ -120,7 +125,7 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 
 		void ResetTiles() {
 			tiles.ForEach(t => {
-				t.GetComponent<RompecabezasSlot>().ResetSprite();
+				t.GetComponent<RompecabezasSlot>().Reset();
 				t.GetComponent<RompecabezasSlot>().EndSlot(false);
 				t.GetComponent<RompecabezasSlot>().StartSlot(false);
 			});
@@ -136,13 +141,13 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 
 		void TimeOkClick() {
 			timerActive = false;
+			clock.gameObject.SetActive(false);
 			if(IsCorrect()){
 				//correct
+				model.NextLvl();
 				ShowRightAnswerAnimation();
 				model.Correct();
-				model.CorrectTimer();
 				SetClock();
-				model.NextLvl();
 			} else {
 				PlayWrongSound();
 				model.Wrong();
@@ -183,16 +188,49 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 
 					if(currentPart == null) return false;
 
-					if(currentPart.Model().direction == dir) {
-						dir = currentPart.Model().previousDir;
-					} else if(currentPart.Model().previousDir == dir) {
-						dir = currentPart.Model().direction;
-					} else
-						return false;
+					PartModel m = currentPart.Model();
+					if(m.isDouble){
+						if(!m.isCross){
+							dir = NotCrossDouble(dir, m.isLeftUp);
+						}
+					} else {
+						dir = GetNextDirection(m, dir);
+
+						if(dir == Direction.NULL) return false;
+					}
 				}
 			}
 			
 			return true;
+		}
+
+		Direction GetNextDirection(PartModel m, Direction dir) {
+			//vamos a cablearlo.....
+
+			//if(m.direction == m.previousDir && (m.direction == dir || m.direction == OppositeDir(dir))) return dir;
+
+			if(m.previousDir == dir)
+				return m.direction;
+			else if(OppositeDir(m.direction) == dir)
+				return OppositeDir(m.previousDir);
+			else
+				return Direction.NULL;
+		}
+
+		Direction OppositeDir(Direction direction) {
+			if(direction == Direction.UP) return Direction.DOWN;
+			if(direction == Direction.DOWN) return Direction.UP;
+			if(direction == Direction.LEFT) return Direction.RIGHT;
+			if(direction == Direction.RIGHT) return Direction.LEFT;
+			return Direction.NULL;
+		}
+
+		Direction NotCrossDouble(Direction dir, bool isLeftUp) {
+			if(dir == Direction.RIGHT) return isLeftUp ? Direction.UP : Direction.DOWN;
+			if(dir == Direction.LEFT) return isLeftUp ? Direction.DOWN : Direction.UP;
+			if(dir == Direction.UP) return isLeftUp ? Direction.RIGHT : Direction.LEFT;
+			if(dir == Direction.DOWN) return isLeftUp ? Direction.LEFT : Direction.RIGHT;
+			return Direction.NULL;
 		}
 
 		int DirectionPlusRow(Direction d, int row) {

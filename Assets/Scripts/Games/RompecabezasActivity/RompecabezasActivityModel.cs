@@ -8,8 +8,8 @@ using SimpleJSON;
 namespace Assets.Scripts.Games.RompecabezasActivity {
 	public class RompecabezasActivityModel : LevelModel {
 		//time is in seconds
-		public const int START_TIME = 60, CORRECT_SCENE_TIME = 20;
-		private int timer;
+		public const int START_TIME = 120, CORRECT_SCENE_TIME = 20;
+		private int timer, currentStartTime;
 		private bool withTime;
 
 		private int currentLvl;
@@ -18,6 +18,7 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 		public RompecabezasActivityModel() {
 			currentLvl = 0;
 			timer = START_TIME;
+			currentStartTime = START_TIME;
 			withTime = false;
 			StartLevels();
 			MetricsController.GetController().GameStart();
@@ -46,10 +47,17 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 		public void NextLvl(){
 			currentLvl++;
 
+			bool firstWithTime = false;
 			if(currentLvl == lvls.Count){
+				if(!withTime) firstWithTime = true;
 				withTime = true;
 				currentLvl = 0;
 				StartLevels(true);
+			}
+
+			if(withTime && !firstWithTime && currentLvl % 2 == 0){
+				timer = currentStartTime - CORRECT_SCENE_TIME;
+				currentStartTime = currentStartTime - CORRECT_SCENE_TIME;
 			}
 		}
 
@@ -71,10 +79,6 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 
 		public bool IsTimerDone(){
 			return timer == 0;
-		}
-
-		public void CorrectTimer() {
-			timer += CORRECT_SCENE_TIME;
 		}
 
 		public int GetTimer() {

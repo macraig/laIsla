@@ -49,7 +49,7 @@ public class RompecabezasSlot : MonoBehaviour, IDropHandler, IPointerClickHandle
 		if(current != null){
 			current.gameObject.SetActive(true);
 			current = null;
-			ResetSprite();
+			Reset();
 		}
 	}
 
@@ -93,7 +93,8 @@ public class RompecabezasSlot : MonoBehaviour, IDropHandler, IPointerClickHandle
 		return isEndSlot;
 	}
 
-	public void ResetSprite() {
+	public void Reset() {
 		GetComponent<Image>().sprite = startSprite;
+		current = null;
 	}
 }

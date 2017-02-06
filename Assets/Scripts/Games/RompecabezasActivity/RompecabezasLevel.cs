@@ -16,8 +16,10 @@ public class RompecabezasLevel {
 		partQuantity = source["partQuantity"].AsInt;
 		distractionParts = source["distractionParts"].AsInt;
 
+		Debug.Log("START");
 		if(hasTwoRoads) BuildTwoRoadLevel();
 		else BuildLevel();
+		Debug.Log("END");
 	}
 
 	void BuildTwoRoadLevel() {
@@ -25,8 +27,8 @@ public class RompecabezasLevel {
 		Direction[] dirs = new Direction[] {Direction.DOWN, Direction.LEFT, Direction.RIGHT, Direction.UP};
 		bool isCross = Randomizer.RandomBoolean();
 		//Double part will be in any of the 4 middles tiles. This could be improved by moving the whole puzzle when ready.
-		int doubleRow = Randomizer.RandomInRange(3, 2);
-		int doubleCol = Randomizer.RandomInRange(3, 2);
+		int doubleRow = Randomizer.New(3, 2).Next();
+		int doubleCol = Randomizer.New(3, 2).Next();
 
 		Debug.Log("Double part: col " + doubleCol + " row " + doubleRow);
 
@@ -52,9 +54,8 @@ public class RompecabezasLevel {
 			}
 
 			if(!wheel.ContainsKey(wheelDir)) {
-
-				doubleCol = DirectionPlusCol(dir, doubleCol);
-				doubleRow = DirectionPlusRow(dir, doubleRow);
+				doubleCol = DirectionPlusCol(dir, doublePart.col);
+				doubleRow = DirectionPlusRow(dir, doublePart.row);
 
 				//first part doesnt cross anything, ever.
 				Randomizer dirRand = Randomizer.New(dirs.Length - 1);
@@ -76,8 +77,8 @@ public class RompecabezasLevel {
 				PartModel lastPart = wheel[wheelDir][wheel[wheelDir].Count - 1];
 				dir = lastPart.direction;
 
-				doubleCol = DirectionPlusCol(dir, doubleCol);
-				doubleRow = DirectionPlusRow(dir, doubleRow);
+				doubleCol = DirectionPlusCol(dir, lastPart.col);
+				doubleRow = DirectionPlusRow(dir, lastPart.row);
 
 				Randomizer dirRand = Randomizer.New(dirs.Length - 1);
 				Direction oldDir = dir;
@@ -102,11 +103,21 @@ public class RompecabezasLevel {
 			}
 		}
 
+		PrintWheel(wheel);
+
 		if(!AddDoubleEndStartParts(wheel, doublePart)) { BuildTwoRoadLevel();return; }
 
 		AddDistractors();
 
 		parts = Randomizer.RandomizeList(parts);
+	}
+
+	void PrintWheel(Dictionary<Direction, List<PartModel>> wheel) {
+		foreach(var k in wheel.Keys) {
+			foreach(var p in wheel[k]) {
+				Debug.Log("Direction " + k + " partmodel col " + p.col + " row " + p.row + " dirA " + p.direction + " dirB " + p.previousDir);
+			}
+		}
 	}
 
 	bool AddDoubleEndStartParts(Dictionary<Direction, List<PartModel>> wheel, PartModel doublePart) {
@@ -139,7 +150,7 @@ public class RompecabezasLevel {
 	bool AddStart(Dictionary<Direction, List<PartModel>> wheel, Direction direction) {
 		PartModel lastPart = wheel[direction][wheel[direction].Count - 1];
 
-		PartModel start = new PartModel(OppositDir(lastPart.direction), Direction.NULL, DirectionPlusCol(lastPart.direction, lastPart.col), DirectionPlusRow(lastPart.direction, lastPart.row));
+		PartModel start = new PartModel(OppositeDir(lastPart.direction), Direction.NULL, DirectionPlusCol(lastPart.direction, lastPart.col), DirectionPlusRow(lastPart.direction, lastPart.row));
 
 		if(parts.Contains(start)) return false;
 		else {
@@ -160,7 +171,7 @@ public class RompecabezasLevel {
 		}
 	}
 
-	Direction OppositDir(Direction direction) {
+	Direction OppositeDir(Direction direction) {
 		if(direction == Direction.UP) return Direction.DOWN;
 		if(direction == Direction.DOWN) return Direction.UP;
 		if(direction == Direction.LEFT) return Direction.RIGHT;
