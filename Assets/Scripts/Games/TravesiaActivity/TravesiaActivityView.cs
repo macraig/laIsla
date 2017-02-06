@@ -26,6 +26,7 @@ public class TravesiaActivityView : LevelView {
 		if(first) model.NewSend();
 		UpdateView();
 		ResetLetterNumber();
+		ResetActions();
 		keyboardActive = true;
 		CheckOk();
 
@@ -43,6 +44,10 @@ public class TravesiaActivityView : LevelView {
 		else {
 			board.text = "Enviar provisiones al puerto " + model.GetColumnString(col) + model.GetRowString(row) + ".";
 		}
+	}
+
+	void ResetActions() {
+		actions.ForEach(t => t.isOn = false);
 	}
 
 	void ResetLetterNumber() {
@@ -191,7 +196,7 @@ public class TravesiaActivityView : LevelView {
 		CheckOk();
 	}
 
-	void CheckOk() {
+	public void CheckOk() {
 		okBtn.interactable = CanSubmit();
 	}
 
@@ -217,5 +222,13 @@ public class TravesiaActivityView : LevelView {
 				NumberClick(e.keyCode.ToString()[e.keyCode.ToString().Length - 1].ToString());
 			}
 		}
+	}
+
+	//LOG:
+
+	public GameObject logPanel;
+
+	public void OpenLog(){
+		
 	}
 }
