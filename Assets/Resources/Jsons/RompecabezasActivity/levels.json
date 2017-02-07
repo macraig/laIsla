@@ -2,18 +2,32 @@
 	"levels": [
 	{
 		"hasTwoRoads": "false",
+		"hasFork": "false",
 		"partQuantity": "14",
 		"distractionParts": "0"
 	}, {
 		"hasTwoRoads": "false",
+		"hasFork": "false",
+		"partQuantity": "13",
+		"distractionParts": "2"
+	}, {
+		"hasTwoRoads": "false",
+		"hasFork": "true",
+		"partQuantity": "15",
+		"distractionParts": "0"
+	}, {
+		"hasTwoRoads": "false",
+		"hasFork": "true",
 		"partQuantity": "13",
 		"distractionParts": "2"
 	}, {
 		"hasTwoRoads": "true",
+		"hasFork": "false",
 		"partQuantity": "10",
 		"distractionParts": "0"
 	}, {
 		"hasTwoRoads": "true",
+		"hasFork": "false",
 		"partQuantity": "10",
 		"distractionParts": "2"
 	}]

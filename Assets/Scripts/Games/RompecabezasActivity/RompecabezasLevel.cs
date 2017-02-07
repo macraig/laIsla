@@ -6,13 +6,14 @@ using Assets.Scripts.Games.RompecabezasActivity;
 using UnityEngine;
 
 public class RompecabezasLevel {
-	public bool hasTwoRoads;
+	public bool hasTwoRoads, hasFork;
 	public int partQuantity, distractionParts;
 	public const int GRID = 6;
 	private List<PartModel> parts;
 
 	public RompecabezasLevel(JSONClass source, bool withTime) {
 		hasTwoRoads = source["hasTwoRoads"].AsBool;
+		hasFork = source["hasFork"].AsBool;
 		partQuantity = source["partQuantity"].AsInt;
 		distractionParts = source["distractionParts"].AsInt;
 
