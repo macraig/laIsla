@@ -18,9 +18,100 @@ public class RompecabezasLevel {
 		distractionParts = source["distractionParts"].AsInt;
 
 		Debug.Log("START");
-		if(hasTwoRoads) BuildTwoRoadLevel();
+		if(hasTwoRoads)
+			BuildTwoRoadLevel();
+		else if(hasFork)
+			BuildForkLevel();
 		else BuildLevel();
 		Debug.Log("END");
+	}
+
+	void BuildForkLevel() {
+		parts = new List<PartModel>();
+		Direction[] dirs = new Direction[] {Direction.DOWN, Direction.LEFT, Direction.RIGHT, Direction.UP};
+		bool isCross = Randomizer.RandomBoolean();
+		//Double part will be in any of the 4 middles tiles. This could be improved by moving the whole puzzle when ready.
+		int doubleRow = Randomizer.New(3, 2).Next();
+		int doubleCol = Randomizer.New(3, 2).Next();
+
+		Debug.Log("Fork part: col " + doubleCol + " row " + doubleRow);
+
+		PartModel doublePart = new PartModel(Direction.NULL, Direction.NULL, doubleCol, doubleRow, true, isCross);
+		parts.Add(doublePart);
+
+		//The algorithm will consist in adding a part to each direction of the double part until i'm out 
+		//of parts to add, the we will add de start and end parts.
+		Direction wheelDir = RandomDirection(dirs);
+		Debug.Log(wheelDir);
+
+		//We need to keep track of which direction we are adding the parts so we can flatten them afterwards and add start and end parts.
+		Dictionary<Direction, List<PartModel>> wheel = new Dictionary<Direction, List<PartModel>>();
+		Direction dir = wheelDir;
+		bool done = false;
+
+		while(parts.Count < partQuantity){
+			if(done){
+				wheelDir = NextDir(dirs, wheelDir);
+				dir = wheelDir;
+				Debug.Log(wheelDir);
+				done = false;
+			}
+
+			if(!wheel.ContainsKey(wheelDir)) {
+				doubleCol = DirectionPlusCol(dir, doublePart.col);
+				doubleRow = DirectionPlusRow(dir, doublePart.row);
+
+				//first part doesnt cross anything, ever.
+				Randomizer dirRand = Randomizer.New(dirs.Length - 1);
+				Direction oldDir = dir;
+				for(int i = 0; i < dirs.Length; i++) {
+					dir = dirs[dirRand.Next()];
+					if(isApplicable(dir, doubleCol, doubleRow) && !IsSameWay(oldDir, dir)){
+						PartModel newPart = new PartModel(dir, oldDir, doubleCol, doubleRow);
+						if(!parts.Contains(newPart)) {
+							parts.Add(newPart);
+							wheel[wheelDir] = new List<PartModel>();
+							wheel[wheelDir].Add(newPart);
+							done = true;
+							break;
+						}
+					}
+				}
+			} else {
+				PartModel lastPart = wheel[wheelDir][wheel[wheelDir].Count - 1];
+				dir = lastPart.direction;
+
+				doubleCol = DirectionPlusCol(dir, lastPart.col);
+				doubleRow = DirectionPlusRow(dir, lastPart.row);
+
+				Randomizer dirRand = Randomizer.New(dirs.Length - 1);
+				Direction oldDir = dir;
+				bool doneInner = false;
+				for(int i = 0; i < dirs.Length; i++) {
+					dir = dirs[dirRand.Next()];
+					if(isApplicable(dir, doubleCol, doubleRow) && !IsSameWay(oldDir, dir)){
+						PartModel newPart = new PartModel(dir, oldDir, doubleCol, doubleRow);
+						PartModel wouldBeEndPart = new PartModel(Direction.NULL, Direction.NULL, DirectionPlusCol(dir, doubleCol), DirectionPlusRow(dir, doubleRow));
+						if(!parts.Contains(newPart) && !parts.Contains(wouldBeEndPart)) {
+							parts.Add(newPart);
+							wheel[wheelDir].Add(newPart);
+							doneInner = true;
+							break;
+						}
+					}
+				}
+				if(!doneInner) {
+					//If I reach this segment it means that I have no way out. In that case, restart BuildLevel(). We should use a path algorithm.
+					BuildTwoRoadLevel();return;
+				}
+			}
+		}
+
+		if(!AddDoubleEndStartParts(wheel, doublePart)) { BuildTwoRoadLevel();return; }
+
+		AddDistractors();
+
+		parts = Randomizer.RandomizeList(parts);
 	}
 
 	void BuildTwoRoadLevel() {
@@ -104,21 +195,11 @@ public class RompecabezasLevel {
 			}
 		}
 
-		PrintWheel(wheel);
-
 		if(!AddDoubleEndStartParts(wheel, doublePart)) { BuildTwoRoadLevel();return; }
 
 		AddDistractors();
 
 		parts = Randomizer.RandomizeList(parts);
-	}
-
-	void PrintWheel(Dictionary<Direction, List<PartModel>> wheel) {
-		foreach(var k in wheel.Keys) {
-			foreach(var p in wheel[k]) {
-				Debug.Log("Direction " + k + " partmodel col " + p.col + " row " + p.row + " dirA " + p.direction + " dirB " + p.previousDir);
-			}
-		}
 	}
 
 	bool AddDoubleEndStartParts(Dictionary<Direction, List<PartModel>> wheel, PartModel doublePart) {
