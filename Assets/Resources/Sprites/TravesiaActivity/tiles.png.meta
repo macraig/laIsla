@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f7db5b7c5f5b39d449e02ad1eae98f1b
-timeCreated: 1486169359
+timeCreated: 1486482336
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -20,6 +20,34 @@ TextureImporter:
     21300026: TravesiaActivity-04_13
     21300028: TravesiaActivity-04_14
     21300030: TravesiaActivity-04_15
+    21300032: tiles_0
+    21300034: tiles_1
+    21300036: tiles_2
+    21300038: tiles_3
+    21300040: tiles_4
+    21300042: tiles_5
+    21300044: tiles_6
+    21300046: tiles_7
+    21300048: tiles_8
+    21300050: tiles_9
+    21300052: tiles_10
+    21300054: tiles_11
+    21300056: tiles_12
+    21300058: tiles_13
+    21300060: tiles_14
+    21300062: tiles_15
+    21300064: tiles_16
+    21300066: tiles_17
+    21300068: tiles_18
+    21300070: tiles_19
+    21300072: tiles_20
+    21300074: tiles_21
+    21300076: tiles_22
+    21300078: tiles_23
+    21300080: tiles_24
+    21300082: tiles_25
+    21300084: tiles_26
+    21300086: tiles_27
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -94,208 +122,364 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TravesiaActivity-04_0
+      name: tiles_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 137
+        y: 417
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_1
+      name: tiles_1
       rect:
         serializedVersion: 2
         x: 138
-        y: 137
+        y: 417
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_2
+      name: tiles_2
       rect:
         serializedVersion: 2
         x: 276
-        y: 137
+        y: 417
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_3
+      name: tiles_3
       rect:
         serializedVersion: 2
         x: 414
-        y: 137
+        y: 417
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_4
+      name: tiles_4
       rect:
         serializedVersion: 2
         x: 552
-        y: 137
+        y: 417
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_5
+      name: tiles_5
       rect:
         serializedVersion: 2
         x: 690
-        y: 137
+        y: 417
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_6
+      name: tiles_6
       rect:
         serializedVersion: 2
         x: 828
-        y: 137
+        y: 417
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_7
+      name: tiles_7
       rect:
         serializedVersion: 2
-        x: 966
-        y: 137
+        x: 0
+        y: 278
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_8
+      name: tiles_8
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 278
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_9
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 278
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_10
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 278
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_11
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 278
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_12
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 278
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_13
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 278
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_15
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 139
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_16
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 139
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_17
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 139
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_18
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 139
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_19
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 139
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_20
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 139
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiles_21
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_9
+      name: tiles_22
       rect:
         serializedVersion: 2
         x: 138
         y: 0
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_10
+      name: tiles_23
       rect:
         serializedVersion: 2
         x: 276
         y: 0
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_11
+      name: tiles_24
       rect:
         serializedVersion: 2
         x: 414
         y: 0
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_12
+      name: tiles_25
       rect:
         serializedVersion: 2
         x: 552
         y: 0
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_13
+      name: tiles_26
       rect:
         serializedVersion: 2
         x: 690
         y: 0
         width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: TravesiaActivity-04_14
+      name: tiles_27
       rect:
         serializedVersion: 2
         x: 828
         y: 0
         width: 138
-        height: 137
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: TravesiaActivity-04_15
-      rect:
-        serializedVersion: 2
-        x: 966
-        y: 0
-        width: 138
-        height: 137
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
