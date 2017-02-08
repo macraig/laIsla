@@ -189,7 +189,17 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 					if(currentPart == null) return false;
 
 					PartModel m = currentPart.Model();
-					if(m.isDouble){
+					if(m.isFork){
+						List<Direction> forkDirs = GetForkDirs(m.middleFork);
+						//remove the direction where the start part comes from
+						forkDirs.Remove(OppositeDir(dir));
+
+						//look for end parts following the other paths.
+						foreach(Direction forkDir in forkDirs) {
+							if(!IsForkDirectionCorrect(forkDir, newRow, newCol)) return false;
+						}
+						return true;
+					} else if(m.isDouble){
 						if(!m.isCross){
 							dir = NotCrossDouble(dir, m.isLeftUp);
 						}
@@ -202,6 +212,41 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 			}
 			
 			return true;
+		}
+
+		bool IsForkDirectionCorrect(Direction forkDir, int row, int col) {
+			int newRow = row;
+			int newCol = col;
+			Direction dir = forkDir;
+			while(true){
+				newRow = DirectionPlusRow(dir, newRow);
+				newCol = DirectionPlusCol(dir, newCol);
+
+				RompecabezasSlot slot = tiles[TileNumber(newRow, newCol)].GetComponent<RompecabezasSlot>();
+
+				if(slot.IsEnd()) break;
+
+				Part currentPart = slot.GetCurrent();
+
+				if(currentPart == null) return false;
+
+				PartModel m = currentPart.Model();
+
+				//as it is exclusive for fork directions, we cant find another complex part
+				if(m.isDouble || m.isFork) return false;
+
+				dir = GetNextDirection(m, dir);
+				if(dir == Direction.NULL) return false;
+			}
+			return true;
+		}
+
+		List<Direction> GetForkDirs(Direction middleFork) {
+			if(middleFork == Direction.DOWN) return new List<Direction> { Direction.DOWN, Direction.LEFT, Direction.RIGHT };
+			if(middleFork == Direction.UP) return new List<Direction> { Direction.UP, Direction.LEFT, Direction.RIGHT };
+			if(middleFork == Direction.LEFT) return new List<Direction> { Direction.DOWN, Direction.LEFT, Direction.UP };
+			if(middleFork == Direction.RIGHT) return new List<Direction> { Direction.DOWN, Direction.UP, Direction.RIGHT };
+			return new List<Direction>();
 		}
 
 		Direction GetNextDirection(PartModel m, Direction dir) {
