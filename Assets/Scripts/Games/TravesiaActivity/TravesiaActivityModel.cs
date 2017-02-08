@@ -7,7 +7,7 @@ using SimpleJSON;
 using Assets.Scripts.Common;
 
 public class TravesiaActivityModel : LevelModel {
-	public const int TILES = 36, SHIP_QUANTITY = 6, GRID_ROWS = 6, GRID_COLS = 9, PROVISION_SUM = 3;
+	public const int TILES = 36, SHIP_QUANTITY = 6, GRID_ROWS = 5, GRID_COLS = 8, PROVISION_SUM = 3;
 	private List<List<TravesiaEvent>> rows;
 	private List<TravesiaEvent> doneEvents;
 
