@@ -20,7 +20,7 @@ public class TravesiaActivityModel : LevelModel {
 	}
 
 	public bool GameEnded(){
-		return doneEvents.Count == SHIP_QUANTITY;
+		return doneEvents.Count >= SHIP_QUANTITY;
 	}
 
 	void EmptyRows() {
