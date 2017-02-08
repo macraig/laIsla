@@ -17,12 +17,17 @@ public class RompecabezasLevel {
 		partQuantity = source["partQuantity"].AsInt;
 		distractionParts = source["distractionParts"].AsInt;
 
-		Debug.Log("START");
-		if(hasTwoRoads)
+		if(hasTwoRoads) {
+			Debug.Log("START TWO ROAD");
 			BuildTwoRoadLevel();
-		else if(hasFork)
+		}
+		else if(hasFork) {
+			Debug.Log("START FORK");
 			BuildForkLevel();
-		else BuildLevel();
+		} else {
+			Debug.Log("START NORMAL");
+			BuildLevel();
+		}
 		Debug.Log("END");
 	}
 
@@ -114,6 +119,14 @@ public class RompecabezasLevel {
 		AddDistractors();
 
 		parts = Randomizer.RandomizeList(parts);
+
+		PrintParts();
+	}
+
+	void PrintParts() {
+		foreach(var part in parts) {
+			Debug.Log(part.isFork + " " + part.middleFork);
+		}
 	}
 
 	void BuildTwoRoadLevel() {
@@ -379,6 +392,6 @@ public class RompecabezasLevel {
 	}
 
 	public List<PartModel> DraggerParts() {
-		return parts.FindAll(p => p.isDouble || (p.direction != Direction.NULL && p.previousDir != Direction.NULL));
+		return parts.FindAll(p => p.isDouble || p.isFork || (p.direction != Direction.NULL && p.previousDir != Direction.NULL));
 	}
 }

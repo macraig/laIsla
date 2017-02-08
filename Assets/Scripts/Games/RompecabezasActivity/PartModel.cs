@@ -23,6 +23,7 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 
 		public Sprite GetSprite(List<Sprite> parts) {
 			//FORK
+			Debug.Log("fork: " + isFork + " middle: " + middleFork);
 			if(isFork && middleFork == Direction.LEFT) return parts[8];
 			if(isFork && middleFork == Direction.RIGHT) return parts[9];
 			if(isFork && middleFork == Direction.UP) return parts[10];
