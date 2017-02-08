@@ -29,19 +29,21 @@ public class RompecabezasLevel {
 	void BuildForkLevel() {
 		parts = new List<PartModel>();
 		Direction[] dirs = new Direction[] {Direction.DOWN, Direction.LEFT, Direction.RIGHT, Direction.UP};
-		bool isCross = Randomizer.RandomBoolean();
+		Direction middleFork = RandomDirection(dirs);
+		List<Direction> wheelDirections = new List<Direction>(dirs);
+		wheelDirections.Remove(OppositeDir(middleFork));
 		//Double part will be in any of the 4 middles tiles. This could be improved by moving the whole puzzle when ready.
 		int doubleRow = Randomizer.New(3, 2).Next();
 		int doubleCol = Randomizer.New(3, 2).Next();
 
 		Debug.Log("Fork part: col " + doubleCol + " row " + doubleRow);
 
-		PartModel doublePart = new PartModel(Direction.NULL, Direction.NULL, doubleCol, doubleRow, true, isCross);
-		parts.Add(doublePart);
+		PartModel forkPart = new PartModel(Direction.NULL, Direction.NULL, doubleCol, doubleRow, false, false, true, middleFork);
+		parts.Add(forkPart);
 
 		//The algorithm will consist in adding a part to each direction of the double part until i'm out 
 		//of parts to add, the we will add de start and end parts.
-		Direction wheelDir = RandomDirection(dirs);
+		Direction wheelDir = RandomDirection(wheelDirections.ToArray());
 		Debug.Log(wheelDir);
 
 		//We need to keep track of which direction we are adding the parts so we can flatten them afterwards and add start and end parts.
@@ -51,15 +53,15 @@ public class RompecabezasLevel {
 
 		while(parts.Count < partQuantity){
 			if(done){
-				wheelDir = NextDir(dirs, wheelDir);
+				wheelDir = NextDir(wheelDirections.ToArray(), wheelDir);
 				dir = wheelDir;
 				Debug.Log(wheelDir);
 				done = false;
 			}
 
 			if(!wheel.ContainsKey(wheelDir)) {
-				doubleCol = DirectionPlusCol(dir, doublePart.col);
-				doubleRow = DirectionPlusRow(dir, doublePart.row);
+				doubleCol = DirectionPlusCol(dir, forkPart.col);
+				doubleRow = DirectionPlusRow(dir, forkPart.row);
 
 				//first part doesnt cross anything, ever.
 				Randomizer dirRand = Randomizer.New(dirs.Length - 1);
@@ -102,12 +104,12 @@ public class RompecabezasLevel {
 				}
 				if(!doneInner) {
 					//If I reach this segment it means that I have no way out. In that case, restart BuildLevel(). We should use a path algorithm.
-					BuildTwoRoadLevel();return;
+					BuildForkLevel();return;
 				}
 			}
 		}
 
-		if(!AddDoubleEndStartParts(wheel, doublePart)) { BuildTwoRoadLevel();return; }
+		if(!AddDoubleEndStartParts(wheel, forkPart)) { BuildForkLevel();return; }
 
 		AddDistractors();
 
@@ -202,17 +204,24 @@ public class RompecabezasLevel {
 		parts = Randomizer.RandomizeList(parts);
 	}
 
-	bool AddDoubleEndStartParts(Dictionary<Direction, List<PartModel>> wheel, PartModel doublePart) {
+	bool AddDoubleEndStartParts(Dictionary<Direction, List<PartModel>> wheel, PartModel forkOrDoublePart) {
 		bool firstCross = Randomizer.RandomBoolean();
 		bool secondCross = Randomizer.RandomBoolean();
 
-		if(doublePart.isCross){
+		if(forkOrDoublePart.isFork){
+			List<Direction> keys = new List<Direction>(wheel.Keys);
+			Randomizer wheelKeyRandomizer = Randomizer.New(keys.Count - 1);
+			if(!AddStart(wheel, keys[wheelKeyRandomizer.Next()]) ||
+				!AddEnd(wheel, keys[wheelKeyRandomizer.Next()]) ||
+				!AddEnd(wheel, keys[wheelKeyRandomizer.Next()]))
+				return false;
+		} else if(forkOrDoublePart.isCross){
 			if(!AddStart(wheel, firstCross ? Direction.LEFT : Direction.RIGHT) ||
 				!AddEnd(wheel, firstCross ? Direction.RIGHT : Direction.LEFT) ||
 				!AddStart(wheel, secondCross ? Direction.UP : Direction.DOWN) ||
 				!AddEnd(wheel, secondCross ? Direction.DOWN : Direction.UP))
 				return false;
-		} else if(doublePart.isLeftUp){
+		} else if(forkOrDoublePart.isLeftUp){
 			if(!AddStart(wheel, firstCross ? Direction.LEFT : Direction.UP) ||
 				!AddEnd(wheel, firstCross ? Direction.UP : Direction.LEFT) ||
 				!AddStart(wheel, secondCross ? Direction.RIGHT : Direction.DOWN) ||
