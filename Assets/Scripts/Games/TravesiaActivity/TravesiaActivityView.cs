@@ -18,7 +18,7 @@ public class TravesiaActivityView : LevelView {
 
 	private Sprite[] tileSprites;
 	private bool keyboardActive;
-	private const int WATER_SPRITE = 0, START_MONSTER_SPRITES = 6, START_SHIP_SPRITES = 6, DIFFERENT_SHIP_SPRITES = 3;
+	private const int WATER_SPRITE = 0, START_MONSTER_SPRITES = 1, START_SHIP_SPRITES = 3, DIFFERENT_SHIP_SPRITES = 4;
 
 	private TravesiaActivityModel model;
 
@@ -158,17 +158,17 @@ public class TravesiaActivityView : LevelView {
 
 				switch(rowEvent.GetState()) {
 				case TravesiaEventState.SHIP:
-					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES)];
+					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + (rowEvent.isGoingLeft ? 0 : 1)];
 					clocks[slot].gameObject.SetActive(true);
 					clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
 					break;
 				case TravesiaEventState.WRECKED_SHIP:
-					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 1];
+					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 2];
 					clocks[slot].gameObject.SetActive(true);
 					clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
 					break;
 				case TravesiaEventState.SUNK_SHIP:
-					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 2];
+					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 3];
 					break;
 				case TravesiaEventState.MONSTER:
 					tiles[slot].sprite = tileSprites[START_MONSTER_SPRITES + rowEvent.GetObjectNumber()];

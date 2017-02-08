@@ -7,7 +7,7 @@ using SimpleJSON;
 using Assets.Scripts.Common;
 
 public class TravesiaActivityModel : LevelModel {
-	public const int TILES = 36, SHIP_QUANTITY = 6, GRID_ROWS = 5, GRID_COLS = 8, PROVISION_SUM = 3;
+	public const int SHIP_QUANTITY = 6, GRID_ROWS = 5, GRID_COLS = 8, PROVISION_SUM = 3;
 	private List<List<TravesiaEvent>> rows;
 	private List<TravesiaEvent> doneEvents;
 
@@ -43,22 +43,22 @@ public class TravesiaActivityModel : LevelModel {
 	}
 
 	public int GetRow(string number) {
-		List<string> numbers = new List<string>{ "6", "5", "4", "3", "2", "1" };
+		List<string> numbers = new List<string>{ "5", "4", "3", "2", "1" };
 		return numbers.IndexOf(number);
 	}
 
 	public int GetColumn(string letter) {
-		List<string> letters = new List<string>{ "A", "B", "C", "D", "E", "F", "G", "H", "I" };
+		List<string> letters = new List<string>{ "A", "B", "C", "D", "E", "F", "G", "H" };
 		return letters.IndexOf(letter);
 	}
 
 	public string GetRowString(int row) {
-		List<string> numbers = new List<string>{ "6", "5", "4", "3", "2", "1" };
+		List<string> numbers = new List<string>{ "5", "4", "3", "2", "1" };
 		return numbers[row];
 	}
 
 	public string GetColumnString(int col) {
-		List<string> letters = new List<string>{ "A", "B", "C", "D", "E", "F", "G", "H", "I" };
+		List<string> letters = new List<string>{ "A", "B", "C", "D", "E", "F", "G", "H" };
 		return letters[col];
 	}
 
