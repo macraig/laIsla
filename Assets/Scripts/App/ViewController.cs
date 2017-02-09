@@ -67,7 +67,7 @@ namespace Assets.Scripts.App
 
 		}
 
-		private GameObject LoadPrefab(string name)
+		public GameObject LoadPrefab(string name)
 		{
 			return Resources.Load<GameObject>("Prefabs/" + name);
 		}

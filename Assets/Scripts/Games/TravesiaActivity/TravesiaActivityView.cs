@@ -9,6 +9,7 @@ using Assets.Scripts.Common;
 using UnityEngine.EventSystems;
 using System.Threading;
 using System;
+using Assets.Scripts.App;
 
 public class TravesiaActivityView : LevelView {
 	public Button okBtn;
@@ -139,7 +140,7 @@ public class TravesiaActivityView : LevelView {
 
 		switch(rowEvent.GetState()) {
 		case TravesiaEventState.SHIP:
-			tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + (rowEvent.isGoingLeft ? 0 : 1)];
+			tiles[slot].sprite = ShipSprite(rowEvent);
 			clocks[slot].gameObject.SetActive(true);
 			clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
 			break;
@@ -158,6 +159,10 @@ public class TravesiaActivityView : LevelView {
 			tiles[slot].sprite = tileSprites[START_MONSTER_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_MONSTER_SPRITES) + 1];
 			break;
 		}
+	}
+
+	Sprite ShipSprite(TravesiaEvent rowEvent) {
+		return tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + (rowEvent.isGoingLeft ? 0 : 1)];
 	}
 
 	void DoSomethingWithDoneShip(TravesiaEvent doneShip) {
@@ -267,7 +272,7 @@ public class TravesiaActivityView : LevelView {
 
 	//LOG:
 
-	public GameObject logPanel;
+	public GameObject logPanel, slotsPanel;
 
 	public void OpenLog(){
 		logPanel.SetActive(true);
@@ -279,7 +284,33 @@ public class TravesiaActivityView : LevelView {
 		List<TravesiaEvent> doneShips = model.GetDoneEvents();
 		List<TravesiaEvent> onGoingShips = model.GetOnGoingShipEvents();
 
-		//TODO populate log with this events.
+		CleanLog();
+
+		foreach(TravesiaEvent ship in onGoingShips) {
+			AddLog(ship, true);
+		}
+
+		foreach(TravesiaEvent ship in doneShips) {
+			AddLog(ship, false);
+		}
+	}
+
+	void CleanLog() {
+		foreach (Transform child in slotsPanel.transform) {
+			GameObject.Destroy(child.gameObject);
+		}
+	}
+
+	void AddLog(TravesiaEvent ship, bool onGoing) {
+		GameObject logEvent = Instantiate(ViewController.GetController().LoadPrefab("Games/TravesiasActivity/logSlot"));
+
+		ViewController.GetController().FitObjectTo(logEvent, slotsPanel);
+
+		//sprite de escudo???
+		logEvent.transform.GetChild(1).GetComponent<Image>().sprite = null;
+
+		//sprite de bien, mal o en camino
+		logEvent.transform.GetChild(2).GetComponent<Image>().sprite = onGoing ? ShipSprite(ship) : null;
 	}
 
 	public void CloseLog(){

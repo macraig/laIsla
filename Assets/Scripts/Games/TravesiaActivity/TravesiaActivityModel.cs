@@ -209,6 +209,11 @@ public class TravesiaActivityModel : LevelModel {
 			}
 		}
 		sendCol = Randomizer.RandomBoolean() ? 0 : (GRID_COLS - 1);
+
+		if(rows[sendRow].Count != 0) {
+			sendRow = -1;
+			sendCol = -1;
+		}
 	}
 
 	public void CheckSend(){
