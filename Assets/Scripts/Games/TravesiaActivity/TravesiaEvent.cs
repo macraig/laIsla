@@ -39,8 +39,9 @@ public class TravesiaEvent {
 		return provisions;
 	}
 
-	public void SetState(TravesiaEventState state){
+	public TravesiaEvent SetState(TravesiaEventState state){
 		this.state = state;
+		return this;
 	}
 
 	public int GetObjectNumber(){
@@ -62,6 +63,8 @@ public class TravesiaEvent {
 			state = TravesiaEventState.SHIP;
 		} else if(action == TravesiaAction.ATTACK && state == TravesiaEventState.MONSTER) {
 			state = TravesiaEventState.DEAD_MONSTER;
+		} else if(action == TravesiaAction.ATTACK && (state == TravesiaEventState.SHIP || state == TravesiaEventState.WRECKED_SHIP)){
+			state = TravesiaEventState.SUNK_SHIP;
 		} else if(action == TravesiaAction.PROVISION && (state == TravesiaEventState.SHIP || state == TravesiaEventState.WRECKED_SHIP)) {
 			provisions += TravesiaActivityModel.PROVISION_SUM;
 		} else
