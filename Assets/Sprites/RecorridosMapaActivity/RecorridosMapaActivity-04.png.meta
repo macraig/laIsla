@@ -1,23 +1,19 @@
 fileFormatVersion: 2
-guid: 6dc7cee7ffcf7b444b6384061a525d62
-timeCreated: 1486578244
+guid: 6aa57ee2339bdb64db775a6924ccc2f1
+timeCreated: 1486602750
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: tiles_0
-    21300002: tiles_1
-    21300004: tiles_2
-    21300006: tiles_3
-    21300008: tiles_4
-    21300010: tiles_5
-    21300012: tiles_6
-    21300014: tiles_7
-    21300016: tiles_8
-    21300018: tiles_9
-    21300020: tiles_10
-    21300022: tiles_11
-    21300024: tiles_12
-    21300026: tiles_13
+    21300000: RecorridosMapaActivity-04_0
+    21300002: RecorridosMapaActivity-04_1
+    21300004: RecorridosMapaActivity-04_2
+    21300006: RecorridosMapaActivity-04_3
+    21300008: RecorridosMapaActivity-04_4
+    21300010: RecorridosMapaActivity-04_5
+    21300012: RecorridosMapaActivity-04_6
+    21300014: RecorridosMapaActivity-04_7
+    21300016: RecorridosMapaActivity-04_8
+    21300018: RecorridosMapaActivity-04_9
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -92,182 +88,130 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tiles_0
+      name: RecorridosMapaActivity-04_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 138
-        width: 137
-        height: 138
+        y: 347
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_1
+      name: RecorridosMapaActivity-04_1
       rect:
         serializedVersion: 2
-        x: 137
-        y: 138
-        width: 137
-        height: 138
+        x: 370
+        y: 347
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_2
+      name: RecorridosMapaActivity-04_2
       rect:
         serializedVersion: 2
-        x: 274
-        y: 138
-        width: 137
-        height: 138
+        x: 740
+        y: 347
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_3
+      name: RecorridosMapaActivity-04_3
       rect:
         serializedVersion: 2
-        x: 411
-        y: 138
-        width: 137
-        height: 138
+        x: 1110
+        y: 347
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_4
+      name: RecorridosMapaActivity-04_4
       rect:
         serializedVersion: 2
-        x: 548
-        y: 138
-        width: 137
-        height: 138
+        x: 1480
+        y: 347
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_5
-      rect:
-        serializedVersion: 2
-        x: 685
-        y: 138
-        width: 137
-        height: 138
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_6
-      rect:
-        serializedVersion: 2
-        x: 822
-        y: 138
-        width: 137
-        height: 138
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_7
+      name: RecorridosMapaActivity-04_5
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 137
-        height: 138
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_8
+      name: RecorridosMapaActivity-04_6
       rect:
         serializedVersion: 2
-        x: 137
+        x: 370
         y: 0
-        width: 137
-        height: 138
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_9
+      name: RecorridosMapaActivity-04_7
       rect:
         serializedVersion: 2
-        x: 274
+        x: 740
         y: 0
-        width: 137
-        height: 138
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_10
+      name: RecorridosMapaActivity-04_8
       rect:
         serializedVersion: 2
-        x: 411
+        x: 1110
         y: 0
-        width: 137
-        height: 138
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_11
+      name: RecorridosMapaActivity-04_9
       rect:
         serializedVersion: 2
-        x: 548
+        x: 1480
         y: 0
-        width: 137
-        height: 138
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_12
-      rect:
-        serializedVersion: 2
-        x: 685
-        y: 0
-        width: 137
-        height: 138
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_13
-      rect:
-        serializedVersion: 2
-        x: 822
-        y: 0
-        width: 137
-        height: 138
+        width: 370
+        height: 347
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
