@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1c0ae9a4e31a9984a8e926513b7d749b
-timeCreated: 1486484220
+timeCreated: 1486641919
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -83,12 +83,12 @@ TextureImporter:
       name: TravesiaActivity-09_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 4
         y: 0
-        width: 104
+        width: 106
         height: 110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -96,12 +96,12 @@ TextureImporter:
       name: TravesiaActivity-09_1
       rect:
         serializedVersion: 2
-        x: 104
+        x: 113
         y: 0
-        width: 104
+        width: 111
         height: 110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

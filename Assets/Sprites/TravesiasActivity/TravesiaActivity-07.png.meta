@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: aba8f949573871142b611c8814648a2b
-timeCreated: 1486380466
+timeCreated: 1486639185
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -87,10 +87,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 237
-        height: 246
+        width: 493.5
+        height: 513
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -98,12 +98,12 @@ TextureImporter:
       name: TravesiaActivity-07_1
       rect:
         serializedVersion: 2
-        x: 236
+        x: 493
         y: 0
-        width: 236.75
-        height: 246
+        width: 493.5
+        height: 513
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -111,12 +111,12 @@ TextureImporter:
       name: TravesiaActivity-07_2
       rect:
         serializedVersion: 2
-        x: 473
+        x: 986
         y: 0
-        width: 237
-        height: 246
+        width: 493.5
+        height: 513
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -124,12 +124,12 @@ TextureImporter:
       name: TravesiaActivity-07_3
       rect:
         serializedVersion: 2
-        x: 711
+        x: 1479
         y: 0
-        width: 236
-        height: 246
+        width: 493.5
+        height: 513
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
