@@ -8,6 +8,7 @@ using Assets.Scripts.Common;
 
 public class TravesiaActivityModel : LevelModel {
 	public const int SHIP_QUANTITY = 6, GRID_ROWS = 5, GRID_COLS = 8, PROVISION_SUM = 3;
+	public static List<string> letters = new List<string>{ "A", "B", "C", "D", "E", "F", "G", "H" }, numbers = new List<string>{ "5", "4", "3", "2", "1" };
 	private List<List<TravesiaEvent>> rows;
 	private List<TravesiaEvent> doneEvents;
 
@@ -30,6 +31,10 @@ public class TravesiaActivityModel : LevelModel {
 		}
 	}
 
+	public bool IsRowEmpty(int row) {
+		return rows[row].Count == 0;
+	}
+
 	public List<List<TravesiaEvent>> GetRows() {
 		return rows;
 	}
@@ -43,22 +48,18 @@ public class TravesiaActivityModel : LevelModel {
 	}
 
 	public int GetRow(string number) {
-		List<string> numbers = new List<string>{ "5", "4", "3", "2", "1" };
 		return numbers.IndexOf(number);
 	}
 
 	public int GetColumn(string letter) {
-		List<string> letters = new List<string>{ "A", "B", "C", "D", "E", "F", "G", "H" };
 		return letters.IndexOf(letter);
 	}
 
 	public string GetRowString(int row) {
-		List<string> numbers = new List<string>{ "5", "4", "3", "2", "1" };
 		return numbers[row];
 	}
 
 	public string GetColumnString(int col) {
-		List<string> letters = new List<string>{ "A", "B", "C", "D", "E", "F", "G", "H" };
 		return letters[col];
 	}
 
@@ -66,8 +67,12 @@ public class TravesiaActivityModel : LevelModel {
 		return row * GRID_COLS + column;
 	}
 
-	public void AdvanceOne() {
-		rows.ForEach(row => row.ForEach(slot => slot.AdvanceOne()));
+	public TravesiaEvent GetEvent(int row, int col) {
+		return GetRows()[row].Find(t => t.col == col && t.row == row);
+	}
+
+	public void AdvanceRow(List<TravesiaEvent> row) {
+		row.ForEach(slot => slot.AdvanceOne());
 	}
 
 	public bool ExecuteAction(int row, int col, TravesiaAction action) {
@@ -87,38 +92,38 @@ public class TravesiaActivityModel : LevelModel {
 		return true;
 	}
 
-	public void CleanRows() {
-		for(int i = 0; i < rows.Count; i++) {
-			List<TravesiaEvent> row = rows[i];
+	public void CleanRow(int rowNumber) {
+		List<TravesiaEvent> row = rows[rowNumber];
 
-			if(row.Count == 0) continue;
-			//ship is always first.
-			TravesiaEvent ship = row[0];
+		if(row.Count == 0) return;
+		//ship is always first.
+		TravesiaEvent ship = row[0];
 
-			if(row.Count == 1 && (ship.col == 0 || ship.col == GRID_COLS - 1)) continue;
+		if(row.Count == 1 && (ship.col == 0 || ship.col == GRID_COLS - 1)) return;
 
-			//check if provisions are done.
-			if((ship.GetState() == TravesiaEventState.SHIP || ship.GetState() == TravesiaEventState.WRECKED_SHIP) && ship.GetProvisions() == 0) {
-				rows[i] = new List<TravesiaEvent>();
+		//check if provisions are done.
+		if((ship.GetState() == TravesiaEventState.SHIP || ship.GetState() == TravesiaEventState.WRECKED_SHIP) && ship.GetProvisions() == 0) {
+			rows[rowNumber] = new List<TravesiaEvent>{ ship.SetState(TravesiaEventState.SUNK_SHIP) };
+
+		}
+		if(row.Count == 2){
+			//check if monster sunk the ship.
+			TravesiaEvent monster = row[1];
+			if(monster.col == ship.col){
+				rows[rowNumber] = new List<TravesiaEvent> { new TravesiaEvent(TravesiaEventState.SUNK_SHIP, ship.row, ship.col) };
 			}
-			if(row.Count == 2){
-				//check if monster sunk the ship.
-				TravesiaEvent monster = row[1];
-				if(monster.col == ship.col){
-					rows[i] = new List<TravesiaEvent> { new TravesiaEvent(TravesiaEventState.SUNK_SHIP, ship.row, ship.col) };
-				}
-			}
-			if(row.Find(e => e.GetState() == TravesiaEventState.REMOVE_SUNK_SHIP) != null){
-				//check if sunk ship has been around for one turn.
-				rows[i] = new List<TravesiaEvent>();
-			}
-			if(row.Find(e => e.GetState() == TravesiaEventState.DEAD_MONSTER) != null){
-				rows[i] = row.GetRange(0, 1);
-			}
+		}
+		if(row.Find(e => e.GetState() == TravesiaEventState.REMOVE_SUNK_SHIP) != null){
+			//check if sunk ship has been around for one turn.
+			rows[rowNumber] = new List<TravesiaEvent>();
+		}
+		if(row.Find(e => e.GetState() == TravesiaEventState.DEAD_MONSTER) != null){
+			rows[rowNumber] = row.GetRange(0, 1);
 		}
 	}
 
-	public void CheckForRandomEvents() {
+	public TravesiaEvent CheckForRandomEvents() {
+		TravesiaEvent newEvent = null;
 		if(Randomizer.RandomBoolean()){
 			int row = Randomizer.New(GRID_ROWS - 1).Next();
 			//this means it only has a ship
@@ -130,14 +135,17 @@ public class TravesiaActivityModel : LevelModel {
 				if(!wreckShip && !CanIntroduceMonster(ship)) wreckShip = true;
 
 				if(ship.GetState() == TravesiaEventState.SHIP || ship.GetState() == TravesiaEventState.WRECKED_SHIP){
-					if(wreckShip)
-						ship.SetState(TravesiaEventState.WRECKED_SHIP);
+					if(wreckShip) {
+						newEvent = ship.SetState(TravesiaEventState.WRECKED_SHIP);
+					}
 					else if(CanIntroduceMonster(ship)) {
-						rows[row].Add(NewMonsterForShip(ship));
+						newEvent = NewMonsterForShip(ship);
+						rows[row].Add(newEvent);
 					}
 				}
 			}
 		}
+		return newEvent;
 	}
 
 	TravesiaEvent NewMonsterForShip(TravesiaEvent ship) {
@@ -158,22 +166,19 @@ public class TravesiaActivityModel : LevelModel {
 		return false;
 	}
 
-	public List<TravesiaEvent> GetAndRemoveDoneShips() {
-		List<TravesiaEvent> result = new List<TravesiaEvent>();
-		for(int i = 0; i < rows.Count; i++) {
-			List<TravesiaEvent> row = rows[i];
+	public TravesiaEvent GetAndRemoveDoneShipsFromRow(int rowNumber) {
+		List<TravesiaEvent> row = rows[rowNumber];
 
-			if(row.Count == 0) continue;
+		if(row.Count == 0) return null;
 
-			if(row[0].col == 0 || row[0].col == GRID_COLS - 1){
-				result.Add(row[0]);
-				rows[i] = new List<TravesiaEvent>();
-			}
+		if(row[0].col == 0 || row[0].col == GRID_COLS - 1){
+			TravesiaEvent ship = row[0];
+			doneEvents.Add(ship);
+			rows[rowNumber] = new List<TravesiaEvent>();
+			return ship;
 		}
 
-		doneEvents.AddRange(result);
-
-		return result;
+		return null;
 	}
 
 	//FOR LOG:

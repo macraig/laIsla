@@ -18,16 +18,16 @@ public class TravesiaActivityView : LevelView {
 
 	private Sprite[] tileSprites;
 	private bool keyboardActive;
-	private const int WATER_SPRITE = 0, START_MONSTER_SPRITES = 1, START_SHIP_SPRITES = 3, DIFFERENT_SHIP_SPRITES = 4;
+	private const int WATER_SPRITE = 0, START_MONSTER_SPRITES = 1, START_SHIP_SPRITES = 5, DIFFERENT_SHIP_SPRITES = 4, DIFFERENT_MONSTER_SPRITES = 2;
 
 	private TravesiaActivityModel model;
 
 	override public void Next(bool first = false){
 		if(first) model.NewSend();
-		UpdateView();
 		ResetLetterNumber();
 		ResetActions();
 		keyboardActive = true;
+		EnableActions(true);
 		CheckOk();
 
 		model.CheckSend();
@@ -37,6 +37,10 @@ public class TravesiaActivityView : LevelView {
 		if(model.GameEnded()) {
 			EndGame(60, 0, 1250);
 		}
+	}
+
+	void EnableActions(bool enabled) {
+		actions.ForEach(a => a.enabled = enabled);
 	}
 
 	void SetSend(int col, int row) {
@@ -76,35 +80,95 @@ public class TravesiaActivityView : LevelView {
 		int col = model.GetColumn(letter.text);
 		TravesiaAction action = CurrentAction();
 
-		if(!model.ExecuteAction(row, col, action)) {
+		okBtn.interactable = false;
+		keyboardActive = false;
+		EnableActions(false);
+
+		StartCoroutine(ExecuteActions(row, col, action));
+	}
+
+	IEnumerator ExecuteActions(int row, int col, TravesiaAction action){
+		yield return new WaitForSeconds(0.5f);
+		//First execute user action.
+		if(model.ExecuteAction(row, col, action)) {
+			if(action != TravesiaAction.SEND) SetTile(model.GetEvent(row, col));
+		} else {
 			model.Wrong();
 			PlayWrongSound();
 		}
 
-		model.AdvanceOne();
+		//update each row with a two second delay.
+		List<List<TravesiaEvent>> rows = model.GetRows();
+		for(int i = 0; i < rows.Count; i++) {
+			if(!model.IsRowEmpty(i)) {
+				yield return new WaitForSeconds(1f);
 
-		model.CleanRows();
+				List<TravesiaEvent> rowEvents = rows[i];
 
-		List<TravesiaEvent> doneShips = model.GetAndRemoveDoneShips();
+				model.AdvanceRow(rowEvents);
+				model.CleanRow(i);
 
-		model.CheckForRandomEvents();
+				TravesiaEvent ship = model.GetAndRemoveDoneShipsFromRow(i);
+				if(ship != null) DoSomethingWithDoneShip(ship);
+
+				ResetRow(i);
+				SetRow(model.GetRows()[i]);
+			}
+		}
+
+		TravesiaEvent newRandomEvent = model.CheckForRandomEvents();
+
+		if(newRandomEvent != null){
+			yield return new WaitForSeconds(1f);
+			SetTile(newRandomEvent);
+		}
 
 		if(action == TravesiaAction.SEND) model.NewSend();
 
-		//TODO do something with done ships and remove Next() call.
-		DoSomethingWithDoneShips(doneShips);
 		Next();
 	}
 
-	void DoSomethingWithDoneShips(List<TravesiaEvent> doneShips) {
-		foreach(TravesiaEvent doneShip in doneShips) {
-			if(doneShip.isShipCorrect){
-				//TODO correct.
-				model.Correct();
-			} else {
-				//TODO wrong.
-				model.Wrong();
-			}
+	void SetRow(List<TravesiaEvent> rowEvents) {
+		foreach(TravesiaEvent rowEvent in rowEvents) {
+			SetTile(rowEvent);
+		}
+	}
+
+	void SetTile(TravesiaEvent rowEvent) {
+		int slot = model.GetSlot(rowEvent.row, rowEvent.col);
+
+		switch(rowEvent.GetState()) {
+		case TravesiaEventState.SHIP:
+			tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + (rowEvent.isGoingLeft ? 0 : 1)];
+			clocks[slot].gameObject.SetActive(true);
+			clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
+			break;
+		case TravesiaEventState.WRECKED_SHIP:
+			tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 2];
+			clocks[slot].gameObject.SetActive(true);
+			clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
+			break;
+		case TravesiaEventState.SUNK_SHIP:
+			tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 3];
+			break;
+		case TravesiaEventState.MONSTER:
+			tiles[slot].sprite = tileSprites[START_MONSTER_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_MONSTER_SPRITES)];
+			break;
+		case TravesiaEventState.DEAD_MONSTER:
+			tiles[slot].sprite = tileSprites[START_MONSTER_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_MONSTER_SPRITES) + 1];
+			break;
+		}
+	}
+
+	void DoSomethingWithDoneShip(TravesiaEvent doneShip) {
+		if(doneShip.isShipCorrect){
+			Debug.Log("Correct ship arrived.");
+			//TODO correct.
+			model.Correct();
+		} else {
+			Debug.Log("Wrong ship arrived.");
+			//TODO wrong.
+			model.Wrong();
 		}
 	}
 
@@ -126,9 +190,14 @@ public class TravesiaActivityView : LevelView {
 
 	void ResetTiles() {
 		for(int row = 0; row < TravesiaActivityModel.GRID_ROWS; row++) {
-			for (int col = 1; col < TravesiaActivityModel.GRID_COLS - 1; col++) {
-				tiles[model.GetSlot(row, col)].sprite = tileSprites[WATER_SPRITE];
-			}
+			ResetRow(row);
+		}
+	}
+
+	void ResetRow(int rowNumber) {
+		for (int col = 1; col < TravesiaActivityModel.GRID_COLS - 1; col++) {
+			tiles[model.GetSlot(rowNumber, col)].sprite = tileSprites[WATER_SPRITE];
+			clocks[model.GetSlot(rowNumber, col)].gameObject.SetActive(false);
 		}
 	}
 
@@ -136,46 +205,12 @@ public class TravesiaActivityView : LevelView {
 		model = new TravesiaActivityModel();
 		tileSprites = Resources.LoadAll<Sprite>("Sprites/TravesiaActivity/tiles");
 		ResetTiles();
+		ClocksActive(false);
 		Begin();
 	}
 
 	public void Begin(){
 		ShowExplanation();
-	}
-
-	//Repaint method.
-	void UpdateView() {
-		ClocksActive(false);
-		ResetTiles();
-		List<List<TravesiaEvent>> rows = model.GetRows();
-
-		foreach(List<TravesiaEvent> rowEvents in rows) {
-			foreach(TravesiaEvent rowEvent in rowEvents) {
-				Debug.Log("Event in row " + rowEvent.row + " col " + rowEvent.col);
-
-				//for each event, place corresponding sprite and clock.
-				int slot = model.GetSlot(rowEvent.row, rowEvent.col);
-
-				switch(rowEvent.GetState()) {
-				case TravesiaEventState.SHIP:
-					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + (rowEvent.isGoingLeft ? 0 : 1)];
-					clocks[slot].gameObject.SetActive(true);
-					clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
-					break;
-				case TravesiaEventState.WRECKED_SHIP:
-					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 2];
-					clocks[slot].gameObject.SetActive(true);
-					clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
-					break;
-				case TravesiaEventState.SUNK_SHIP:
-					tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 3];
-					break;
-				case TravesiaEventState.MONSTER:
-					tiles[slot].sprite = tileSprites[START_MONSTER_SPRITES + rowEvent.GetObjectNumber()];
-					break;
-				}
-			}
-		}
 	}
 
 	Sprite GetWreckedShip(Sprite sprite) {
@@ -187,15 +222,19 @@ public class TravesiaActivityView : LevelView {
 	}
 
 	public void LetterClick(string l){
-		PlaySoundClick ();
-		letter.text = l;
-		CheckOk();
+		if(keyboardActive) {
+			PlaySoundClick();
+			letter.text = l;
+			CheckOk();
+		}
 	}
 
 	public void NumberClick(string n){
-		PlaySoundClick ();
-		number.text = n;
-		CheckOk();
+		if(keyboardActive) {
+			PlaySoundClick();
+			number.text = n;
+			CheckOk();
+		}
 	}
 
 	public void CheckOk() {
