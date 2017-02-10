@@ -372,7 +372,7 @@ namespace Assets.Scripts.Games.Shipments
         }
 
 
-1  function Dijkstra(Graph, source):
+/*1  function Dijkstra(Graph, source):
 2      dist[source] ← 0                                    // Initialization
 3
 4      create vertex set Q
@@ -394,7 +394,7 @@ namespace Assets.Scripts.Games.Shipments
 20                 prev[v] ← u
 21                 Q.decrease_priority(v, alt)
 22
-23     return dist[], prev[]
+23     return dist[], prev[]*/
         public int GetCheaperSolutionPathCost(int idFrom, int idTo)
         {
             List<int> dist = new List<int>();
@@ -402,9 +402,19 @@ namespace Assets.Scripts.Games.Shipments
 
             Queue<ShipmentNode> vertexes = new Queue<ShipmentNode>();
 
+            foreach (ShipmentNode node in Nodes)
+            {
+                if (node.Id != idFrom)
+                {
+                    
+                }
+            }
+
             ShipmentNode startNode = Nodes.Find(e => e.Id == idFrom);
             List<ShipmentEdge> edges = GetEdgesByIdNode(startNode.Id);
+/*
             int min = edges.Ma;
+*/
             return 0;
         }
     }
