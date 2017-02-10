@@ -1,37 +1,54 @@
 fileFormatVersion: 2
-guid: 8173aba0916e6914daaeff69aaa14d06
-timeCreated: 1486495070
+guid: 6e8ad1fb8cdc00143b42e3e728e2568c
+timeCreated: 1485196010
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: tiles_0
-    21300002: tiles_1
-    21300004: tiles_2
-    21300006: tiles_3
-    21300008: tiles_4
-    21300010: tiles_5
-    21300012: tiles_6
-    21300014: tiles_7
-    21300016: tiles_8
-    21300018: tiles_9
-    21300020: tiles_10
-    21300022: tiles_11
-    21300024: tiles_12
-    21300026: tiles_13
-    21300028: tiles_14
-    21300030: tiles_15
-    21300032: tiles_16
-    21300034: tiles_17
-    21300036: tiles_18
-    21300038: tiles_19
-    21300040: tiles_20
-    21300042: tiles_21
-    21300044: tiles_22
-    21300046: tiles_23
-    21300048: tiles_24
-    21300050: tiles_25
-    21300052: tiles_26
-    21300054: tiles_27
+    21300000: NeighbourhoodActivity-05_0
+    21300002: NeighbourhoodActivity-05_1
+    21300004: NeighbourhoodActivity-05_2
+    21300006: NeighbourhoodActivity-05_3
+    21300008: NeighbourhoodActivity-05_4
+    21300010: NeighbourhoodActivity-05_5
+    21300012: NeighbourhoodActivity-05_6
+    21300014: NeighbourhoodActivity-05_7
+    21300016: NeighbourhoodActivity-05_8
+    21300018: NeighbourhoodActivity-05_9
+    21300020: NeighbourhoodActivity-05_10
+    21300022: NeighbourhoodActivity-05_11
+    21300024: NeighbourhoodActivity-05_12
+    21300026: NeighbourhoodActivity-05_13
+    21300028: NeighbourhoodActivity-05_14
+    21300030: NeighbourhoodActivity-05_16
+    21300032: NeighbourhoodActivity-05_18
+    21300034: NeighbourhoodActivity-05_15
+    21300036: NeighbourhoodActivity-05_17
+    21300038: NeighbourhoodActivity-05_19
+    21300040: NeighbourhoodActivity-05_20
+    21300042: NeighbourhoodActivity-05_22
+    21300044: NeighbourhoodActivity-05_24
+    21300046: edificios_0
+    21300048: edificios_1
+    21300050: edificios_2
+    21300052: edificios_3
+    21300054: edificios_4
+    21300056: edificios_5
+    21300058: edificios_6
+    21300060: edificios_7
+    21300062: edificios_8
+    21300064: edificios_9
+    21300066: edificios_10
+    21300068: edificios_11
+    21300070: edificios_12
+    21300072: edificios_13
+    21300074: edificios_14
+    21300076: edificios_15
+    21300078: edificios_16
+    21300080: edificios_17
+    21300082: edificios_18
+    21300084: edificios_19
+    21300086: edificios_20
+    21300088: edificios_21
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -102,376 +119,290 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: WebGL
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tiles_0
+      name: edificios_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 954
-        width: 158
-        height: 158
+        y: 155.5
+        width: 155.90909
+        height: 155.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_1
+      name: edificios_1
       rect:
         serializedVersion: 2
-        x: 159
-        y: 954
-        width: 158
-        height: 158
+        x: 155
+        y: 155.5
+        width: 155.90909
+        height: 155.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_2
+      name: edificios_2
       rect:
         serializedVersion: 2
-        x: 318
-        y: 954
-        width: 158
-        height: 158
+        x: 310
+        y: 155.5
+        width: 155.90909
+        height: 155.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_3
+      name: edificios_3
       rect:
         serializedVersion: 2
-        x: 477
-        y: 954
-        width: 158
-        height: 158
+        x: 467
+        y: 155
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_4
+      name: edificios_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 795
-        width: 158
-        height: 158
+        x: 623
+        y: 155
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_5
+      name: edificios_5
       rect:
         serializedVersion: 2
-        x: 159
-        y: 795
-        width: 158
-        height: 158
+        x: 779
+        y: 155
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_6
+      name: edificios_6
       rect:
         serializedVersion: 2
-        x: 318
-        y: 795
-        width: 158
-        height: 158
+        x: 935
+        y: 155
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_7
+      name: edificios_7
       rect:
         serializedVersion: 2
-        x: 477
-        y: 795
-        width: 158
-        height: 158
+        x: 1091
+        y: 155
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_8
+      name: edificios_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 636
-        width: 158
-        height: 158
+        x: 1246
+        y: 155
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_9
+      name: edificios_9
       rect:
         serializedVersion: 2
-        x: 159
-        y: 636
-        width: 158
-        height: 158
+        x: 1403
+        y: 155
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_10
+      name: edificios_10
       rect:
         serializedVersion: 2
-        x: 318
-        y: 636
-        width: 158
-        height: 158
+        x: 1559
+        y: 155
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_11
-      rect:
-        serializedVersion: 2
-        x: 477
-        y: 636
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_12
+      name: edificios_11
       rect:
         serializedVersion: 2
         x: 0
-        y: 477
-        width: 158
-        height: 158
+        y: 0.5
+        width: 155.90909
+        height: 155.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_13
+      name: edificios_12
       rect:
         serializedVersion: 2
-        x: 159
-        y: 477
-        width: 158
-        height: 158
+        x: 155
+        y: 0.5
+        width: 155.90909
+        height: 155.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_14
+      name: edificios_13
       rect:
         serializedVersion: 2
-        x: 318
-        y: 477
-        width: 158
-        height: 158
+        x: 310
+        y: 0.5
+        width: 155.90909
+        height: 155.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_15
+      name: edificios_14
       rect:
         serializedVersion: 2
-        x: 477
-        y: 477
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_16
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 318
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_17
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 318
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_18
-      rect:
-        serializedVersion: 2
-        x: 318
-        y: 318
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_19
-      rect:
-        serializedVersion: 2
-        x: 477
-        y: 318
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_20
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 159
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_21
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 159
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_22
-      rect:
-        serializedVersion: 2
-        x: 318
-        y: 159
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_23
-      rect:
-        serializedVersion: 2
-        x: 477
-        y: 159
-        width: 158
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: tiles_24
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 467
         y: 0
-        width: 158
-        height: 158
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_25
+      name: edificios_15
       rect:
         serializedVersion: 2
-        x: 159
+        x: 623
         y: 0
-        width: 158
-        height: 158
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_26
+      name: edificios_16
       rect:
         serializedVersion: 2
-        x: 318
+        x: 779
         y: 0
-        width: 158
-        height: 158
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tiles_27
+      name: edificios_17
       rect:
         serializedVersion: 2
-        x: 477
+        x: 935
         y: 0
-        width: 158
-        height: 158
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: edificios_18
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 0
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: edificios_19
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 0
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: edificios_20
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 0
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: edificios_21
+      rect:
+        serializedVersion: 2
+        x: 1559
+        y: 0
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

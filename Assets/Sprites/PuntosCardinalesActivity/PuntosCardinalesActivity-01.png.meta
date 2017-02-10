@@ -1,12 +1,16 @@
 fileFormatVersion: 2
-guid: 5846b18e76d39a7469bc7e604e3a3a0c
-timeCreated: 1486556163
+guid: cc9cd067962d96e4bba4644305b04840
+timeCreated: 1486742266
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: RompecabezasActivity-07_0
-    21300002: RompecabezasActivity-07_1
-    21300004: RompecabezasActivity-07_2
+    21300000: PuntosCardinalesActivity-01_0
+    21300002: PuntosCardinalesActivity-01_1
+    21300004: PuntosCardinalesActivity-01_2
+    21300006: PuntosCardinalesActivity-01_3
+    21300008: PuntosCardinalesActivity-01_4
+    21300010: PuntosCardinalesActivity-01_5
+    21300012: PuntosCardinalesActivity-01_6
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -81,39 +85,91 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RompecabezasActivity-07_0
+      name: PuntosCardinalesActivity-01_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 209.66667
-        height: 415
+        width: 195.42857
+        height: 168
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: RompecabezasActivity-07_1
+      name: PuntosCardinalesActivity-01_1
       rect:
         serializedVersion: 2
-        x: 209
+        x: 195
         y: 0
-        width: 209.66667
-        height: 415
+        width: 195.42857
+        height: 168
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: RompecabezasActivity-07_2
+      name: PuntosCardinalesActivity-01_2
       rect:
         serializedVersion: 2
-        x: 418
+        x: 390
         y: 0
-        width: 209.66667
-        height: 415
+        width: 195.42857
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuntosCardinalesActivity-01_3
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 0
+        width: 195.42857
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuntosCardinalesActivity-01_4
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 0
+        width: 195.42857
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuntosCardinalesActivity-01_5
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 0
+        width: 195.42857
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuntosCardinalesActivity-01_6
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 0
+        width: 195.42857
+        height: 168
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

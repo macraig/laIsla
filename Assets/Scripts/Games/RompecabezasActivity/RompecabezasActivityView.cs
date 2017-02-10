@@ -22,7 +22,7 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 
 		public void Start(){
 			model = new RompecabezasActivityModel();
-			parts = new List<Sprite>(Resources.LoadAll<Sprite>("Sprites/RompecabezasActivity/tiles"));
+			parts = new List<Sprite>(Resources.LoadAll<Sprite>("Sprites/MuellesActivity/tiles"));
 			Begin();
 		}
 
