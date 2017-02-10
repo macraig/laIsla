@@ -6,7 +6,7 @@ public class StarScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		transform.localPosition = Vector2.zero;
+		transform.localPosition = new Vector2(-100,-100);
 	}
 	
 	// Update is called once per frame
