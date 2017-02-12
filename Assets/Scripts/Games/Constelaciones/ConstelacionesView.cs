@@ -116,11 +116,29 @@ namespace Assets.Scripts.Games.Constelaciones {
 		}
 
 		public void RedoClick(){
-			
+			VectorLine lastLine = redoLines[redoLines.Count - 1];
+			redoLines.Remove(lastLine);
+			lines.Add(lastLine);
+			lastLine.active = true;
+
+			GameObject star = redoStars[redoStars.Count - 1];
+			redoStars.Remove(star);
+			clickedStars.Add(star);
+
+			CheckButtons();
 		}
 
 		public void UndoClick(){
+			VectorLine lastLine = lines[lines.Count - 1];
+			lines.Remove(lastLine);
+			redoLines.Add(lastLine);
+			lastLine.active = false;
 
+			GameObject star = clickedStars[clickedStars.Count - 1];
+			clickedStars.Remove(star);
+			redoStars.Add(star);
+
+			CheckButtons();
 		}
 
 		public void OkClick(){
