@@ -56,8 +56,8 @@ namespace Assets.Scripts.Games.Constelaciones {
 			int i = 0;
 			starsModel.ForEach(starModel => {
 				GameObject star = ViewController.GetController().GetStarPrefab(mapPanel);
-				if(first && i == 0) star.GetComponent<Image>().color = Color.red;
-				if(first && i == 1) star.GetComponent<Image>().color = Color.green;
+				if(first && i == 0) star.transform.GetChild(0).GetComponent<Image>().color = Color.red;
+				if(first && i == 1) star.transform.GetChild(0).GetComponent<Image>().color = Color.green;
 				float starX = starModel.x * widthStep;
 				float starY = starModel.y * heightStep;
 				Debug.Log("X: " + starX + " Y: " + starY + " jsonX: " + starModel.x + " jsonY: " + starModel.y);
@@ -197,7 +197,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 			line.textureScale = 1f;
 			line.Draw();
 			lines.Add(line);
-			line.rectTransform.transform.SetParent(mapPanel.transform.parent);
+			line.rectTransform.transform.SetParent(mapPanel.transform);
 		}
 
 		public void RestartGame(){
