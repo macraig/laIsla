@@ -30,5 +30,9 @@ namespace Assets.Scripts.Games.Constelaciones {
 		public ConstelacionesLevel CurrentLvl() {
 			return lvls[currentLvl];
 		}
+
+		public void NextLvl() {
+			currentLvl++;
+		}
 	}
 }

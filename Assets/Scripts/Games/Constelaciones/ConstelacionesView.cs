@@ -102,13 +102,14 @@ namespace Assets.Scripts.Games.Constelaciones {
 		}
 
 		void ResetBoard() {
+			redoLines = new List<VectorLine>();
+			redoStars = new List<GameObject>();
+			clickedStars = new List<GameObject>();
+
 			if(lines != null) VectorLine.Destroy(lines);
 			if(stars != null) stars.ForEach(Destroy);
 			lines = new List<VectorLine>();
 			stars = new List<GameObject>();
-			clickedStars = new List<GameObject>();
-			redoLines = new List<VectorLine>();
-			redoStars = new List<GameObject>();
 		}
 
 		public void ToggleCompass(){
@@ -144,6 +145,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 		public void OkClick(){
 			if(IsCorrect()){
 				model.LogAnswer(true);
+				model.NextLvl();
 				ShowRightAnswerAnimation();
 			} else {
 				model.LogAnswer(false);
