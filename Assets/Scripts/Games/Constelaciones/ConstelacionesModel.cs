@@ -3,6 +3,7 @@ using Assets.Scripts.Metrics.Model;
 using System.Collections.Generic;
 using SimpleJSON;
 using UnityEngine;
+using Assets.Scripts.Common;
 
 namespace Assets.Scripts.Games.Constelaciones {
 	public class ConstelacionesModel : LevelModel {
@@ -25,6 +26,8 @@ namespace Assets.Scripts.Games.Constelaciones {
 			foreach(JSONNode lvlJson in lvlsJson) {
 				lvls.Add(new ConstelacionesLevel(lvlJson.AsObject));
 			}
+
+			lvls = Randomizer.RandomizeList(lvls);
 		}
 
 		public ConstelacionesLevel CurrentLvl() {
