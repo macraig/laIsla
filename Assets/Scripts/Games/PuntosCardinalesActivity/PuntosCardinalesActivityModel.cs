@@ -213,7 +213,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			foreach(AudioClip a in Resources.LoadAll<AudioClip>("Audio/PuntosCardinalesActivity/EdificiosFinal")) {
 				audios.Add(a.name, a);
 			}
-			foreach(AudioClip a in Resources.LoadAll<AudioClip>("AudioPuntosCardinalesdActivity/Consignas")) {
+			foreach(AudioClip a in Resources.LoadAll<AudioClip>("Audio/PuntosCardinalesActivity/Consignas")) {
 				audios.Add(a.name, a);
 			}
 		}
