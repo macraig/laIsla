@@ -68,9 +68,9 @@ public class Compass : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 		}
 	}
 
-	public void ToggleCompassVisibility() {
+	public void ToggleCompassVisibility(bool enabled) {
 		SoundController.GetController().PlayClickSound();
-		gameObject.SetActive(!gameObject.activeSelf);
+		gameObject.SetActive(enabled);
 	}
 
 	public static void SetPivot(RectTransform rectTransform, Vector2 pivot) {
