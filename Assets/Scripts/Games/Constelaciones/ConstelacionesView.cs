@@ -142,7 +142,23 @@ namespace Assets.Scripts.Games.Constelaciones {
 		}
 
 		public void OkClick(){
+			if(IsCorrect()){
+				model.LogAnswer(true);
+				ShowRightAnswerAnimation();
+			} else {
+				model.LogAnswer(false);
+				ShowWrongAnswerAnimation();
+			}
+		}
 
+		bool IsCorrect() {
+			if(clickedStars.Count != model.CurrentLvl().GetStars().Count) return false;
+
+			for(int i = 0; i < clickedStars.Count; i++) {
+				if(clickedStars[i].transform.position != stars[i].transform.position) return false;
+			}
+
+			return true;
 		}
 
 		void SetInstruction() {
