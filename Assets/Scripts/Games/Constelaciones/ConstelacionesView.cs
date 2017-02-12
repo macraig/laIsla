@@ -17,7 +17,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 		private List<GameObject> stars;
 		private int currentInstruction;
 
-		public const int HEIGHT_STEPS = 10, WIDTH_STEPS = 10;
+		public const int HEIGHT_STEPS = 20, WIDTH_STEPS = 20;
 
 		public void Start(){
 			model = new ConstelacionesModel();
@@ -49,12 +49,16 @@ namespace Assets.Scripts.Games.Constelaciones {
 		}
 
 		void SetSomeStars(List<Vector2> starsModel) {
-			starsModel.ForEach(starModel => {
-				float widthStep = mapPanel.GetComponent<RectTransform>().rect.width / WIDTH_STEPS;
-				float heightStep = mapPanel.GetComponent<RectTransform>().rect.height / HEIGHT_STEPS;
+			float widthStep = mapPanel.GetComponent<RectTransform>().rect.width / WIDTH_STEPS;
+			float heightStep = mapPanel.GetComponent<RectTransform>().rect.height / HEIGHT_STEPS;
+			Vector2 middle = mapPanel.transform.position;
 
+			starsModel.ForEach(starModel => {
 				GameObject star = ViewController.GetController().GetStarPrefab(mapPanel);
-				star.transform.localPosition = new Vector2(starModel.x * widthStep, starModel.y * heightStep);
+				float starX = starModel.x * widthStep;
+				float starY = starModel.y * heightStep;
+				Debug.Log("X: " + starX + " Y: " + starY + " jsonX: " + starModel.x + " jsonY: " + starModel.y);
+				star.transform.localPosition = new Vector3(starX, starY);
 				stars.Add(star);
 			});
 		}
