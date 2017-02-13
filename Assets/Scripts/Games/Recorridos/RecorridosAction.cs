@@ -17,7 +17,7 @@ public class RecorridosAction : MonoBehaviour {
     public void DoAction()
 		{
 			SoundController.GetController ().PlayClickSound ();
-			RecorridosController.instance.AddAction(this);
+//			RecorridosController.instance.AddAction(this);
     }
 
 

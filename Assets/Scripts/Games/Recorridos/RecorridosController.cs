@@ -227,33 +227,19 @@ namespace Assets.Scripts.Games.Recorridos
 
         }
 
+	
 
-        public void AddAction(RecorridosAction recorridosButton)
-        {
-            switch (recorridosButton.currentAction)
-            {
-                case RecorridosAction.ActionToDo.Start:
-                    currentValueAnalyzed = 0;
-                    EnableButtonState(false);
-
-                    MovePuppet();
-                    break;
-                case RecorridosAction.ActionToDo.Remove:
-                    actionsToDo.RemoveAt(recorridosButton.indexInList);
-                    view.RemoveInstruction(recorridosButton.indexInList);
-                    break;
-                default:
-                    if (actionsToDo.Count < 5)
-                    {
-                        actionsToDo.Add(recorridosButton);
-                        view.AddInstruction(recorridosButton);
-                    }
-                break;
-            }
+		public void OkClick(){
+			currentValueAnalyzed = 0;
+			EnableButtonState(false);
+			actionsToDo.Clear ();
+			actionsToDo = view.GetActionsToDo ();
+			MovePuppet();
+		}
 
 
 
-        }
+
 
         public void MovePuppet()
         {
