@@ -101,7 +101,11 @@ namespace Assets.Scripts.App
             child.transform.localScale = Vector3.one;
         }
 
-       
+		public GameObject GetStarPrefab(GameObject parent){
+			GameObject star = Instantiate(LoadPrefab("Games/ConstelacionesActivity/star"));
+			FitObjectTo(star, parent);
+			return star;
+		}
 
         internal void LoadSettings()
         {

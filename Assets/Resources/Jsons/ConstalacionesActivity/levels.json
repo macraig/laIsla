@@ -1,34 +1,18 @@
 ﻿{
 	"levels": [
 	{
-		"hasTwoRoads": "false",
-		"hasFork": "false",
-		"partQuantity": "14",
-		"distractionParts": "0"
-	}, {
-		"hasTwoRoads": "false",
-		"hasFork": "false",
-		"partQuantity": "13",
-		"distractionParts": "2"
-	}, {
-		"hasTwoRoads": "false",
-		"hasFork": "true",
-		"partQuantity": "15",
-		"distractionParts": "0"
-	}, {
-		"hasTwoRoads": "false",
-		"hasFork": "true",
-		"partQuantity": "13",
-		"distractionParts": "2"
-	}, {
-		"hasTwoRoads": "true",
-		"hasFork": "false",
-		"partQuantity": "10",
-		"distractionParts": "0"
-	}, {
-		"hasTwoRoads": "true",
-		"hasFork": "false",
-		"partQuantity": "10",
-		"distractionParts": "2"
+		"stars": [[5,5],[-5,5],[-5,-5],[5,-5],[5,5]],
+		"fakeStars": [[6,4],[-6,4]],
+		"consignas": ["Unir la estrella roja con la verde","Buscar la estrella abajo","Buscar la estrella a la derecha","Volve a la estrella original"],
+	},
+{
+		"stars": [[0,0],[5,5],[0,5],[0,0]],
+		"fakeStars": [[6,4],[-6,4]],
+		"consignas": ["Unir la estrella roja con la verde","Buscar la estrella a la derecha","Buscar la estrella arriba","Volve a la misma del principio"],
+	},
+	{
+		"stars": [[5,3],[3,5],[-3,5],[-5,3],[-5,-3],[-3,-5],[3,-5],[5,-3],[5,3]],
+		"fakeStars": [[6,4],[-6,4]],
+		"consignas": ["Unir la estrella roja con la verde","Arriba izquieda","Izquierda","Abajo Izquierda","Abajo","abajo derecha","derecha","arriba derecha","arriba fin"],
 	}]
 }
