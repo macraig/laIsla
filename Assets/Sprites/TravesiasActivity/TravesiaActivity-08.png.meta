@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2ed11effdf772b14bbccb4b1829cf3d7
-timeCreated: 1486483650
+timeCreated: 1487001904
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -89,8 +89,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 370
-        height: 347
+        width: 266.5
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,10 +100,10 @@ TextureImporter:
       name: TravesiaActivity-08_1
       rect:
         serializedVersion: 2
-        x: 370
+        x: 266
         y: 0
-        width: 370
-        height: 347
+        width: 266.5
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,10 +113,10 @@ TextureImporter:
       name: TravesiaActivity-08_2
       rect:
         serializedVersion: 2
-        x: 740
+        x: 532
         y: 0
-        width: 370
-        height: 347
+        width: 266.5
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,10 +126,10 @@ TextureImporter:
       name: TravesiaActivity-08_3
       rect:
         serializedVersion: 2
-        x: 1110
+        x: 798
         y: 0
-        width: 370
-        height: 347
+        width: 266.5
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,10 +139,10 @@ TextureImporter:
       name: TravesiaActivity-08_4
       rect:
         serializedVersion: 2
-        x: 1480
+        x: 1064
         y: 0
-        width: 370
-        height: 347
+        width: 266.5
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +152,10 @@ TextureImporter:
       name: TravesiaActivity-08_5
       rect:
         serializedVersion: 2
-        x: 1850
+        x: 1330
         y: 0
-        width: 370
-        height: 347
+        width: 266.5
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

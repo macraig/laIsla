@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bfb6d4c3906d5114da677c748956279b
-timeCreated: 1486170519
+timeCreated: 1487001762
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -93,8 +93,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 132
-        height: 132
+        width: 129.5
+        height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,12 +104,12 @@ TextureImporter:
       name: TravesiaActivity-02_1
       rect:
         serializedVersion: 2
-        x: 132
+        x: 129
         y: 0
-        width: 132
-        height: 132
+        width: 130
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -117,12 +117,12 @@ TextureImporter:
       name: TravesiaActivity-02_2
       rect:
         serializedVersion: 2
-        x: 264
+        x: 259
         y: 0
-        width: 132
-        height: 132
+        width: 130
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -130,12 +130,12 @@ TextureImporter:
       name: TravesiaActivity-02_3
       rect:
         serializedVersion: 2
-        x: 396
+        x: 388
         y: 0
-        width: 132
-        height: 132
+        width: 130
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -143,12 +143,12 @@ TextureImporter:
       name: TravesiaActivity-02_4
       rect:
         serializedVersion: 2
-        x: 528
+        x: 518
         y: 0
-        width: 132
-        height: 132
+        width: 130
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -156,12 +156,12 @@ TextureImporter:
       name: TravesiaActivity-02_5
       rect:
         serializedVersion: 2
-        x: 660
+        x: 648
         y: 0
-        width: 132
-        height: 132
+        width: 130
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -169,12 +169,12 @@ TextureImporter:
       name: TravesiaActivity-02_6
       rect:
         serializedVersion: 2
-        x: 792
+        x: 777
         y: 0
-        width: 132
-        height: 132
+        width: 130
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -182,12 +182,12 @@ TextureImporter:
       name: TravesiaActivity-02_7
       rect:
         serializedVersion: 2
-        x: 924
+        x: 907
         y: 0
-        width: 132
-        height: 132
+        width: 130
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -195,12 +195,12 @@ TextureImporter:
       name: TravesiaActivity-02_8
       rect:
         serializedVersion: 2
-        x: 1056
+        x: 1036
         y: 0
-        width: 132
-        height: 132
+        width: 130
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -208,12 +208,12 @@ TextureImporter:
       name: TravesiaActivity-02_9
       rect:
         serializedVersion: 2
-        x: 1188
+        x: 1165
         y: 0
-        width: 132
-        height: 132
+        width: 130
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
