@@ -110,7 +110,7 @@ namespace Assets.Scripts.Games.Recorridos
 
 
 
-            gridSpace = new RecorridosTile[7][];
+			gridSpace = new RecorridosTile[board.Rows()][];
             view = GetComponent<RecorridosView>();
             view.SetPlayerImage(player.GetComponent<Image>());
           
@@ -194,11 +194,12 @@ namespace Assets.Scripts.Games.Recorridos
 			view.ShowPlayer ();
 			nutCount = 0;
             int rowCounter = 0;
+			int cols = board.Cols ();
             pathTiles = new List<RecorridosTile>();
-			gridSpace[rowCounter] = new RecorridosTile[7];
+			gridSpace[rowCounter] = new RecorridosTile[cols];
 
 			boardMatrix = board.GenerateBoard (lvls [currentLevel]);
-			int cols = board.Cols ();
+
 
 			for (int i = 0; i < boardPosition.transform.childCount; i++) {
 				if (i % cols == 0 && i!=0)
@@ -213,7 +214,7 @@ namespace Assets.Scripts.Games.Recorridos
 					tileDictionary.TryGetValue(tile, out spriteToPut);
 
 				gridSpace[rowCounter][i % cols] = new RecorridosTile(tile,
-                    boardPosition.transform.GetChild(i).transform.position, spriteToPut, boardPosition.transform.GetChild(i).GetComponent<Image>(),rowCounter,i%7);
+					boardPosition.transform.GetChild(i).transform.position, spriteToPut, boardPosition.transform.GetChild(i).GetComponent<Image>(),rowCounter,i%cols);
                 
             }
 
@@ -291,8 +292,8 @@ namespace Assets.Scripts.Games.Recorridos
             Vector2 positionToAnalyze = puppetGridPosition;
             positionToAnalyze.x = positionToAnalyze.x + xChange;
             positionToAnalyze.y = positionToAnalyze.y + yChange;
-            if (positionToAnalyze.x < 7  && positionToAnalyze.x > -1 && 
-                positionToAnalyze.y < 7 && positionToAnalyze.y > -1 &&
+			if (positionToAnalyze.x < board.Cols()  && positionToAnalyze.x > -1 && 
+				positionToAnalyze.y < board.Rows() && positionToAnalyze.y > -1 &&
                 gridSpace[(int)positionToAnalyze.x][(int)positionToAnalyze.y].Type != RecorridosTileEnum.Wall)
             {
                 view.LightValue(currentValueAnalyzed, true, Color.yellow);
