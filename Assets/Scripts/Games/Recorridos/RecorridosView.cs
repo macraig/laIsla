@@ -3,10 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Common;
+using Assets.Scripts.Sound;
 
-public class RecorridosView : MonoBehaviour {
+namespace Assets.Scripts.Games.Recorridos
+{
+public class RecorridosView : LevelView {
 
-    public GameObject instructionsStack;
+		#region implemented abstract members of LevelView
+
+		public override void Next(bool first = false) {
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+	public GameObject instructionsStack;
 
     private List<GameObject> stackImages;
     private int currentAvailableInstructionSpot;
@@ -22,9 +34,14 @@ public class RecorridosView : MonoBehaviour {
     public Sprite movingUp;
     public Sprite movingDown;
 
-    public Text nutTextCounter;
+    public Text nutTextCounter,clock;
 
     private Image playerImage;
+	public GameObject bombAnimation,clockPlaca;
+	private bool timerActive;
+
+	private AudioClip bombSound, nutSound, fallSound, fireSound;
+
     private void Start()
     {
         stackImages = new List<GameObject>();
@@ -35,7 +52,37 @@ public class RecorridosView : MonoBehaviour {
             stackImages[i].GetComponent<RecorridosAction>().indexInList = i;
         }
         currentAvailableInstructionSpot = 0;
+			clockPlaca.SetActive (false);
+
+			bombSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/bomba");
+			nutSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/coin");
+			fallSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/fall");
+			fireSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/fire");
+
     }
+
+		public void PlayFallSound(){
+			SoundController.GetController ().PlayClip (fallSound);
+		}
+
+		public void PlayFireSound(){
+			SoundController.GetController ().PlayClip (fireSound);
+		}
+
+		public void PlayNutSound(){
+			SoundController.GetController ().PlayClip (nutSound);
+		}
+
+	override public void HideExplanation(){
+		PlaySoundClick ();
+		explanationPanel.SetActive (false);
+		menuBtn.enabled = true;
+	}
+
+		public void ShowPlayer ()
+		{
+			playerImage.gameObject.SetActive (true);
+		}
 
     public void AddInstruction(RecorridosAction actionToAdd)
     {
@@ -113,29 +160,53 @@ public class RecorridosView : MonoBehaviour {
         }
         currentAvailableInstructionSpot = 0;
         MovingDown();
+		EnableComponents (true);
     }
 
     internal void ShowVictory()
     {
-        centralPuppetImage.sprite = puppetVictory;
+//        centralPuppetImage.sprite = puppetVictory;
+		ShowRightAnswerAnimation ();
     }
 
     internal void ShowDefeat()
     {
-        centralPuppetImage.sprite = puppetDefeat;
+//        centralPuppetImage.sprite = puppetDefeat;
+			ShowWrongAnswerAnimation ();
     }
 
     public void ResetGame()
     {
-        centralPuppetImage.sprite = puppetNeutral;
+		timerActive = false;
+//        centralPuppetImage.sprite = puppetNeutral;
         nutTextCounter.text = "0";
+		
         MovingDown();
     }
+
+	override public void RestartGame(){
+			base.RestartGame ();
+			clockPlaca.SetActive(false);
+			ResetGame ();
+
+					
+	}
 
     public void SetNutTextCounter(int newValue)
     {
         nutTextCounter.text = newValue.ToString();
     }
+
+		public void ShowBombAnimation ()
+		{
+
+
+			playerImage.gameObject.SetActive (false);
+			bombAnimation.transform.SetAsLastSibling ();
+			bombAnimation.GetComponent<BombAnimationScript>().ShowAnimation();
+
+			SoundController.GetController ().PlayClip (bombSound);
+		}
 
     internal void MovingLeft()
     {
@@ -157,4 +228,53 @@ public class RecorridosView : MonoBehaviour {
         playerImage.sprite = movingDown;
 
     }
+
+		override public void OnNextLevelAnimationEnd(){
+			base.OnNextLevelAnimationEnd ();
+			PlayTimeLevelMusic ();
+//			menuBtn.interactable = false;
+			PlayTimeLevel ();
+			StartTimer (true);
+		}
+
+		public void PlayTimeLevel(){
+			clockPlaca.SetActive(true);
+			SetClock();
+			RecorridosController.instance.ResetGame ();
+		}
+
+		void SetClock() {
+			clock.text = RecorridosController.instance.GetTimer().ToString();
+		}
+
+		void StartTimer(bool first = false) {
+			StartCoroutine(TimerFunction(first));
+			timerActive = true;
+		}
+
+		public IEnumerator TimerFunction(bool first = false) {
+			yield return new WaitForSeconds(1);
+		
+			UpdateView();
+			if(timerActive) StartTimer();
+		}
+
+		void UpdateView() {
+			RecorridosController.instance.DecreaseTimer();
+
+			SetClock();
+
+			if(RecorridosController.instance.IsTimerDone()){
+				timerActive = false;
+				EndGame(60, 0, 1250);
+			}
+		}
+
+		override public void OnRightAnimationEnd(){
+			EnableComponents (true);
+
+		}
+	
+
+	}
 }

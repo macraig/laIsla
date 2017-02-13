@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
+namespace Assets.Scripts.Games.Recorridos
+{
 public class RecorridosTile {
 
     private RecorridosController.RecorridosTileEnum type;
@@ -98,24 +99,27 @@ public class RecorridosTile {
                 RecorridosController.instance.MovePuppet();
                 break;
             case (RecorridosController.RecorridosTileEnum.End):
-                RecorridosController.instance.EndGame(true);
+                RecorridosController.instance.GameOver(true);
                 break;
             case RecorridosController.RecorridosTileEnum.Nut:
                 RecorridosController.instance.PickNut(gridPositionX,gridPositionY);
                 RecorridosController.instance.MovePuppet();
                 break;
             case RecorridosController.RecorridosTileEnum.Fire:
-                RecorridosController.instance.BackToStart();
+				RecorridosController.instance.GetBurnt();
                 break;
-            case RecorridosController.RecorridosTileEnum.Bomb:
-                RecorridosController.instance.EndGame(false);
+			case RecorridosController.RecorridosTileEnum.Bomb:
+				RecorridosController.instance.Explode ();
+
                 break;
             case RecorridosController.RecorridosTileEnum.Hole:
-                RecorridosController.instance.BackToStart();
+				RecorridosController.instance.FallInHole();
                 break;
             default:
                 RecorridosController.instance.MovePuppet();
                 break;
         }
     }
+	}
 }
+

@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Assets.Scripts.Sound;
+namespace Assets.Scripts.Games.Recorridos
+{
 public class RecorridosAction : MonoBehaviour {
 
     public enum ActionToDo { Up, Down, Left, Right, Remove,Start}
@@ -12,21 +14,13 @@ public class RecorridosAction : MonoBehaviour {
 
     public int indexInList;
  
-
-    // Use this for initialization
-    void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void DoAction()
-    {
-        RecorridosController.instance.AddAction(this);
+		{
+			SoundController.GetController ().PlayClickSound ();
+			RecorridosController.instance.AddAction(this);
     }
 
 
 
+}
 }
