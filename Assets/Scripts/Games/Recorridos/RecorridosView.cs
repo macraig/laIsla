@@ -186,7 +186,8 @@ public class RecorridosView : LevelView {
         currentAvailableInstructionSpot = 0;
         MovingDown();
 		EnableComponents (true);
-		RotateCardinalPoints ();
+		
+		
     }
 
     internal void ShowVictory()
@@ -206,7 +207,7 @@ public class RecorridosView : LevelView {
 		timerActive = false;
 //        centralPuppetImage.sprite = puppetNeutral;
         nutTextCounter.text = "0";
-		
+		ResetRotation ();
         MovingDown();
     }
 
@@ -301,6 +302,17 @@ public class RecorridosView : LevelView {
 
 		}
 
+		private void ResetRotation(){
+			roseRotation = 0;
+			cardinalRose.transform.DOLocalRotate(Vector3.zero,0);
+			rosesTexts.ForEach ((Text t ) => t.gameObject.transform.DOLocalRotate(Vector3.zero,0));
+
+			pointsTexts [0].text = "N";
+			pointsTexts [1].text = "E";
+			pointsTexts [2].text = "S";
+			pointsTexts [3].text = "O";
+		}
+
 		public void RotateCardinalPoints(){
 			//Make grid point texts dissappear
 			pointsTexts.ForEach ((Text t ) => t.gameObject.SetActive(false));
@@ -343,7 +355,7 @@ public class RecorridosView : LevelView {
 					instructionList.Add (ParseAction(dirImg.GetComponent<Image>().sprite));
 				}
 			}
-			return null;
+			return instructionList;
 		}
 
 		private RecorridosAction ParseAction (Sprite sprite)
@@ -357,10 +369,20 @@ public class RecorridosView : LevelView {
 				direction = "S"; 
 			}else{
 				direction = "O"; 
-
 			}
-			return new RecorridosAction();
 
+			RecorridosAction action = new RecorridosAction ();
+			if (direction == pointsTexts [0].text) {
+				action.currentAction = RecorridosAction.ActionToDo.Up;
+			} else if (direction == pointsTexts [1].text) {
+				action.currentAction = RecorridosAction.ActionToDo.Right;
+			} else if (direction == pointsTexts [2].text) {
+				action.currentAction = RecorridosAction.ActionToDo.Down;
+			} else {
+				action.currentAction = RecorridosAction.ActionToDo.Left;
+			}
+
+			return action;
 
 		}
 

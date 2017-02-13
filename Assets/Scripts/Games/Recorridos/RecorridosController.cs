@@ -268,6 +268,7 @@ namespace Assets.Scripts.Games.Recorridos
             else
             {
                 EnableButtonState(true);
+				view.RotateCardinalPoints ();
                 view.ResetStackView();
             }
             
