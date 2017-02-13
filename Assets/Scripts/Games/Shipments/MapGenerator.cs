@@ -247,6 +247,18 @@ public class MapGenerator : MonoBehaviour {
         {
             Places[j].gameObject.SetActive(false);
         }
+
+        foreach (ShipmentEdge shipmentEdge in edges)
+        {
+            if (shipmentEdge.Length == 0)
+            {
+                MapPlace place = Places.Find(e => e.Id == shipmentEdge.IdNodeA);
+                MapPlace mapPlace = Places.Find(e => e.Id == shipmentEdge.IdNodeB);
+                float distance = Vector2.Distance(place.transform.position, mapPlace.transform.position)/
+                                 Ruler.GetUnityDistances();
+                shipmentEdge.Length = (int) distance;
+            }
+        }
     }
 
     private float GetMinDistance()

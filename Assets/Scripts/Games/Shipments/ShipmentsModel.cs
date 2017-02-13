@@ -140,6 +140,7 @@ namespace Assets.Scripts.Games.Shipments
                 return;
             }
             RemainExercises--;
+            
         }
 
         private static int GetEdgesToSolutionPath(int nodes)
@@ -325,13 +326,36 @@ namespace Assets.Scripts.Games.Shipments
             {
                 edgeAnswers[i].Length = edgeAnswers[i].Length/Scale;
                 ShipmentEdge edge = Edges.Find(e => e.Equals(edgeAnswers[i]));
-                if (edge == null) return false;
+                if (edge == null)
+                {
+                    lastCorrect = false;
+                    return false;
+                }
             }
-            bool isCorrectAnswer = edgeAnswers[edgeAnswers.Count - 1].IdNodeB == Nodes.Find(e => e.Type == ShipmentNodeType.Finish).Id;
-            if (lastCorrect) _currentLevel++;
-            lastCorrect = isCorrectAnswer;
-            LogAnswer(isCorrectAnswer);
-            return isCorrectAnswer;
+            bool isCorrectDestine = edgeAnswers[edgeAnswers.Count - 1].IdNodeB == Nodes.Find(e => e.Type == ShipmentNodeType.Finish).Id;
+            
+            // en este caso debe ser optimo el camino
+            if (_currentLevel >= 5)
+            {
+                int answerCost = 0;
+                foreach (ShipmentEdge edgeAnswer in edgeAnswers)
+                {
+                    answerCost += edgeAnswer.Length;
+                }
+                if (answerCost != GetCheaperSolutionPathCost(Nodes.Find(e => e.Type == ShipmentNodeType.Start).Id,
+                    Nodes.Find(e => e.Type == ShipmentNodeType.Finish).Id))
+                {
+                    Debug.Log("No es el camino óptimo");
+                    lastCorrect = false;
+                    LogAnswer(false);
+                    return false;
+                }
+            }
+            if (lastCorrect && isCorrectDestine) _currentLevel++;
+            lastCorrect = isCorrectDestine;
+            LogAnswer(isCorrectDestine);
+            return isCorrectDestine;
+
 
         }
 
@@ -397,25 +421,50 @@ namespace Assets.Scripts.Games.Shipments
 23     return dist[], prev[]*/
         public int GetCheaperSolutionPathCost(int idFrom, int idTo)
         {
-            List<int> dist = new List<int>();
-            dist.Add(0);
-
-            Queue<ShipmentNode> vertexes = new Queue<ShipmentNode>();
-
-            foreach (ShipmentNode node in Nodes)
-            {
-                if (node.Id != idFrom)
-                {
-                    
-                }
-            }
-
             ShipmentNode startNode = Nodes.Find(e => e.Id == idFrom);
-            List<ShipmentEdge> edges = GetEdgesByIdNode(startNode.Id);
-/*
-            int min = edges.Ma;
-*/
-            return 0;
+
+            List< Tuple<ShipmentNode, int>> frontier = new List<Tuple<ShipmentNode, int>>();
+            frontier.Add(new Tuple<ShipmentNode, int>(startNode, 0));
+            
+            List<int> explored = new List<int>();
+
+            while (frontier.Count != 0)
+            {
+                Tuple<ShipmentNode, int> tuple = frontier[0];
+                ShipmentNode node = tuple.Item1;
+                frontier.RemoveAt(0);
+                if (node.Id == idTo)
+                {
+                    Debug.Log("Min cost: " + tuple.Item2);
+                    return tuple.Item2;
+                }
+                explored.Add(node.Id);
+                foreach (ShipmentEdge edge in GetEdgesByIdNode(node.Id))
+                {
+                    if (edge.Length == 0)
+                    {
+                        Debug.Log("Mmmg");
+                    }
+                    int otherId = edge.IdNodeA == node.Id ? edge.IdNodeB : edge.IdNodeA;
+                    ShipmentNode childNode = Nodes.Find(e => e.Id == otherId);
+                    bool inFrontierExists = frontier.Exists(e => e.Item1.Id == childNode.Id);
+                    Tuple<ShipmentNode, int> inFrontier = frontier.Find(e => e.Item1.Id == childNode.Id);
+
+                    int item2 = tuple.Item2 + edge.Length;
+                    if (!explored.Contains(childNode.Id) && !inFrontierExists)
+                    {
+                        frontier.Add(new Tuple<ShipmentNode, int>(childNode, item2));
+                    } else if (inFrontierExists && inFrontier.Item2 > item2)
+                    {
+                        frontier.Remove(inFrontier);
+                        frontier.Add(new Tuple<ShipmentNode, int>(childNode, item2));
+                    }
+                }
+                frontier.Sort((a, b) => a.Item2 - b.Item2);
+
+            }
+            return int.MaxValue;
+
         }
     }
 

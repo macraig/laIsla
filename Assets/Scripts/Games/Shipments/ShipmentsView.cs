@@ -68,7 +68,6 @@ namespace Assets.Scripts.Games.Shipments
             _currentFocus = 1;
             HighlightCurrentFocus();
             menuBtn.onClick.AddListener(OnClickMenuBtn);
-            Next();
             attempsToGenerate = 0;
             _edgesAnswers = new List<ShipmentEdge>();
             ShowExplanation();
@@ -207,6 +206,7 @@ namespace Assets.Scripts.Games.Shipments
             _currentGold = 0;
             TotalGoldText.text = "" + _totalGold;
             UpdateTryButton();
+    
         }
 
         private void SetPlayerToFirstPlace()
@@ -492,6 +492,7 @@ namespace Assets.Scripts.Games.Shipments
             }
             else
             {
+                DropGold();
                 ShowWrongAnswerAnimation();
             }
           

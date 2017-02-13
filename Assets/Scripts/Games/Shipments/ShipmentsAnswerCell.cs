@@ -21,8 +21,6 @@ namespace Assets.Scripts.Games.Shipments
             get { return _value; }
             set
             {
-                Debug.Log("Setted");
-
                 _value = value;
                 ShipmentsView.instance.UpdateTryButton();
 
