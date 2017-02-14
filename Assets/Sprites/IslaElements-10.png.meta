@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3151a9cb9dcd33a41a107850419b14b9
-timeCreated: 1487069315
+timeCreated: 1487107008
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -105,9 +105,9 @@ TextureImporter:
       name: IslaElements-10_3
       rect:
         serializedVersion: 2
-        x: 1239
+        x: 639
         y: 487
-        width: 407
+        width: 458
         height: 423
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -118,10 +118,10 @@ TextureImporter:
       name: IslaElements-10_5
       rect:
         serializedVersion: 2
-        x: 618
-        y: 498
-        width: 481
-        height: 412
+        x: 1236
+        y: 487
+        width: 414
+        height: 423
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
