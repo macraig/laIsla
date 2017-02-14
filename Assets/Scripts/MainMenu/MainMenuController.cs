@@ -54,7 +54,7 @@ namespace Assets.Scripts.MainMenu
 			gamePreview.SetGameDescription(game.GetDescription());
             gamePreview.SetIcon(game.GetIcon());
 			gamePreview.SetTitle(game.GetName());
-			gamePreview.SetGameNumber(game.GetId().ToString());
+//			gamePreview.SetGameNumber(game.GetId().ToString());
             gamePreview.gameObject.SetActive(true);
 //            menuView.gameObject.SetActive(false);
 

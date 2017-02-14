@@ -16,21 +16,34 @@ public class TravesiaActivityView : LevelView {
 	public List<Image> tiles, clocks;
 	public Text letter, number, board;
 	public List<Toggle> actions;
-
-	private Sprite[] tileSprites;
+	private int setSailRow;
+	private Sprite[] tileSprites,shieldSprites;
+	private AudioClip shipSails, shipArrives, shipSailing, shipBreaks, shipRepair, krakenAppears, krakenDead, 
+	snakeAppears, snakeDead, eatProvisions, cannonSplash, cannonHitsShip;
 	private bool keyboardActive;
-	private const int WATER_SPRITE = 0, START_MONSTER_SPRITES = 1, START_SHIP_SPRITES = 5, DIFFERENT_SHIP_SPRITES = 4, DIFFERENT_MONSTER_SPRITES = 2;
+	private const int WATER_SPRITE = 0, START_MONSTER_SPRITES = 1, START_SHIP_SPRITES = 5, DIFFERENT_SHIP_SPRITES = 5, DIFFERENT_MONSTER_SPRITES = 2,
+	START_PORT_SPRITES = 20;
+	public Text shipCounter;
+	private int correctShips;
+	public GameObject timerPlaca;
+	public Image instructionsImage;
 
 	private TravesiaActivityModel model;
 
 	override public void Next(bool first = false){
-		if(first) model.NewSend();
+		if (first) {
+			model.NewSend();
+			timerPlaca.SetActive (false);
+			correctShips = 0;
+			shipCounter.text = correctShips.ToString ();;
+		}
+
 		ResetLetterNumber();
 		ResetActions();
 		keyboardActive = true;
 		EnableActions(true);
 		CheckOk();
-
+		setSailRow = -1;
 		model.CheckSend();
 
 		SetSend(model.SendCol(), model.SendRow());
@@ -40,6 +53,33 @@ public class TravesiaActivityView : LevelView {
 		}
 	}
 
+	public void Start(){
+		model = new TravesiaActivityModel();
+		tileSprites = Resources.LoadAll<Sprite>("Sprites/TravesiaActivity/tiles");
+		shieldSprites =Resources.LoadAll<Sprite>("Sprites/TravesiaActivity/escudos");
+
+		shipSails = Resources.Load<AudioClip> ("Audio/TravesiasActivity/shipSails");
+		shipArrives = Resources.Load<AudioClip> ("Audio/TravesiasActivity/shipArrives");
+		shipBreaks = Resources.Load<AudioClip> ("Audio/TravesiasActivity/shipBreaks");
+		shipSailing = Resources.Load<AudioClip> ("Audio/TravesiasActivity/shipsSailing");
+		shipRepair = Resources.Load<AudioClip> ("Audio/TravesiasActivity/repairBoat");
+		krakenAppears = Resources.Load<AudioClip> ("Audio/TravesiasActivity/krakenAppears");
+		krakenDead = Resources.Load<AudioClip> ("Audio/TravesiasActivity/cannonBallKraken");
+		snakeAppears = Resources.Load<AudioClip> ("Audio/TravesiasActivity/waterSnake");
+		snakeDead = Resources.Load<AudioClip> ("Audio/TravesiasActivity/cannonBallSnake");
+		eatProvisions = Resources.Load<AudioClip> ("Audio/TravesiasActivity/provisionsMunch");
+		cannonSplash = Resources.Load<AudioClip> ("Audio/TravesiasActivity/CannonBallSplash");
+		cannonHitsShip = Resources.Load<AudioClip> ("Audio/TravesiasActivity/cannonHitsShip");
+
+		ResetTiles();
+		ClocksActive(false);
+		Begin();
+	}
+
+	public void Begin(){
+		ShowExplanation();
+	}
+
 	void EnableActions(bool enabled) {
 		actions.ForEach(a => a.enabled = enabled);
 	}
@@ -47,8 +87,22 @@ public class TravesiaActivityView : LevelView {
 	void SetSend(int col, int row) {
 		if(col == -1 && row == -1) board.text = "No hay envíos disponibles.";
 		else {
-			board.text = "Enviar provisiones al puerto " + model.GetColumnString(col) + model.GetRowString(row) + ".";
+			board.text = "Enviar provisiones al puerto ";
+			//FOR TESTING PURPOSES
+			//board.text = "Enviar provisiones al puerto " + model.GetColumnString(col) + model.GetRowString(row) + ".";
+			int shieldIndex = GetPortIndex (row, col) - START_PORT_SPRITES;
+			instructionsImage.sprite = shieldSprites[shieldIndex];
 		}
+	}
+
+	int GetPortIndex (int row, int col)
+	{
+		int slot = model.GetSlot (row, col);
+		for (int i = START_PORT_SPRITES; i < tileSprites.Length; i++) {
+			if (tiles [slot].sprite == tileSprites [i])
+				return i;
+		}
+		return 0;
 	}
 
 	void ResetActions() {
@@ -92,36 +146,40 @@ public class TravesiaActivityView : LevelView {
 		yield return new WaitForSeconds(0.5f);
 		//First execute user action.
 		if(model.ExecuteAction(row, col, action)) {
-			if(action != TravesiaAction.SEND) SetTile(model.GetEvent(row, col));
+			if (action != TravesiaAction.SEND)
+				SetTile (model.GetEvent (row, col), action);
+			else
+				setSailRow = row;
 		} else {
 			model.Wrong();
-			PlayWrongSound();
+			SoundController.GetController ().PlayClip (cannonSplash);
 		}
 
 		//update each row with a two second delay.
 		List<List<TravesiaEvent>> rows = model.GetRows();
 		for(int i = 0; i < rows.Count; i++) {
-			if(!model.IsRowEmpty(i)) {
-				yield return new WaitForSeconds(1f);
+			if (!model.IsRowEmpty (i)) {
+				yield return new WaitForSeconds (1f);
 
-				List<TravesiaEvent> rowEvents = rows[i];
+				List<TravesiaEvent> rowEvents = rows [i];
 
-				model.AdvanceRow(rowEvents);
-				model.CleanRow(i);
+				model.AdvanceRow (rowEvents);
+				model.CleanRow (i);
 
-				TravesiaEvent ship = model.GetAndRemoveDoneShipsFromRow(i);
-				if(ship != null) DoSomethingWithDoneShip(ship);
+				TravesiaEvent ship = model.GetAndRemoveDoneShipsFromRow (i);
+				if (ship != null)
+					DoSomethingWithDoneShip (ship);
 
-				ResetRow(i);
-				SetRow(model.GetRows()[i]);
-			}
+				ResetRow (i);
+				SetRow (model.GetRows () [i]);
+			} 
 		}
 
 		TravesiaEvent newRandomEvent = model.CheckForRandomEvents();
 
 		if(newRandomEvent != null){
 			yield return new WaitForSeconds(1f);
-			SetTile(newRandomEvent);
+			SetTile(newRandomEvent,TravesiaAction.SAIL);
 		}
 
 		if(action == TravesiaAction.SEND) model.NewSend();
@@ -131,48 +189,75 @@ public class TravesiaActivityView : LevelView {
 
 	void SetRow(List<TravesiaEvent> rowEvents) {
 		foreach(TravesiaEvent rowEvent in rowEvents) {
-			SetTile(rowEvent);
+
+			SetTile(rowEvent,TravesiaAction.SAIL);
 		}
 	}
 
-	void SetTile(TravesiaEvent rowEvent) {
+	AudioClip GetSoundClip (TravesiaAction action)
+	{
+		switch (action) {
+		case TravesiaAction.PROVISION:
+			return eatProvisions;
+		case TravesiaAction.REPAIR:
+			return shipRepair;
+		default:
+			return shipSailing;
+		}
+	}
+
+	void SetTile(TravesiaEvent rowEvent,TravesiaAction action) {
 		int slot = model.GetSlot(rowEvent.row, rowEvent.col);
+
+		AudioClip currentClip;
 
 		switch(rowEvent.GetState()) {
 		case TravesiaEventState.SHIP:
+			 currentClip = (rowEvent.row == setSailRow) ? shipSails :GetSoundClip (action);
+			SoundController.GetController ().PlayClip (currentClip);
 			tiles[slot].sprite = ShipSprite(rowEvent);
 			clocks[slot].gameObject.SetActive(true);
 			clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
 			break;
 		case TravesiaEventState.WRECKED_SHIP:
-			tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 2];
+			currentClip = (action == TravesiaAction.PROVISION) ? eatProvisions : shipBreaks; 
+			SoundController.GetController ().PlayClip (currentClip);
+			tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 2+(rowEvent.isGoingLeft ? 1 : 0)];
 			clocks[slot].gameObject.SetActive(true);
 			clocks[slot].GetComponentInChildren<Text>().text = rowEvent.GetProvisions().ToString();
 			break;
 		case TravesiaEventState.SUNK_SHIP:
-			tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 3];
+			SoundController.GetController ().PlayClip (cannonHitsShip);
+			tiles[slot].sprite = tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + 4];
 			break;
 		case TravesiaEventState.MONSTER:
-			tiles[slot].sprite = tileSprites[START_MONSTER_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_MONSTER_SPRITES)];
+			int monsterIndex = rowEvent.GetObjectNumber () * DIFFERENT_MONSTER_SPRITES;
+			SoundController.GetController ().PlayClip ((monsterIndex==0)? krakenAppears : snakeAppears);
+			tiles[slot].sprite = tileSprites[START_MONSTER_SPRITES + monsterIndex];
 			break;
 		case TravesiaEventState.DEAD_MONSTER:
-			tiles[slot].sprite = tileSprites[START_MONSTER_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_MONSTER_SPRITES) + 1];
+			int deadMonsterIndex = rowEvent.GetObjectNumber () * DIFFERENT_MONSTER_SPRITES;
+			SoundController.GetController ().PlayClip ((deadMonsterIndex==0)? krakenDead : snakeDead);
+			tiles [slot].sprite = tileSprites [START_MONSTER_SPRITES + deadMonsterIndex + 1];
+
 			break;
 		}
 	}
 
 	Sprite ShipSprite(TravesiaEvent rowEvent) {
-		return tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + (rowEvent.isGoingLeft ? 0 : 1)];
+		return tileSprites[START_SHIP_SPRITES + (rowEvent.GetObjectNumber() * DIFFERENT_SHIP_SPRITES) + (rowEvent.isGoingLeft ? 1 : 0)];
 	}
 
 	void DoSomethingWithDoneShip(TravesiaEvent doneShip) {
 		if(doneShip.isShipCorrect){
 			Debug.Log("Correct ship arrived.");
-			//TODO correct.
+			SoundController.GetController ().PlayClip (shipArrives);
+			correctShips++;
+			shipCounter.text = correctShips.ToString ();
 			model.Correct();
 		} else {
 			Debug.Log("Wrong ship arrived.");
-			//TODO wrong.
+			SoundController.GetController ().PlayFailureSound ();
 			model.Wrong();
 		}
 	}
@@ -206,17 +291,7 @@ public class TravesiaActivityView : LevelView {
 		}
 	}
 
-	public void Start(){
-		model = new TravesiaActivityModel();
-		tileSprites = Resources.LoadAll<Sprite>("Sprites/TravesiaActivity/tiles");
-		ResetTiles();
-		ClocksActive(false);
-		Begin();
-	}
 
-	public void Begin(){
-		ShowExplanation();
-	}
 
 	Sprite GetWreckedShip(Sprite sprite) {
 		return tileSprites[Array.IndexOf(tileSprites, sprite) + 1];
@@ -243,6 +318,7 @@ public class TravesiaActivityView : LevelView {
 	}
 
 	public void CheckOk() {
+//		SoundController.GetController ().PlayDropSound ();
 		okBtn.interactable = CanSubmit();
 	}
 
@@ -315,5 +391,10 @@ public class TravesiaActivityView : LevelView {
 
 	public void CloseLog(){
 		logPanel.SetActive(false);
+	}
+
+	public void ClearSlot(Button button){
+		SoundController.GetController ().PlayClickSound ();
+		button.GetComponentInChildren<Text> ().text="";
 	}
 }

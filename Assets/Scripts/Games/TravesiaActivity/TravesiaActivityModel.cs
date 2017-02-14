@@ -4,6 +4,7 @@ using Assets.Scripts.Games;
 using UnityEngine;
 using Assets.Scripts.Metrics.Model;
 using SimpleJSON;
+
 using Assets.Scripts.Common;
 
 public class TravesiaActivityModel : LevelModel {
