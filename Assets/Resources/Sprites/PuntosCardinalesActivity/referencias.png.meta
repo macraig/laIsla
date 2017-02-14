@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3e2adca0f09ba9e44a438652eaf53d61
-timeCreated: 1485525903
+timeCreated: 1487040136
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -120,11 +120,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 179
-        width: 171
-        height: 177
+        y: 0
+        width: 195.21428
+        height: 168
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -132,12 +132,12 @@ TextureImporter:
       name: referencias_1
       rect:
         serializedVersion: 2
-        x: 172
-        y: 178
-        width: 174
-        height: 178
+        x: 195
+        y: 0
+        width: 195.21428
+        height: 168
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -145,10 +145,10 @@ TextureImporter:
       name: referencias_2
       rect:
         serializedVersion: 2
-        x: 346
-        y: 178
-        width: 173.625
-        height: 178
+        x: 391
+        y: 0
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,10 +158,10 @@ TextureImporter:
       name: referencias_3
       rect:
         serializedVersion: 2
-        x: 521
-        y: 178
-        width: 174
-        height: 178
+        x: 586
+        y: 0
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: referencias_4
       rect:
         serializedVersion: 2
-        x: 694
-        y: 178
-        width: 174
-        height: 178
+        x: 782
+        y: 0
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: referencias_5
       rect:
         serializedVersion: 2
-        x: 868
-        y: 178
-        width: 174
-        height: 178
+        x: 978
+        y: 0
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: referencias_6
       rect:
         serializedVersion: 2
-        x: 1041
-        y: 178
-        width: 174
-        height: 178
+        x: 1172
+        y: 0
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,10 +210,10 @@ TextureImporter:
       name: referencias_7
       rect:
         serializedVersion: 2
-        x: 1215
-        y: 178
-        width: 174
-        height: 178
+        x: 1366
+        y: 0
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,10 +223,10 @@ TextureImporter:
       name: referencias_8
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1562
         y: 0
-        width: 171
-        height: 179
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: referencias_9
       rect:
         serializedVersion: 2
-        x: 171
+        x: 1757
         y: 0
-        width: 174
-        height: 178
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,10 +249,10 @@ TextureImporter:
       name: referencias_10
       rect:
         serializedVersion: 2
-        x: 346
+        x: 1952
         y: 0
-        width: 173.625
-        height: 178
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,10 +262,10 @@ TextureImporter:
       name: referencias_11
       rect:
         serializedVersion: 2
-        x: 520
+        x: 2148
         y: 0
-        width: 174
-        height: 178
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -275,10 +275,10 @@ TextureImporter:
       name: referencias_12
       rect:
         serializedVersion: 2
-        x: 694
+        x: 2344
         y: 0
-        width: 174
-        height: 178
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -288,36 +288,10 @@ TextureImporter:
       name: referencias_13
       rect:
         serializedVersion: 2
-        x: 867
+        x: 2538
         y: 0
-        width: 174
-        height: 178
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: referencias_14
-      rect:
-        serializedVersion: 2
-        x: 1041
-        y: 0
-        width: 174
-        height: 178
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: referencias_15
-      rect:
-        serializedVersion: 2
-        x: 1215
-        y: 0
-        width: 174
-        height: 178
+        width: 195
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
