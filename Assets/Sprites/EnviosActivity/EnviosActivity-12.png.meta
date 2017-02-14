@@ -1,14 +1,13 @@
 fileFormatVersion: 2
-guid: 0229c8c7f9c22a64b81dc07d9755aa7f
-timeCreated: 1487086116
+guid: 769719cb1d51ce045840bbc05830a390
+timeCreated: 1487086101
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: EnviosActivity-13_0
-    21300002: EnviosActivity-13_1
-    21300004: EnviosActivity-13_2
-    21300006: EnviosActivity-13_3
-    21300008: EnviosActivity-13_4
+    21300000: EnviosActivity-12_0
+    21300002: EnviosActivity-12_1
+    21300004: EnviosActivity-12_2
+    21300006: EnviosActivity-12_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -79,27 +78,11 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: WebGL
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EnviosActivity-13_0
+      name: EnviosActivity-12_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,7 +95,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: EnviosActivity-13_1
+      name: EnviosActivity-12_1
       rect:
         serializedVersion: 2
         x: 142
@@ -125,7 +108,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: EnviosActivity-13_2
+      name: EnviosActivity-12_2
       rect:
         serializedVersion: 2
         x: 284
@@ -138,23 +121,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: EnviosActivity-13_3
+      name: EnviosActivity-12_3
       rect:
         serializedVersion: 2
         x: 426
-        y: 0
-        width: 142
-        height: 142
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: EnviosActivity-13_4
-      rect:
-        serializedVersion: 2
-        x: 568
         y: 0
         width: 142
         height: 142

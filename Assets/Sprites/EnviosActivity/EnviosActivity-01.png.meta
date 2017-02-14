@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: bfe321408a938824fa6e0813f509f374
-timeCreated: 1486639270
-licenseType: Pro
+timeCreated: 1487086067
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: EnviosActivity-01_0
@@ -113,8 +113,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 513.6429
-        height: 510
+        width: 246.64285
+        height: 245
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,12 +124,12 @@ TextureImporter:
       name: EnviosActivity-01_1
       rect:
         serializedVersion: 2
-        x: 513
+        x: 246
         y: 0
-        width: 513.6429
-        height: 510
+        width: 246.64285
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.49999994, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -137,12 +137,12 @@ TextureImporter:
       name: EnviosActivity-01_2
       rect:
         serializedVersion: 2
-        x: 1026
+        x: 493
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -150,12 +150,12 @@ TextureImporter:
       name: EnviosActivity-01_3
       rect:
         serializedVersion: 2
-        x: 1539
+        x: 739
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -163,12 +163,12 @@ TextureImporter:
       name: EnviosActivity-01_4
       rect:
         serializedVersion: 2
-        x: 2052
+        x: 986
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -176,12 +176,12 @@ TextureImporter:
       name: EnviosActivity-01_5
       rect:
         serializedVersion: 2
-        x: 2565
+        x: 1233
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -189,12 +189,12 @@ TextureImporter:
       name: EnviosActivity-01_6
       rect:
         serializedVersion: 2
-        x: 3078
+        x: 1479
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -202,12 +202,12 @@ TextureImporter:
       name: EnviosActivity-01_7
       rect:
         serializedVersion: 2
-        x: 3591
+        x: 1727
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -215,12 +215,12 @@ TextureImporter:
       name: EnviosActivity-01_8
       rect:
         serializedVersion: 2
-        x: 4104
+        x: 1973
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -228,12 +228,12 @@ TextureImporter:
       name: EnviosActivity-01_9
       rect:
         serializedVersion: 2
-        x: 4617
+        x: 2219
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -241,12 +241,12 @@ TextureImporter:
       name: EnviosActivity-01_10
       rect:
         serializedVersion: 2
-        x: 5130
+        x: 2466
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -254,12 +254,12 @@ TextureImporter:
       name: EnviosActivity-01_11
       rect:
         serializedVersion: 2
-        x: 5643
+        x: 2712
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -267,12 +267,12 @@ TextureImporter:
       name: EnviosActivity-01_12
       rect:
         serializedVersion: 2
-        x: 6156
+        x: 2959
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -280,12 +280,12 @@ TextureImporter:
       name: EnviosActivity-01_13
       rect:
         serializedVersion: 2
-        x: 6669
+        x: 3206
         y: 0
-        width: 513.6429
-        height: 510
+        width: 247
+        height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
