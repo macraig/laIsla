@@ -200,7 +200,7 @@ public class TravesiaActivityModel : LevelModel {
 
 	//CONSIGNA:
 
-	public void NewSend() {
+	public bool NewSend() {
 		Randomizer rowRandomizer = Randomizer.New(GRID_ROWS - 1);
 		for(int i = 0; i < GRID_ROWS; i++) {
 			int row = rowRandomizer.Next();
@@ -211,15 +211,24 @@ public class TravesiaActivityModel : LevelModel {
 		}
 		sendCol = Randomizer.RandomBoolean() ? 0 : (GRID_COLS - 1);
 
-		if(rows[sendRow].Count != 0) {
-			sendRow = -1;
-			sendCol = -1;
+		if (sendRow != -1) {
+			if (rows [sendRow].Count != 0) {
+				sendRow = -1;
+				sendCol = -1;
+				return false;
+			}
+		} else {
+			return false;
 		}
+		return true;
+
 	}
 
-	public void CheckSend(){
-		if(sendRow == -1 || rows[sendRow].Count != 0)
-			NewSend();
+	public bool CheckSend(){
+		if (sendRow == -1 || rows [sendRow].Count != 0) {
+			return NewSend ();
+		}
+		return true;
 	}
 
 	public int SendRow() {
