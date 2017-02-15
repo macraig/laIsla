@@ -26,7 +26,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 		void SetAudios(Dictionary<string, AudioClip> a, List<List<Building>> grid) {
 			audios = new List<AudioClip>();
 
-			//primer audio -> "la escuela"
+			//primer audio -> "la laguna"
 			audios.Add(a[correct.GetName()]);
 
 			//switch con todas las posibilidades
@@ -67,8 +67,8 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 				audios.Add(a[grid[row - 1][column].GetName() + "Final"]);
 
 				break;
-			case Possibilities.IN_FRONT_SCHOOL_STREET:
-				audios.Add(a["frenteALaEscuela"]);
+			case Possibilities.IN_FRONT_POND_STREET:
+				audios.Add(a["frenteALaLaguna"]);
 				audios.Add(a["cruzandoLaCalle"]);
 
 				break;
@@ -82,8 +82,8 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 				audios.Add(a["izquierda"]);
 				audios.Add(a[grid[row][column + 1].GetName() + "Final"]);
 				break;
-			case Possibilities.LEFT_SCHOOL_STREET:
-				audios.Add(a["izquierdaDeLaEscuela"]);
+			case Possibilities.LEFT_POND_STREET:
+				audios.Add(a["izquierdaDeLaLaguna"]);
 				audios.Add(a["cruzandoLaCalle"]);
 				break;
 			case Possibilities.LEFT_STREET:
@@ -95,8 +95,8 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 				audios.Add(a["derecha"]);
 				audios.Add(a[grid[row][column - 1].GetName() + "Final"]);
 				break;
-			case Possibilities.RIGHT_SCHOOL_STREET:
-				audios.Add(a["derechaDeLaEscuela"]);
+			case Possibilities.RIGHT_POND_STREET:
+				audios.Add(a["derechaDeLaLaguna"]);
 				audios.Add(a["cruzandoLaCalle"]);
 				break;
 			case Possibilities.RIGHT_STREET:
@@ -152,8 +152,8 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			case Possibilities.IN_FRONT:
 				result = result + " está en frente " + grid[row - 1][column].GetTextNameEnd();
 				break;
-			case Possibilities.IN_FRONT_SCHOOL_STREET:
-				result = result + " está frente a la escuela, cruzando la calle";
+			case Possibilities.IN_FRONT_POND_STREET:
+				result = result + " está frente a la laguna, cruzando la calle";
 				break;
 			case Possibilities.IN_FRONT_STREET:
 				result = result + " está en frente " + grid[row - 2][column].GetTextNameEnd() + ", cruzando la calle";
@@ -161,8 +161,8 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			case Possibilities.LEFT:
 				result = result + " está a la izquierda " + grid[row][column + 1].GetTextNameEnd();
 				break;
-			case Possibilities.LEFT_SCHOOL_STREET:
-				result = result + " está a la izquierda de la escuela, cruzando la calle";
+			case Possibilities.LEFT_POND_STREET:
+				result = result + " está a la izquierda de la laguna, cruzando la calle";
 				break;
 			case Possibilities.LEFT_STREET:
 				result = result + " está a la izquierda " + grid[row][column + 2].GetTextNameEnd() + ", cruzando la calle";
@@ -170,8 +170,8 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			case Possibilities.RIGHT:
 				result = result + " está a la derecha " + grid[row][column - 1].GetTextNameEnd();
 				break;
-			case Possibilities.RIGHT_SCHOOL_STREET:
-				result = result + " está a la derecha de la escuela, cruzando la calle";
+			case Possibilities.RIGHT_POND_STREET:
+				result = result + " está a la derecha de la laguna, cruzando la calle";
 				break;
 			case Possibilities.RIGHT_STREET:
 				result = result + " está a la derecha " + grid[row][column - 2].GetTextNameEnd() + ", cruzando la calle";
@@ -215,7 +215,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 				if(row == 5)
 					return false;
 				spot = grid[row + 1][column];
-				if(spot != null && !spot.IsStreet() && spot.GetName() != "escuela")
+				if(spot != null && !spot.IsStreet() && spot.GetName() != "laguna")
 					return true;
 				break;
 			case Possibilities.BEHIND_STREET:
@@ -248,8 +248,8 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 				if(spot != null && !spot.IsStreet())
 					return true;
 				break;
-			case Possibilities.IN_FRONT_SCHOOL_STREET:
-				//si estoy en frente de la escuela y el del costado mio no esta vacio.
+			case Possibilities.IN_FRONT_POND_STREET:
+				//si estoy en frente de la laguna y el del costado mio no esta vacio.
 				if(row == 5 && (column == 2 || column == 3)) {
 					return grid[5][column == 2 ? 3 : 2] != null;
 				}
@@ -259,7 +259,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 					return false;
 				streetSpot = grid[row - 1][column];
 				spot = grid[row - 2][column];
-				if(spot != null && streetSpot != null && !spot.IsStreet() && streetSpot.IsStreet() && spot.GetName() != "escuela" && !spot.IsDouble())
+				if(spot != null && streetSpot != null && !spot.IsStreet() && streetSpot.IsStreet() && spot.GetName() != "laguna" && !spot.IsDouble())
 					return true;
 				break;
 			case Possibilities.LEFT:
@@ -270,31 +270,31 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 				if(column < 5 && spot != null && !spot.IsStreet() && !spot.IsDouble())
 					return true;
 				break;
-			case Possibilities.LEFT_SCHOOL_STREET:
+			case Possibilities.LEFT_POND_STREET:
 				return row == 3 && column == 0;
 			case Possibilities.LEFT_STREET:
 				if(column >= 4)
 					return false;
 				streetSpot = grid[row][column + 1];
 				spot = grid[row][column + 2];
-				if(spot != null && streetSpot != null && !spot.IsStreet() && streetSpot.IsStreet() && spot.GetName() != "escuela")
+				if(spot != null && streetSpot != null && !spot.IsStreet() && streetSpot.IsStreet() && spot.GetName() != "laguna")
 					return true;
 				break;
 			case Possibilities.RIGHT:
 				if(column == 0)
 					return false;
 				spot = grid[row][column - 1];
-				if(spot != null && !spot.IsStreet() && spot.GetName() != "escuela")
+				if(spot != null && !spot.IsStreet() && spot.GetName() != "laguna")
 					return true;
 				break;
-			case Possibilities.RIGHT_SCHOOL_STREET:
+			case Possibilities.RIGHT_POND_STREET:
 				return row == 3 && column == 5;
 			case Possibilities.RIGHT_STREET:
 				if(column <= 1)
 					return false;
 				streetSpot = grid[row][column - 1];
 				spot = grid[row][column - 2];
-				if(spot != null && streetSpot != null && !spot.IsStreet() && streetSpot.IsStreet() && spot.GetName() != "escuela")
+				if(spot != null && streetSpot != null && !spot.IsStreet() && streetSpot.IsStreet() && spot.GetName() != "laguna")
 					return true;
 				break;
 			}
