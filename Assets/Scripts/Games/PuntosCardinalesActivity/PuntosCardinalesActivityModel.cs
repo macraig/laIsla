@@ -87,7 +87,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			currentLvl = 0;
 			//nombres de los edificios en orden de sprites.
 			InitNames();
-			//inicia la grilla con las calles y la escuela.
+			//inicia la grilla con las calles y la laguna.
 			InitGrid();
 			//inicia el sprite de cada edificio con su nombre.
 			InitSprites();
@@ -99,7 +99,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			//randomiza las respuestas correctas.
 			RandomizeOptions();
 
-			//mete la plaza y el hospital en la grilla.
+			//mete la plaza y el establo en la grilla.
 			SetDoubleBuildingsInGrid();
 			//mete los 5 random en la grilla y los borra de simpleBuildings.
 			SetSimpleBuildingsInGrid();
@@ -140,7 +140,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			Building a = GetSimpleBuilding();
 			bool up = Randomizer.RandomBoolean();
 			Randomizer r = Randomizer.New(up ? 5 : 3, up ? 2 : 0);
-			//primero: el que va con la plaza o el hospital.
+			//primero: el que va con la plaza o el establo.
 			while(true){
 				int spot = r.Next();
 
@@ -166,10 +166,10 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 		void SetDoubleBuildingsInGrid() {
 			bool doubleRandom = Randomizer.RandomBoolean();
 
-			Building upLeft = doubleRandom ? Building.B("hospital","el hospital","del hospital", true, false, true) : Building.B("plaza","la plaza","de la plaza", true, false, true);
-			Building upRight = doubleRandom ? Building.B("hospital","el hospital","del hospital", true) : Building.B("plaza","la plaza","de la plaza", true);
-			Building downLeft = doubleRandom ? Building.B("plaza","la plaza","de la plaza", true, false, true) : Building.B("hospital","el hospital","del hospital", true, false, true);
-			Building downRight = doubleRandom ? Building.B("plaza","la plaza","de la plaza", true) : Building.B("hospital","el hospital","del hospital", true);
+			Building upLeft = doubleRandom ? Building.B("establo","el establo","del establo", true, false, true) : Building.B("plaza","la plaza","de la plaza", true, false, true);
+			Building upRight = doubleRandom ? Building.B("establo","el establo","del establo", true) : Building.B("plaza","la plaza","de la plaza", true);
+			Building downLeft = doubleRandom ? Building.B("plaza","la plaza","de la plaza", true, false, true) : Building.B("establo","el establo","del establo", true, false, true);
+			Building downRight = doubleRandom ? Building.B("plaza","la plaza","de la plaza", true) : Building.B("establo","el establo","del establo", true);
 
 			bool middleRandom = Randomizer.RandomBoolean();
 			bool left = Randomizer.RandomBoolean();
@@ -220,72 +220,72 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 
 		void InitNames() {
 			names = new string[] {
-				"heladeria",
-				"banco",
-				"correo",
+				"verduleria",
+				"pescaderia",
+				"sastreria",
+				"armeria",
+				"carpinteria",
+				"alfareria",
+				"herreria",
 				"floreria",
 				"biblioteca",
-				"policia",
-				"verduleria",
-				"kiosco",
+				"prision",
 				"carniceria",
-				"casaBlanca",
-				"estacionDeServicio",
-				"casaAmarilla",
-				"supermercado",
-				"cine",
+				"torre",
+				"casa",
+				"molino",
 				"plazaLeft",
 				"plazaRight",
-				"hospitalLeft",
-				"hospitalRight",
-				"escuelaLeft",
-				"escuelaRight"
+				"establoLeft",
+				"establoRight",
+				"lagunaLeft",
+				"lagunaRight"
 			};
 
 			textNamesStart = new string[] {
-				"la heladería",
-				"el banco",
-				"el correo",
+				"la verdulería",
+				"la pescadería",
+				"la sastreria",
+				"la armería",
+				"la carpintería",
+				"la alfarería",
+				"la herrería",
 				"la florería",
 				"la biblioteca",
-				"la policía",
-				"la verdulería",
-				"el kiosco",
+				"la prisión",
 				"la carnicería",
-				"la casa blanca",
-				"la estación de servicio",
-				"la casa amarilla",
-				"el supermercado",
-				"el cine",
+				"la torre",
+				"la casa",
+				"el molino",
 				"la plaza",
 				"la plaza",
-				"el hospital",
-				"el hospital",
-				"la escuela",
-				"la escuela"
+				"el establo",
+				"el establo",
+				"la laguna",
+				"la laguna"
 			};
 
 			textNamesEnd = new string[] {
-				"de la heladería",
-				"del banco",
-				"del correo",
+				"de la verdulería",
+				"de la pescadería",
+				"de la sastreria",
+				"de la armería",
+				"de la carpintería",
+				"de la alfarería",
+				"de la herrería",
 				"de la florería",
 				"de la biblioteca",
-				"de la policía",
-				"de la verdulería",
-				"del kiosco",
+				"de la prisión",
 				"de la carnicería",
-				"de la casa blanca",
-				"de la estación de servicio",
-				"de la casa amarilla",
-				"del supermercado",
-				"del cine",
+				"de la torre",
+				"de la casa",
+				"del molino",
 				"de la plaza",
 				"de la plaza",
-				"del hospital",
-				"del hospital",
-				"de la escuela",
-				"de la escuela"
+				"del establo",
+				"del establo",
+				"de la laguna",
+				"de la laguna"
 			};
 
 
@@ -313,7 +313,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			grid.Add(new List<Building>{ null, STREET, null, null, null, null });
 			grid.Add(new List<Building>{ null, STREET, STREET, STREET, STREET, STREET });
 			grid.Add(new List<Building>{ null, STREET, null, null, STREET, null });
-			grid.Add(new List<Building>{ null, STREET, Building.B("escuela","la escuela","de la escuela", true, false, true), Building.B("escuela","la escuela","de la escuela", true), STREET, null });
+			grid.Add(new List<Building>{ null, STREET, Building.B("laguna","la laguna","de la laguna", true, false, true), Building.B("laguna","la laguna","de la laguna", true), STREET, null });
 			grid.Add(new List<Building>{ STREET, STREET, STREET, STREET, STREET, null });
 			grid.Add(new List<Building>{ null, null, null, null, STREET, null });
 		}

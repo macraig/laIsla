@@ -104,7 +104,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 
 		void ResetGrid(List<Building> grid) {
 			for(int i = 0; i < grid.Count; i++) {
-				if(grid[i] != null && !grid[i].IsStreet() && grid[i].GetName()!="escuela") {
+				if(grid[i] != null && !grid[i].IsStreet() && grid[i].GetName()!="laguna") {
 					viewGrid[i].sprite = baseTileSprite;
 					EnableSlot (viewGrid[i].GetComponent<PuntosCardinalesSlot>(),true);
 
