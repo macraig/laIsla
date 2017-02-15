@@ -11,6 +11,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 		public void OnDrop(PointerEventData eventData) {
 			PuntosCardinalesDragger target = PuntosCardinalesDragger.itemBeingDragged;
 			if(target != null) {
+				Debug.Log ("slot row: " + row + " slot col: " + column);
 				view.Dropped(target, this, row, column);
 			}
 		}
