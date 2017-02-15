@@ -1,33 +1,33 @@
 ﻿{
 	"levels": [
 	{
-		"path": "5",
-		"bombs": "5",
-		"nuts": "1"
+		"path": "6",
+		"bombs": "2",
+		"nuts": "2"
 	}, 
 {
-		"path": "6",
-		"bombs": "7",
-		"nuts": "2"
+		"path": "7",
+		"bombs": "2",
+		"nuts": "3"
 	},
 	{
-		"path": "7",
-		"bombs": "10",
+		"path": "8",
+		"bombs": "2",
 		"nuts": "3"
 	},
 {
-		"path": "8",
-		"bombs": "12",
+		"path": "9",
+		"bombs": "3",
 		"nuts": "4"
 	},
 	{
-		"path": "9",
-		"bombs": "15",
+		"path": "10",
+		"bombs": "3",
 		"nuts": "5"
 	},
 {
-		"path": "10",
-		"bombs": "17",
+		"path": "11",
+		"bombs": "4",
 		"nuts": "5"
 	}]
 }

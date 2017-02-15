@@ -10,10 +10,10 @@ public class RecorridosBoard {
 	public static int ROWS = 6;
 	public static int COLS = 6;
 
-	public static int P_PATH = 25;
-	public static int P_WALL = 25;
-	public static int P_FIRE= 25;
-	public static int P_HOLE = 25;
+	public static int P_PATH = 70;
+	public static int P_WALL = 20;
+	public static int P_FIRE= 5;
+	public static int P_HOLE = 5;
 	public static int P_NEXT_WALL = 60;
 
 

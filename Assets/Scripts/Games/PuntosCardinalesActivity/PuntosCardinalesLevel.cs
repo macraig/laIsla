@@ -26,6 +26,8 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 		void SetAudios(Dictionary<string, AudioClip> a, List<List<Building>> grid) {
 			audios = new List<AudioClip>();
 
+
+
 			//primer audio -> "la laguna"
 			audios.Add(a[correct.GetName()]);
 
@@ -177,7 +179,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 				result = result + " está a la derecha " + grid[row][column - 2].GetTextNameEnd() + ", cruzando la calle";
 				break;
 			}
-
+			Debug.Log (result);
 			return result.ToUpper();
 		}
 

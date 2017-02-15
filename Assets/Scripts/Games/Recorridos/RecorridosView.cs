@@ -42,7 +42,7 @@ public class RecorridosView : LevelView {
 	public GameObject bombAnimation,clockPlaca;
 	private bool timerActive;
 
-	private AudioClip bombSound, nutSound, fallSound, fireSound;
+	private AudioClip krakenSound, fishSound, whirpoolSound, snakeSound;
 		public List<Text> pointsTexts,rosesTexts;
 		public GameObject cardinalRose;
 		private int roseRotation;
@@ -62,26 +62,26 @@ public class RecorridosView : LevelView {
         currentAvailableInstructionSpot = 0;
 			clockPlaca.SetActive (false);
 
-			bombSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/bomba");
-			nutSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/coin");
-			fallSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/fall");
-			fireSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/fire");
+			krakenSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/krakenAppears");
+			fishSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/fishEat");
+			whirpoolSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/remolino");
+			snakeSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/waterSnake");
 
 			directionSprites = Resources.LoadAll<Sprite> ("Sprites/RecorridosActivity/direcciones");
 
 			roseRotation = 0;
     }
 
-		public void PlayFallSound(){
-			SoundController.GetController ().PlayClip (fallSound);
+		public void PlayWhirpoolSound(){
+			SoundController.GetController ().PlayClip (whirpoolSound);
 		}
 
-		public void PlayFireSound(){
-			SoundController.GetController ().PlayClip (fireSound);
+		public void PlaySnakeSound(){
+			SoundController.GetController ().PlayClip (snakeSound);
 		}
 
-		public void PlayNutSound(){
-			SoundController.GetController ().PlayClip (nutSound);
+		public void PlayFishSound(){
+			SoundController.GetController ().PlayClip (fishSound);
 		}
 
 	override public void HideExplanation(){
@@ -232,7 +232,7 @@ public class RecorridosView : LevelView {
 			bombAnimation.transform.SetAsLastSibling ();
 			bombAnimation.GetComponent<BombAnimationScript>().ShowAnimation();
 
-			SoundController.GetController ().PlayClip (bombSound);
+			SoundController.GetController ().PlayClip (krakenSound);
 		}
 
     internal void MovingLeft()

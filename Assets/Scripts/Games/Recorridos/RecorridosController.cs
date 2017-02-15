@@ -53,6 +53,7 @@ namespace Assets.Scripts.Games.Recorridos
 		private int currentLevel, gameCounter;
 		private List<RecorridosLevel> lvls;
 		private bool withTime;
+		private AudioClip sailSound;
        
 		private void Awake()
         {
@@ -69,6 +70,7 @@ namespace Assets.Scripts.Games.Recorridos
         // Use this for initialization
         void Start()
         {
+			sailSound = Resources.Load<AudioClip> ("Audio/RecorridosActivity/shipsSailing");
 			board = new RecorridosBoard ();
 			lvls = board.GetLevels ();
 			keys = new List<RecorridosTileEnum>();
@@ -143,12 +145,12 @@ namespace Assets.Scripts.Games.Recorridos
 //            puppetGridPosition.y = pathTiles[randonNewPath].GridPositionY;
 //            StartCoroutine(GoRolling(2, gridSpace[(int)puppetGridPosition.x][(int)puppetGridPosition.y]));
 			BackToStart();
-			view.PlayFallSound ();
+			view.PlayWhirpoolSound ();
         }
 
 		public void GetBurnt(){
 			BackToStart();
-			view.PlayFireSound ();
+			view.PlaySnakeSound ();
 		}
 
         public void BackToStart()
@@ -163,7 +165,7 @@ namespace Assets.Scripts.Games.Recorridos
             gridSpace[gridPositionX][gridPositionY].Type = RecorridosTileEnum.Path;
             gridSpace[gridPositionX][gridPositionY].Sprite = pathSprite;
             nutCount++;
-			view.PlayNutSound ();
+			view.PlayFishSound ();
             view.SetNutTextCounter(nutCount);
         }
 
@@ -175,7 +177,12 @@ namespace Assets.Scripts.Games.Recorridos
 
 		public void OnBombAnimationEnd(){
 			
-			 GameOver(false);
+			if (!withTime) {
+				GameOver (false);
+			} else {
+				view.EndGame(60, 0, 1250);
+			}
+
 		}
 
 		public void RestartGame(){
@@ -288,7 +295,7 @@ namespace Assets.Scripts.Games.Recorridos
                 puppetGridPosition.y = (int)positionToAnalyze.y;
 				view.EnableComponents (false);
 				StartCoroutine(DoMove(timeBetweenActions, gridSpace[(int)positionToAnalyze.x][(int)positionToAnalyze.y]));
-				SoundController.GetController ().PlayDropSound ();
+				SoundController.GetController ().PlayClip (sailSound);
                 if(xChange == 1)
                 {
                     view.MovingDown();
@@ -376,7 +383,7 @@ namespace Assets.Scripts.Games.Recorridos
 			if (gameCounter >= GAMES_BEFORE_TIME){
 				if (gameCounter == GAMES_BEFORE_TIME) {
 					withTime = true; 
-					Invoke ("ShowNextLevelAnimation", 1);
+					Invoke ("ShowNextLevelAnimation", 2);
 				} else {
 					
 					Invoke ("PlayTimeLevel",1);
