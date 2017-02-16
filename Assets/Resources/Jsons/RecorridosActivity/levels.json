@@ -2,32 +2,32 @@
 	"levels": [
 	{
 		"path": "6",
-		"bombs": "2",
+		"bombs": "1",
 		"nuts": "2"
 	}, 
 {
 		"path": "7",
-		"bombs": "2",
+		"bombs": "1",
 		"nuts": "3"
 	},
 	{
 		"path": "8",
-		"bombs": "2",
+		"bombs": "1",
 		"nuts": "3"
 	},
 {
 		"path": "9",
-		"bombs": "3",
+		"bombs": "1",
 		"nuts": "4"
 	},
 	{
 		"path": "10",
-		"bombs": "3",
+		"bombs": "1",
 		"nuts": "5"
 	},
 {
 		"path": "11",
-		"bombs": "4",
+		"bombs": "1",
 		"nuts": "5"
 	}]
 }

@@ -75,16 +75,16 @@ public class RompecabezasSlot : MonoBehaviour, IDropHandler, IPointerClickHandle
 		EndSlot(true);
 		switch(end.previousDir) {
 		case Direction.DOWN:
-			GetComponent<Image>().sprite = view.PartSprite(3);
-			break;
-		case Direction.LEFT:
-			GetComponent<Image>().sprite = view.PartSprite(0);
-			break;
-		case Direction.UP:
 			GetComponent<Image>().sprite = view.PartSprite(2);
 			break;
-		case Direction.RIGHT:
+		case Direction.LEFT:
 			GetComponent<Image>().sprite = view.PartSprite(1);
+			break;
+		case Direction.UP:
+			GetComponent<Image>().sprite = view.PartSprite(3);
+			break;
+		case Direction.RIGHT:
+			GetComponent<Image>().sprite = view.PartSprite(0);
 			break;
 		}
 	}

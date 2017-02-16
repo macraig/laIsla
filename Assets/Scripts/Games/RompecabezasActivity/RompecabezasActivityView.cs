@@ -18,6 +18,7 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 		private List<Sprite> parts;
 		private RompecabezasActivityModel model;
 		public GameObject placaClock;
+		private bool firstTimeLevel;
 
 		public const int EMPTY_TILE = 26;
 
@@ -25,6 +26,7 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 			model = new RompecabezasActivityModel();
 			parts = new List<Sprite>(Resources.LoadAll<Sprite>("Sprites/MuellesActivity/tiles"));
 			placaClock.SetActive (false);
+			firstTimeLevel = true;
 			Begin();
 		}
 
@@ -43,8 +45,14 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 
 		void SetCurrentLevel() {
 			if(model.HasTime()){
-				TimeLevel(model.CurrentLvl());
-				model.WithTime();
+				if (firstTimeLevel) {
+					firstTimeLevel = false;
+					Invoke("ShowNextLevelAnimation",0.3f);
+				} else {
+					TimeLevel(model.CurrentLvl());
+					model.WithTime();
+				}
+
 			} else {
 				NormalLevel(model.CurrentLvl());
 			}
@@ -57,6 +65,12 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 			SetEndParts(lvl.EndParts());
 
 			SetDraggers(lvl.DraggerParts());
+		}
+
+		override public void OnNextLevelAnimationEnd(){
+			base.OnNextLevelAnimationEnd ();
+			TimeLevel(model.CurrentLvl());
+			model.WithTime();
 		}
 
 		void SetDraggers(List<PartModel> draggerParts) {
@@ -97,6 +111,9 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 		}
 
 		void StartTimer(bool first = false) {
+			if (first)
+				PlayTimeLevelMusic ();
+			
 			placaClock.SetActive (true);
 			StartCoroutine(TimerFunction(first));
 			timerActive = true;
@@ -300,6 +317,9 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 
 		override public void RestartGame(){
 			base.RestartGame ();
+			placaClock.SetActive (false);
+			timerActive = false;
+			firstTimeLevel = true;
 			ResetTiles();
 			Start();
 		}

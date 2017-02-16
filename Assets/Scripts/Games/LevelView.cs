@@ -110,6 +110,7 @@ namespace Assets.Scripts.Games
 		virtual public  void RestartGame(){
 			//TODO: TEST LATER
 //			MetricsController.GetController ().DiscardCurrentMetrics ();
+			StopTimeLevelMusic();
 			HideInGameMenu ();
 			first = true;
 
