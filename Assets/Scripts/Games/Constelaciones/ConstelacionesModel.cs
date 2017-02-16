@@ -9,9 +9,11 @@ namespace Assets.Scripts.Games.Constelaciones {
 	public class ConstelacionesModel : LevelModel {
 		private int currentLvl;
 		List<ConstelacionesLevel> lvls;
+		List<string> starLetters;
 
 		public ConstelacionesModel() {
 			currentLvl = 0;
+			starLetters = new List<string> (){"A","B","C","D","E","F","G","H","I","J","K","L","M","N"};
 			StartLevels();
 			MetricsController.GetController().GameStart();
 		}
@@ -36,6 +38,16 @@ namespace Assets.Scripts.Games.Constelaciones {
 
 		public void NextLvl() {
 			currentLvl++;
+		}
+
+		public string GetFirstStarLetter(){
+			if (starLetters.Count > 0) {
+				string letter = starLetters [0];
+				starLetters.RemoveAt(0);
+				return letter;
+			}
+			return "";
+
 		}
 	}
 }

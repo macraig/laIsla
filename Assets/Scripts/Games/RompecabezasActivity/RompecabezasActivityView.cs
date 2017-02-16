@@ -17,12 +17,14 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 		bool timerActive;
 		private List<Sprite> parts;
 		private RompecabezasActivityModel model;
+		public GameObject placaClock;
 
 		public const int EMPTY_TILE = 26;
 
 		public void Start(){
 			model = new RompecabezasActivityModel();
 			parts = new List<Sprite>(Resources.LoadAll<Sprite>("Sprites/MuellesActivity/tiles"));
+			placaClock.SetActive (false);
 			Begin();
 		}
 
@@ -95,8 +97,10 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 		}
 
 		void StartTimer(bool first = false) {
+			placaClock.SetActive (true);
 			StartCoroutine(TimerFunction(first));
 			timerActive = true;
+
 		}
 
 		public IEnumerator TimerFunction(bool first = false) {
@@ -294,7 +298,8 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 			return parts[index];
 		}
 
-		public void RestartGame(){
+		override public void RestartGame(){
+			base.RestartGame ();
 			ResetTiles();
 			Start();
 		}

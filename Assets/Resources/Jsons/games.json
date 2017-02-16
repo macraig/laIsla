@@ -10,7 +10,7 @@
 		"id": "2",
 		"icon": "1",
 		"name": "Puntos Cardinales",
-		"description": "Ubiquemos los edificios en el croquis siguiento las indicaciones.\n\n",
+		"description": "Ubiquemos los edificios en el croquis siguiendo las indicaciones.\n\n",
 		"prefabName":"PuntosCardinalesActivity"
 	}, {
 		"id": "3",

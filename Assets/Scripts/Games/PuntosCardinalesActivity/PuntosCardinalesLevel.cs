@@ -164,47 +164,47 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 
 			switch(p) {
 			case Possibilities.BEHIND:
-				result = result + " está al norte " + grid[row + 1][column].GetTextNameEnd();
+				result = result + " está al norte " + grid[row + 1][column].GetTextNameEnd()+".";
 				break;
 			case Possibilities.BEHIND_STREET:
-				result = result + " está al norte " + grid[row + 2][column].GetTextNameEnd() + ", cruzando la calle";
+				result = result + " está al norte " + grid[row + 2][column].GetTextNameEnd() + ", cruzando la calle.";
 				break;
 			case Possibilities.BETWEEN_VERTICAL:
 				Building upperB = grid[row - 1][column];
 				Building downB = grid[row + 1][column];
-				result = result + " está entre " + upperB.GetTextNameStart() + " y " + downB.GetTextNameStart();
+				result = result + " está entre " + upperB.GetTextNameStart() + " y " + downB.GetTextNameStart()+".";
 				break;
 			case Possibilities.BETWEEN_HORIZONTAL:
 				Building leftB = grid[row][column - 1];
 				Building rightB = grid[row][column + 1];
-				result = result + " está entre " + leftB.GetTextNameStart() + " y " + rightB.GetTextNameStart();
+				result = result + " está entre " + leftB.GetTextNameStart() + " y " + rightB.GetTextNameStart()+".";
 				break;
 			case Possibilities.IN_FRONT:
-				result = result + " está al sur " + grid[row - 1][column].GetTextNameEnd();
+				result = result + " está al sur " + grid[row - 1][column].GetTextNameEnd()+".";
 				break;
 			case Possibilities.IN_FRONT_POND_STREET:
-				result = result + " está al sur de la laguna, cruzando la calle";
+				result = result + " está al sur de la laguna, cruzando la calle.";
 				break;
 			case Possibilities.IN_FRONT_STREET:
-				result = result + " está al sur " + grid[row - 2][column].GetTextNameEnd() + ", cruzando la calle";
+				result = result + " está al sur " + grid[row - 2][column].GetTextNameEnd() + ", cruzando la calle.";
 				break;
 			case Possibilities.LEFT:
-				result = result + " está al oeste " + grid[row][column + 1].GetTextNameEnd();
+				result = result + " está al oeste " + grid[row][column + 1].GetTextNameEnd()+".";
 				break;
 			case Possibilities.LEFT_POND_STREET:
-				result = result + " está al oeste de la laguna, cruzando la calle";
+				result = result + " está al oeste de la laguna, cruzando la calle.";
 				break;
 			case Possibilities.LEFT_STREET:
-				result = result + " está al oeste " + grid[row][column + 2].GetTextNameEnd() + ", cruzando la calle";
+				result = result + " está al oeste " + grid[row][column + 2].GetTextNameEnd() + ", cruzando la calle.";
 				break;
 			case Possibilities.RIGHT:
-				result = result + " está al este " + grid[row][column - 1].GetTextNameEnd();
+				result = result + " está al este " + grid[row][column - 1].GetTextNameEnd()+".";
 				break;
 			case Possibilities.RIGHT_POND_STREET:
-				result = result + " está al este de la laguna, cruzando la calle";
+				result = result + " está al este de la laguna, cruzando la calle.";
 				break;
 			case Possibilities.RIGHT_STREET:
-				result = result + " está al este " + grid[row][column - 2].GetTextNameEnd() + ", cruzando la calle";
+				result = result + " está al este " + grid[row][column - 2].GetTextNameEnd() + ", cruzando la calle.";
 				break;
 			}
 			Debug.Log (result);
