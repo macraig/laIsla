@@ -14,7 +14,7 @@ using Assets.Scripts.App;
 public class TravesiaActivityView : LevelView {
 	public Button okBtn;
 	public List<Image> tiles, clocks;
-	public Text letter, number, board;
+	public Text letter, number, boardStartText,boardEndText;
 	public List<Toggle> actions;
 	private int setSailRow;
 	private Sprite[] tileSprites,shieldSprites,logSprites;
@@ -26,7 +26,7 @@ public class TravesiaActivityView : LevelView {
 	public Text shipCounter;
 	private int correctShips;
 	public GameObject timerPlaca;
-	public Image instructionsImage;
+	public Image instructionsImage,instructionsShipImage;
 
 	private TravesiaActivityModel model;
 
@@ -89,20 +89,27 @@ public class TravesiaActivityView : LevelView {
 	}
 
 	void SetSend(int col, int row) {
-		if(col == -1 && row == -1) board.text = "No hay envíos disponibles.";
-		else {
-			board.text = "Enviar provisiones al puerto ";
+		if (col == -1 && row == -1) {
+			boardStartText.text = "No hay envíos disponibles.";
+		}	else {
+			boardStartText.text = "Enviar el";
+			boardEndText.text = "al puerto";
 			//FOR TESTING PURPOSES
 			//board.text = "Enviar provisiones al puerto " + model.GetColumnString(col) + model.GetRowString(row) + ".";
 			int shieldIndex = GetPortIndex (row, col) - START_PORT_SPRITES;
 			instructionsImage.gameObject.SetActive (true);
 			instructionsImage.sprite = shieldSprites[shieldIndex];
+			instructionsShipImage.gameObject.SetActive (true);
+			boardEndText.gameObject.SetActive (false);
 		}
 	}
 
 	void HideInstructions(){
-		board.text = "";
+		boardStartText.text = "No hay envíos disponibles.";
+		boardEndText.gameObject.SetActive (false);
 		instructionsImage.gameObject.SetActive (false);
+		instructionsShipImage.gameObject.SetActive (false);
+
 	}
 
 	int GetPortIndex (int row, int col)
