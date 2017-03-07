@@ -245,7 +245,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			textNamesStart = new string[] {
 				"la verdulería",
 				"la pescadería",
-				"la sastreria",
+				"la sastrería",
 				"la armería",
 				"la carpintería",
 				"la alfarería",
@@ -268,7 +268,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			textNamesEnd = new string[] {
 				"de la verdulería",
 				"de la pescadería",
-				"de la sastreria",
+				"de la sastrería",
 				"de la armería",
 				"de la carpintería",
 				"de la alfarería",

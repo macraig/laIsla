@@ -8,14 +8,16 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 	public class PuntosCardinalesLevel {
 		Building correct;
 		int row, column;
-		Possibilities p;
+		Possibilities possibility;
 		List<AudioClip> audios;
+		List<List<Building>> grid;
 
 		private PuntosCardinalesLevel(Building correct, int row, int column, Possibilities p, Dictionary<string, AudioClip> audios, List<List<Building>> grid){
 			this.column = column;
 			this.row = row;
 			this.correct = correct;
-			this.p = p;
+			this.possibility = p;
+			this.grid = grid;
 			Debug.Log ("level row:" + row + " level col: " + column);
 			SetAudios(audios, grid);
 		}
@@ -33,7 +35,7 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			audios.Add(a[correct.GetName()]);
 
 			//switch con todas las posibilidades
-			switch(p) {
+			switch(possibility) {
 			case Possibilities.BEHIND:
 //				Debug.Log (grid [row + 1] [column].GetName () + "Final");
 				audios.Add(a["detras"]);
@@ -42,38 +44,38 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 				break;
 			case Possibilities.BEHIND_STREET:
 //				Debug.Log(grid[row + 2][column].GetName() + "Final");
-
+				audios.Add(a["detras"]);
 				audios.Add(a[grid[row + 2][column].GetName() + "Final"]);
 				audios.Add(a["cruzandoLaCalle"]);
 
 				break;
-			case Possibilities.BETWEEN_VERTICAL:
-				
-				Building upperB = grid[row - 1][column];
-				Building downB = grid[row + 1][column];
-
-//				Debug.Log(upperB.GetName());
-//				Debug.Log(downB.GetName());
-
-				audios.Add(a["entre"]);
-				audios.Add(a[upperB.GetName()]);
-				audios.Add(a["y"]);
-				audios.Add(a[downB.GetName()]);
-
-				break;
-			case Possibilities.BETWEEN_HORIZONTAL:
-				Building leftB = grid [row] [column - 1];
-				Building rightB = grid [row] [column + 1];
-
-//				Debug.Log (leftB.GetName ());
-//				Debug.Log (rightB.GetName ());
-
-				audios.Add(a["entre"]);
-				audios.Add(a[leftB.GetName()]);
-				audios.Add(a["y"]);
-				audios.Add(a[rightB.GetName()]);
-
-				break;
+//			case Possibilities.BETWEEN_VERTICAL:
+//				
+//				Building upperB = grid[row - 1][column];
+//				Building downB = grid[row + 1][column];
+//
+////				Debug.Log(upperB.GetName());
+////				Debug.Log(downB.GetName());
+//
+//				audios.Add(a["entre"]);
+//				audios.Add(a[upperB.GetName()]);
+//				audios.Add(a["y"]);
+//				audios.Add(a[downB.GetName()]);
+//
+//				break;
+//			case Possibilities.BETWEEN_HORIZONTAL:
+//				Building leftB = grid [row] [column - 1];
+//				Building rightB = grid [row] [column + 1];
+//
+////				Debug.Log (leftB.GetName ());
+////				Debug.Log (rightB.GetName ());
+//
+//				audios.Add(a["entre"]);
+//				audios.Add(a[leftB.GetName()]);
+//				audios.Add(a["y"]);
+//				audios.Add(a[rightB.GetName()]);
+//
+//				break;
 			case Possibilities.IN_FRONT:
 				audios.Add(a["frente"]);
 
@@ -138,10 +140,43 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 			}
 		}
 
+//		Building GetRefereceSpot ()
+//		{
+//			switch (possibility) {
+//					case Possibilities.BEHIND:
+//						return grid[row + 1][column];
+//					case Possibilities.BEHIND_STREET:
+//						return grid[row + 2][column];
+//					
+//					case Possibilities.IN_FRONT:
+//						return grid[row - 1][column];
+//					
+//					case Possibilities.IN_FRONT_STREET:
+//						return grid[row - 2][column];
+//					case Possibilities.LEFT:
+//						return grid[row][column + 1];
+//					case Possibilities.LEFT_STREET:
+//						return grid[row][column + 2];
+//					case Possibilities.RIGHT:
+//						return grid[row][column - 1];
+//					case Possibilities.RIGHT_STREET:
+//						return grid[row][column - 2];
+//					}
+//
+//			Debug.Log ("No spot found. Check GetReferenceSpot()");
+//			return null;
+//
+//		}
+//	
+
 		public List<Building> GetChoices(List<Building> simpleBuildings) {
 			Randomizer r = Randomizer.New(simpleBuildings.Count - 1);
 			List<Building> choices = new List<Building>();
 			choices.Add(correct);
+			//TODO: Referencia con el edificio del enunciado 
+//			if (LevelHasReferenceSpot ())
+//				choices.Add (GetRefereceSpot ());
+			
 			while(choices.Count < 5){
 				Building b = simpleBuildings[r.Next()];
 				if(!choices.Contains(b)) choices.Add(b);
@@ -162,23 +197,23 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 		public string GetText(List<List<Building>> grid){
 			string result = correct.GetTextNameStart();
 
-			switch(p) {
+			switch(possibility) {
 			case Possibilities.BEHIND:
 				result = result + " está al norte " + grid[row + 1][column].GetTextNameEnd()+".";
 				break;
 			case Possibilities.BEHIND_STREET:
 				result = result + " está al norte " + grid[row + 2][column].GetTextNameEnd() + ", cruzando la calle.";
 				break;
-			case Possibilities.BETWEEN_VERTICAL:
-				Building upperB = grid[row - 1][column];
-				Building downB = grid[row + 1][column];
-				result = result + " está entre " + upperB.GetTextNameStart() + " y " + downB.GetTextNameStart()+".";
-				break;
-			case Possibilities.BETWEEN_HORIZONTAL:
-				Building leftB = grid[row][column - 1];
-				Building rightB = grid[row][column + 1];
-				result = result + " está entre " + leftB.GetTextNameStart() + " y " + rightB.GetTextNameStart()+".";
-				break;
+//			case Possibilities.BETWEEN_VERTICAL:
+//				Building upperB = grid[row - 1][column];
+//				Building downB = grid[row + 1][column];
+//				result = result + " está entre " + upperB.GetTextNameStart() + " y " + downB.GetTextNameStart()+".";
+//				break;
+//			case Possibilities.BETWEEN_HORIZONTAL:
+//				Building leftB = grid[row][column - 1];
+//				Building rightB = grid[row][column + 1];
+//				result = result + " está entre " + leftB.GetTextNameStart() + " y " + rightB.GetTextNameStart()+".";
+//				break;
 			case Possibilities.IN_FRONT:
 				result = result + " está al sur " + grid[row - 1][column].GetTextNameEnd()+".";
 				break;
@@ -256,21 +291,21 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 				if(spot != null && streetSpot != null && !spot.IsStreet() && streetSpot.IsStreet() && !spot.IsDouble())
 					return true;
 				break;
-			case Possibilities.BETWEEN_VERTICAL:
-				if(row >= 1 && row <= 4) {
-					Building upperB = grid[row - 1][column];
-					Building downB = grid[row + 1][column];
-					if(upperB != null && !upperB.IsStreet() && downB != null && !downB.IsStreet())
-						return true;
-				}
-				break;
-			case Possibilities.BETWEEN_HORIZONTAL:
-				if(column >= 1 && column <= 4){
-					Building leftB = grid[row][column - 1];
-					Building rightB = grid[row][column + 1];
-					if(leftB != null && !leftB.IsStreet() && rightB != null && !rightB.IsStreet()) return true;
-				}
-				break;
+//			case Possibilities.BETWEEN_VERTICAL:
+//				if(row >= 1 && row <= 4) {
+//					Building upperB = grid[row - 1][column];
+//					Building downB = grid[row + 1][column];
+//					if(upperB != null && !upperB.IsStreet() && downB != null && !downB.IsStreet())
+//						return true;
+//				}
+//				break;
+//			case Possibilities.BETWEEN_HORIZONTAL:
+//				if(column >= 1 && column <= 4){
+//					Building leftB = grid[row][column - 1];
+//					Building rightB = grid[row][column + 1];
+//					if(leftB != null && !leftB.IsStreet() && rightB != null && !rightB.IsStreet()) return true;
+//				}
+//				break;
 			case Possibilities.IN_FRONT:
 				if(row == 0)
 					return false;
@@ -344,5 +379,12 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 
 			return result;
 		}
+
+//		 bool LevelHasReferenceSpot ()
+//		{
+//			return !(possibility == Possibilities.LEFT_POND_STREET || possibility == Possibilities.IN_FRONT_POND_STREET ||
+//				possibility == Possibilities.RIGHT_POND_STREET || possibility == Possibilities.EMPTY);
+//
+//		}
 	}
 }
