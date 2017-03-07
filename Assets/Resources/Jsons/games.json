@@ -28,7 +28,7 @@
 	}
 	 {
 		"id": "5",
-		"icon": "3",
+		"icon": "4",
 		"name": "Problemas Espaciales",
 		"description": "Acomodamos las piezas en la posición adecuada para completar el rompecabezas\n\nResolver problemas espaciales usando imágenes mentales y gráficas.", 
 		"prefabName":"MuellesActivity"

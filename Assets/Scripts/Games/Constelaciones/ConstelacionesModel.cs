@@ -29,7 +29,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 				lvls.Add(new ConstelacionesLevel(lvlJson.AsObject));
 			}
 
-			lvls = Randomizer.RandomizeList(lvls);
+			//lvls = Randomizer.RandomizeList(lvls);
 		}
 
 		public ConstelacionesLevel CurrentLvl() {

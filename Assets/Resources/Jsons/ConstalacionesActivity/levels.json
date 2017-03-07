@@ -1,7 +1,7 @@
 ﻿{
 	"levels": [
 	{
-		"stars": [[-8,-8],[8,-8],[0,0]],
+		"stars": [[-8,-8],[8,-8],[0,0],[-8,-8]],
 		"fakeStars": [[6,4],[-6,4]],
 		"consignas": ["Unir la estrella más brillante con aquella que está en línea horizontal hacia su derecha.",
 			          "Buscar la estrella que forme un ángulo de 45° en sentido antihorario con el segmento AB.",
@@ -9,25 +9,25 @@
 	},
 
 {
-		"stars": [[-8,-8],[8,-8],[8,8],[-8,8]],
+		"stars": [[-8,-8],[8,-8],[8,8],[-8,8],[-8,-8]],
 		"fakeStars": [[6,4],[-6,4]],
 		"consignas": ["Unir la estrella más brillante con la que está a su derecha.",
 			          "Buscar la que forme un ángulo de 90° con el segmento AB.",
-			          "Buscar la estrella a la derecha.",
-			          "La próxima estrella está a la izquierda de C."]
+			          "La próxima estrella está a la izquierda de C.",
+					  "Volver a la estrella más brillante."]
 	},
 
 {
-		"stars": [[-4,-8],[4,-8],[4,8],[-4,8]],
+		"stars": [[-4,-8],[4,-8],[4,8],[-4,8],[-4,-8]],
 		"fakeStars": [[6,4],[-6,4]],
 		"consignas": ["Unir la estrella más brillante con la que está a su derecha.",
 			          "Buscar la que forme un ángulo de 90° con el segmento AB.",
 			          "Buscar la estrella que forme un ángulo de 90° con el segmento BC.",
-			          "La próxima estrella está a la izquierda de C."]
+			          "Volver a la estrella más brillante."]
 	},
 
 {
-		"stars": [[-9,-9],[9,-9],[0,6.58]],
+		"stars": [[-9,-9],[9,-9],[0,6.58],[-9,-9]],
 		"fakeStars": [[6,4],[-6,4]],
 		"consignas": ["Unir la estrella más brillante con aquella que está en línea horizontal hacia su derecha.",
 			          "Buscar la estrella que forme un ángulo de 60° en sentido antihorario con el segmento AB.",
@@ -42,28 +42,19 @@
 			          "Buscar la estrella que forme un ángulo de 30° en sentido antihorario con el segmento BC.",
 			          "Buscar la estrella que forme un ángulo de 30° en sentido horario con el segmento CD."]
 	},
-
-{
-		"stars": [[-9,-9],[9,9],[9,-9],[-9,9]],
-		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con el planeta Marte.",
-			          "Buscar una estrella que forme un segmento a 45° en sentido antihorario con el segmento AB.",
-			          "Buscar una estrella que forme un segmento a 45° en sentido antihorario con el segmento BC y mida lo mismo que el segmento AB.",
-			          "Buscar una estrella que forme un segmento a 45° en sentido horario con el segmento CD."]
-	},
-
 	{
-		"stars": [[-8,-8],[8,-8],[8,8],[4,4],[-4,4],[-8,8]],
+		"stars": [[-8,-8],[8,-8],[8,8],[4,4],[-4,4],[-8,8],[-8,-8]],
 		"fakeStars": [[6,4],[-6,4]],
 		"consignas": ["Unir la estrella más brillante con aquella que forme una línea horizontal hacia la derecha.",
 			          "Unir la última estrella con aquella que forme un segmento a a 90° del anterior.",
 			          "La siguiente estrella se encuentra a 45° girando en sentido horario.",
 			          "Unir la nueva estrella formando una paralela con la primera unión trazada.",
+					  "La siguiente estrella se encuentra a 45° girando en sentido horario",
 			          "Volver a la a estrella más brillante."]
 	},
 
 	{
-		"stars": [[-6,6],[6,6],[9,9],[9,0],[0,-9],[-9,0],[-9,9]],
+		"stars": [[-6,6],[6,6],[9,9],[9,0],[0,-9],[-9,0],[-9,9],[-6,6]],
 		"fakeStars": [[6,4],[-6,4]],
 		"consignas": ["Unir la estrella más brillante con aquella que esté a su derecha formando un segmento horizontal.",
 			          "Buscar la estrella que forme un segmento a 135°  en sentido horario de AB.",
@@ -75,9 +66,9 @@
 	},
 
 	{
-		"stars": [[-8,-6],[8,-6],[8,3],[10,4],[4,4],[6,3],[6,0],[8,0]],
+		"stars": [[-8,-6],[8,-6],[8,3],[10,4],[4,4],[6,3],[6,0],[-8,0],[-8,-6]],
 		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con aquella que está a su izquierda.",
+		"consignas": ["Unir la estrella más brillante con aquella que está a su derecha.",
 			          "Buscar una estrella que forme con B un segmento a 90° en sentido horario con AB.",
 			          "La siguiente estrella se encuentra a 120° girando en sentido antihorario.",
 			          "La próxima estrella se encuentra a la izquierda de D.",

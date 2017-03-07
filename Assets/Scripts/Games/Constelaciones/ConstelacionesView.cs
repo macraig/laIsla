@@ -18,7 +18,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 		private int currentInstruction;
 		private Sprite starImage,pinkStar,blueStar;
 
-		public const int HEIGHT_STEPS = 20, WIDTH_STEPS = 20;
+		public const int HEIGHT_STEPS = 20, WIDTH_STEPS = 40;
 
 		public void Start(){
 			model = new ConstelacionesModel();

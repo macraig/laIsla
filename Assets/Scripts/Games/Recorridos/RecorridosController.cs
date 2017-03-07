@@ -8,6 +8,7 @@ namespace Assets.Scripts.Games.Recorridos
 {
     public class RecorridosController : MonoBehaviour
     {
+		//TODO: Cambiar GAMES antes de TIEMPO
 		public const int START_TIME = 99, CORRECT_SCENE_TIME = 20,GAMES_BEFORE_TIME = 5;
 		private int timer, currentStartTime;
 
@@ -74,6 +75,7 @@ namespace Assets.Scripts.Games.Recorridos
 			board = new RecorridosBoard ();
 			lvls = board.GetLevels ();
 			keys = new List<RecorridosTileEnum>();
+			nutCount = 0;
 
 			/*
          Tile frames
@@ -158,6 +160,7 @@ namespace Assets.Scripts.Games.Recorridos
             puppetGridPosition.x = (int)initialPuppetGridPosition.x;
             puppetGridPosition.y = (int)initialPuppetGridPosition.y;
             StartCoroutine(GoRolling(2, gridSpace[(int)puppetGridPosition.x][(int)puppetGridPosition.y]));
+			view.RotateCardinalPoints ();
         }
 
         public void PickNut(int gridPositionX, int gridPositionY)
@@ -186,6 +189,7 @@ namespace Assets.Scripts.Games.Recorridos
 		}
 
 		public void RestartGame(){
+			
 			view.HideInGameMenu ();
 			first = true;
 			view.RestartGame ();
@@ -199,7 +203,7 @@ namespace Assets.Scripts.Games.Recorridos
         {
 
 			view.ShowPlayer ();
-			nutCount = 0;
+//			nutCount = 0;
             int rowCounter = 0;
 			int cols = board.Cols ();
             pathTiles = new List<RecorridosTile>();
@@ -358,6 +362,7 @@ namespace Assets.Scripts.Games.Recorridos
             StartCoroutine(ResetList(0, true));
 
             EnableButtonState(true);
+//			view.RotateCardinalPoints ();
         }
 
         public void GameOver(bool result)
@@ -385,7 +390,6 @@ namespace Assets.Scripts.Games.Recorridos
 					withTime = true; 
 					Invoke ("ShowNextLevelAnimation", 2);
 				} else {
-					
 					Invoke ("PlayTimeLevel",1);
 				}
 

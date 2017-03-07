@@ -52,6 +52,7 @@ public class RecorridosView : LevelView {
 
     private void Start()
     {
+		nutTextCounter.text = "0";
         stackImages = new List<GameObject>();
         for(int i = 0; i < instructionsStack.transform.childCount; i++)
         {
@@ -199,20 +200,22 @@ public class RecorridosView : LevelView {
     internal void ShowDefeat()
     {
 //        centralPuppetImage.sprite = puppetDefeat;
-			ShowWrongAnswerAnimation ();
+		ShowWrongAnswerAnimation ();
     }
 
     public void ResetGame()
     {
-		timerActive = false;
+//		timerActive = false;
 //        centralPuppetImage.sprite = puppetNeutral;
-        nutTextCounter.text = "0";
+//        nutTextCounter.text = "0";
 		ResetRotation ();
         MovingDown();
     }
 
 	override public void RestartGame(){
 			base.RestartGame ();
+			timerActive = false;
+			nutTextCounter.text = "0";
 			clockPlaca.SetActive(false);
 			ResetGame ();
 
