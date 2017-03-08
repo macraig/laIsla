@@ -17,12 +17,16 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 
 
 		public void OnBeginDrag(PointerEventData eventData) {
+			Debug.Log ("Begin drag");
 			if (active) {
+				Debug.Log ("active");
 				SoundController.GetController ().SetConcatenatingAudios (false);
 				view.soundBtn.interactable = true;
 				SoundController.GetController().PlayDragSound ();
 				itemBeingDragged = this;
+
 				if (first) {
+					Debug.Log ("first");
 					originPosition = transform.position;
 					first = false;
 				}
@@ -38,7 +42,9 @@ namespace Assets.Scripts.Games.PuntosCardinalesActivity {
 		}
 
 		public void OnEndDrag(PointerEventData eventData = null) {
+			Debug.Log ("endDrag");
 			if (active) {
+				Debug.Log ("endDragActive");
 				SoundController.GetController().PlayDropSound ();
 				itemBeingDragged = null;
 				GetComponent<CanvasGroup> ().blocksRaycasts = true;

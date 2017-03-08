@@ -305,7 +305,7 @@ public class RompecabezasLevel {
 
 		parts.Add(new PartModel(startDirection, Direction.NULL, startColumn, startRow));
 
-		//Set middle and final parts. Chaos.
+		//Set middle and final parts. 
 
 		int newCol = startColumn, newRow = startRow;
 		Direction newDir = startDirection;

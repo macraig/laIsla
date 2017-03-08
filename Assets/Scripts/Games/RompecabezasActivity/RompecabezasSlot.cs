@@ -10,22 +10,26 @@ using System.Collections.Generic;
 public class RompecabezasSlot : MonoBehaviour, IDropHandler, IPointerClickHandler {
 	public RompecabezasActivityView view;
 	private Part current;
+	public int row, column;
+
 	private bool isEndSlot, isStartSlot;
 	private Sprite startSprite;
 
 	public void OnDrop(PointerEventData eventData) {
 		Part target = Part.itemBeingDragged;
 		if(target != null && !isStartSlot && !isEndSlot) {
-			SoundController.GetController().PlayDropSound();
+//			SoundController.GetController().PlayDropSound();
 
-			if(current != null){
-				current.gameObject.SetActive(true);
-			}
+//			if(current != null){
+//				current.gameObject.SetActive(true);
+//			}
+			Debug.Log ("slot row: " + row + " slot col: " + column);
 
 			current = target;
 			this.GetComponent<Image>().sprite = target.GetComponent<Image>().sprite;
-			target.gameObject.SetActive(false);
-			target.OnEndDrag();
+//			target.gameObject.SetActive(false);
+//			target.OnEndDrag();
+			view.Dropped(target, this, row, column);
 		}
 	}
 
