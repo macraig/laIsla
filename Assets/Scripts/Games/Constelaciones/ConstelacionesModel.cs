@@ -37,7 +37,13 @@ namespace Assets.Scripts.Games.Constelaciones {
 		}
 
 		public void NextLvl() {
+			starLetters = new List<string> (){"A","B","C","D","E","F","G","H","I","J","K","L","M","N"};
 			currentLvl++;
+		}
+
+		public void ReturnLetterToList (string letter)
+		{
+			starLetters.Insert (0, letter);
 		}
 
 		public string GetFirstStarLetter(){

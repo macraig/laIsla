@@ -13,7 +13,6 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 
 		public List<Image> tiles;
 		public List<Part> draggers;
-//		private RompecabezasSlot takenSlot;
 		private Part takenDragger;
 		private List<PartModel> levelDraggers;
 
@@ -353,12 +352,6 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 		//ESTO SOLO ES CUANDO CAES EN UN SLOT, NO AFUERA
 		public void Dropped(Part dragger, RompecabezasSlot slot, int row, int column) {
 
-//			if(IsCorrect(dragger, slot, row, column)){
-//				model.SetCorrect (true);
-//			} else {
-//				model.SetCorrect (false);
-//			}
-//			slot.GetComponent<Image>().sprite = dragger.GetComponent<Image>().sprite;
 			dragger.SetPosition (slot.transform.position);
 			if(dragger.GetCurrentSlot()!=null)
 				ClearSlot (dragger.GetCurrentSlot ());
@@ -366,14 +359,6 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 			dragger.SetSlot (slot);
 			dragger.GetComponent<Button> ().interactable = true;
 			takenDragger = dragger;
-//			if (takenSlot) 
-//				ClearTakenSlot ();
-//			}else{
-//				ActivateDraggers (dragger,false);
-//			}
-//			takenSlot = slot;
-//			okButton.interactable = true;
-
 		}
 
 		public void ClearSlot(RompecabezasSlot slot){
@@ -386,9 +371,6 @@ namespace Assets.Scripts.Games.RompecabezasActivity {
 				ClearSlot (dragger.GetCurrentSlot());
 				dragger.ReturnToOriginalPosition ();
 
-//				ActivateDraggers (takenDragger,true);
-//				takenSlot = null;
-//				okButton.interactable = false;
 			}
 
 		}

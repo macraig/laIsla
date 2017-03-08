@@ -18,17 +18,10 @@ public class RompecabezasSlot : MonoBehaviour, IDropHandler, IPointerClickHandle
 	public void OnDrop(PointerEventData eventData) {
 		Part target = Part.itemBeingDragged;
 		if(target != null && !isStartSlot && !isEndSlot) {
-//			SoundController.GetController().PlayDropSound();
-
-//			if(current != null){
-//				current.gameObject.SetActive(true);
-//			}
 			Debug.Log ("slot row: " + row + " slot col: " + column);
 
 			current = target;
 			this.GetComponent<Image>().sprite = target.GetComponent<Image>().sprite;
-//			target.gameObject.SetActive(false);
-//			target.OnEndDrag();
 			view.Dropped(target, this, row, column);
 		}
 	}

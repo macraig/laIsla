@@ -7,6 +7,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 	public class ConstelacionesLevel {
 		private List<Vector2> stars, fakeStars;
 		private List<string> instructions;
+		private Sprite image;
 
 		public ConstelacionesLevel(JSONClass source) {
 			stars = new List<Vector2>();
@@ -22,6 +23,14 @@ namespace Assets.Scripts.Games.Constelaciones {
 			foreach(JSONNode instruction in source["consignas"].AsArray) {
 				instructions.Add(instruction.Value);
 			}
+			Debug.Log ("Sprites/Constelaciones/"+source["image"].Value);
+			image = Resources.Load<Sprite> ("Sprites/Constelaciones/"+source["image"].Value);
+			Resources.Load<Sprite> ("Sprites/Constelaciones/starBlueSelected");
+		}
+
+		public Sprite GetImage ()
+		{
+			return image;
 		}
 
 		public List<Vector2> GetStars(){

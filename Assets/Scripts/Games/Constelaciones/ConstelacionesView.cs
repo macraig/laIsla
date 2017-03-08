@@ -7,24 +7,30 @@ using Assets.Scripts.App;
 
 namespace Assets.Scripts.Games.Constelaciones {
 	public class ConstelacionesView : LevelView {
+		public static Color32 LINE_COLOR = new Color32 (250,255,208,255);
+
 		private ConstelacionesModel model;
 		public Compass compass;
 		public GameObject mapPanel;
 		public Text instruction;
-		public Button redoBtn, undoBtn, okBtn, compassToggle, prevInstruction, nextInstruction;
+		public Button redoBtn, undoBtn, okBtn, nextBtn,compassToggle, prevInstruction, nextInstruction;
 
 		private List<VectorLine> lines, redoLines;
 		private List<GameObject> stars, clickedStars, redoStars;
 		private int currentInstruction;
-		private Sprite starImage,pinkStar,blueStar;
+		private Sprite starImage,pinkStar,blueStar, starSelectedImage,blueStarSelected,pinkStarSelected;
+		public Image endImage;
 
-		public const int HEIGHT_STEPS = 20, WIDTH_STEPS = 40;
+		public const int HEIGHT_STEPS = 20, WIDTH_STEPS = 30;
 
 		public void Start(){
 			model = new ConstelacionesModel();
 			starImage = Resources.Load<Sprite> ("Sprites/Constelaciones/star");
+			starSelectedImage  = Resources.Load<Sprite> ("Sprites/Constelaciones/starSelected");
 			blueStar = Resources.Load<Sprite> ("Sprites/Constelaciones/starBlue");
+			blueStarSelected = Resources.Load<Sprite> ("Sprites/Constelaciones/starBlueSelected");
 			pinkStar = Resources.Load<Sprite> ("Sprites/Constelaciones/starPink");
+			pinkStarSelected = Resources.Load<Sprite> ("Sprites/Constelaciones/starPinkSelected");
 
 			Begin();
 		}
@@ -40,6 +46,8 @@ namespace Assets.Scripts.Games.Constelaciones {
 				currentInstruction = 0;
 				ResetBoard();
 				compass.ToggleCompassVisibility(false);
+				endImage.gameObject.SetActive (false);
+				nextBtn.gameObject.SetActive (false);
 				SetCurrentLevel();
 			}
 		}
@@ -49,35 +57,54 @@ namespace Assets.Scripts.Games.Constelaciones {
 
 			SetSomeStars(lvl.GetStars(), true);
 			SetSomeStars(lvl.GetFakeStars());
-
+			SetEndImage (lvl.GetImage ());
 			SetInstruction();
 		}
 
-		void SetSomeStars(List<Vector2> starsModel, bool first = false) {
+		void SetEndImage (Sprite image)
+		{
+			endImage.sprite = image;
+		}
+
+		void SetSomeStars(List<Vector2> starsModel, bool correctStars = false) {
 			float widthStep = mapPanel.GetComponent<RectTransform>().rect.width / WIDTH_STEPS;
 			float heightStep = mapPanel.GetComponent<RectTransform>().rect.height / HEIGHT_STEPS;
 			Vector2 middle = mapPanel.transform.position;
 
-			int i = 0;
-			starsModel.ForEach(starModel => {
+			for(int i = 0;i<starsModel.Count;i++){
+				//If constelation ends in the same star as it started, add it again at the end of the list
+				if (correctStars && i == starsModel.Count - 1) {
+					if (starsModel [i].x == starsModel [0].x && starsModel [i].y == starsModel [0].y) {
+						stars.Add(stars[0]);
+						break;
+					}
+		
+				}
 				GameObject star = ViewController.GetController().GetStarPrefab(mapPanel);
-				if(first && i == 0) star.transform.GetChild(0).GetComponent<Image>().sprite = pinkStar;
-				if(first && i == 1) star.transform.GetChild(0).GetComponent<Image>().sprite = blueStar;
-				float starX = starModel.x * widthStep;
-				float starY = starModel.y * heightStep;
-				Debug.Log("X: " + starX + " Y: " + starY + " jsonX: " + starModel.x + " jsonY: " + starModel.y);
+				if(correctStars && i == 0) 
+					star.transform.GetChild(0).GetComponent<Image>().sprite = pinkStar;	
+				
+
+				if(correctStars && i == 1) 
+					star.transform.GetChild(0).GetComponent<Image>().sprite = blueStar;
+				
+
+				float starX = starsModel[i].x * widthStep;
+				float starY = starsModel[i].y * heightStep;
+				Debug.Log("X: " + starX + " Y: " + starY + " jsonX: " + starsModel[i].x + " jsonY: " + starsModel[i].y);
 				star.transform.localPosition = new Vector3(starX, starY);
 
 				star.GetComponent<Button>().onClick.AddListener(() => StarClick(star));
 
 				stars.Add(star);
-				i++;
-			});
+			}
+
 		}
 
 		void StarClick(GameObject star) {
 			if (star.GetComponentInChildren<Text> ().text == "")
 				star.GetComponentInChildren<Text> ().text = model.GetFirstStarLetter ();
+			
 			if(clickedStars.Count > 0 && clickedStars[clickedStars.Count - 1] == star) return;
 
 			if(lines.Count != 0 && IsLineAdded(clickedStars[clickedStars.Count - 1].transform.position, star.transform.position)) return;
@@ -101,7 +128,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 				Vector2 pointTwo = line.points2[1];
 
 				if((pointOne == star && pointTwo == otherStar) || (pointOne == otherStar && pointTwo == star)){
-					Debug.Log("Line already drawn!!!!!!!!");
+					Debug.Log("Line already drawn!");
 					return true;
 				}
 			}
@@ -132,6 +159,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 			GameObject star = redoStars[redoStars.Count - 1];
 			redoStars.Remove(star);
 			clickedStars.Add(star);
+			star.GetComponentInChildren<Text> ().text = model.GetFirstStarLetter ();
 
 			CheckButtons();
 		}
@@ -143,6 +171,8 @@ namespace Assets.Scripts.Games.Constelaciones {
 			lastLine.active = false;
 
 			GameObject star = clickedStars[clickedStars.Count - 1];
+			model.ReturnLetterToList (star.GetComponentInChildren<Text> ().text);
+			star.GetComponentInChildren<Text> ().text = "";
 			clickedStars.Remove(star);
 			redoStars.Add(star);
 
@@ -152,14 +182,35 @@ namespace Assets.Scripts.Games.Constelaciones {
 		public void OkClick(){
 			if(IsCorrect()){
 				model.LogAnswer(true);
-				model.NextLvl();
-				ShowRightAnswerAnimation();
+				EndLevel ();
+
+
 			} else {
 				model.LogAnswer(false);
 				ShowWrongAnswerAnimation();
 			}
 		}
 
+		void EndLevel(){
+			undoBtn.interactable = false;
+			redoBtn.interactable = false;
+			ShowEndImage ();
+			nextBtn.gameObject.SetActive (true);
+		}
+
+		void ShowEndImage ()
+		{
+			endImage.gameObject.SetActive (true);
+
+		}
+
+		public void OnClickNextButton(){
+			model.NextLvl();
+			ShowRightAnswerAnimation();
+
+		}
+
+		//Checks how many stars were clicked and if their position is the same as the correct stars
 		bool IsCorrect() {
 			if(clickedStars.Count != model.CurrentLvl().GetStars().Count) return false;
 
@@ -197,17 +248,19 @@ namespace Assets.Scripts.Games.Constelaciones {
 		}
 
 		public void Line(Vector3 from, Vector3 to){
-			VectorLine line = new VectorLine("Curve", new List<Vector2> { from, to }, null, 8.0f, LineType.Continuous);
+			VectorLine line = new VectorLine("Curve", new List<Vector2> { from, to }, null, 6.0f, LineType.Discrete);
 
 			line.SetCanvas(FindObjectOfType<Canvas>());
 
 			line.textureScale = 1f;
+			line.color = LINE_COLOR;
 			line.Draw();
 			lines.Add(line);
 			line.rectTransform.transform.SetParent(mapPanel.transform);
 		}
 
-		public void RestartGame(){
+		override public void RestartGame(){
+			base.RestartGame ();
 			ResetBoard();
 			Start();
 		}
