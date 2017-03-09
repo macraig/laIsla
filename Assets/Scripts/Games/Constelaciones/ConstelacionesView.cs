@@ -20,6 +20,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 		private int currentInstruction;
 		private Sprite starImage,pinkStar,blueStar, starSelectedImage,blueStarSelected,pinkStarSelected;
 		public Image endImage;
+		public Material dottedLineMateriallMaterial;
 
 		public const int HEIGHT_STEPS = 20, WIDTH_STEPS = 30;
 
@@ -102,20 +103,34 @@ namespace Assets.Scripts.Games.Constelaciones {
 		}
 
 		void StarClick(GameObject star) {
+			//Assign a letter to the star if it doesn't have one.
 			if (star.GetComponentInChildren<Text> ().text == "")
 				star.GetComponentInChildren<Text> ().text = model.GetFirstStarLetter ();
 			
+			//Clicked the same star again
 			if(clickedStars.Count > 0 && clickedStars[clickedStars.Count - 1] == star) return;
 
+			//Check if the line has already been drawn
 			if(lines.Count != 0 && IsLineAdded(clickedStars[clickedStars.Count - 1].transform.position, star.transform.position)) return;
 
+			//Unselect last star and select current star
+			if (clickedStars.Count > 0)
+				SelectStar (clickedStars[clickedStars.Count-1],false);
+			SelectStar (star, true);
+
+			//Add star to clickedStars list
 			clickedStars.Add(star);
+			Debug.Log ("star added");
 
-			if(clickedStars.Count < 2) return;
-
+			//Check if it's the first star you add. In that case, return without drawing a line
+			if(clickedStars.Count < 2){
+				CheckButtons ();
+				return;
+			} 
+			//Draw star line
 			Line(clickedStars[clickedStars.Count - 2].transform.position, clickedStars[clickedStars.Count - 1].transform.position);
 			Debug.Log("Line star");
-
+			//Destroy redo lines as the future changed :o
 			VectorLine.Destroy(redoLines);
 			redoLines = new List<VectorLine>();
 			redoStars = new List<GameObject>();
@@ -157,26 +172,79 @@ namespace Assets.Scripts.Games.Constelaciones {
 			lastLine.active = true;
 
 			GameObject star = redoStars[redoStars.Count - 1];
-			redoStars.Remove(star);
+			SelectStar (star, true);
+			SelectStar (clickedStars[clickedStars.Count-1],false);
+
+			//Add letter if the star has no selections
+			if(!clickedStars.Contains(star)){
+				star.GetComponentInChildren<Text> ().text = model.GetFirstStarLetter ();
+			}
 			clickedStars.Add(star);
-			star.GetComponentInChildren<Text> ().text = model.GetFirstStarLetter ();
+
+			redoStars.RemoveAt(redoStars.Count-1);
 
 			CheckButtons();
 		}
 
 		public void UndoClick(){
-			VectorLine lastLine = lines[lines.Count - 1];
-			lines.Remove(lastLine);
-			redoLines.Add(lastLine);
-			lastLine.active = false;
+			if (clickedStars.Count > 1) {
+				//Remove last line added
+				VectorLine lastLine = lines [lines.Count - 1];
+				lines.Remove (lastLine);
+				redoLines.Add (lastLine);
+				lastLine.active = false;
 
+
+				//Select last star selected
+				SelectStar (clickedStars [clickedStars.Count - 2], true);
+			} else {
+				//Destroy redo lines
+				VectorLine.Destroy(redoLines);
+				redoLines = new List<VectorLine>();
+				redoStars = new List<GameObject>();
+			}
+
+
+			//Remove last star clicked
 			GameObject star = clickedStars[clickedStars.Count - 1];
-			model.ReturnLetterToList (star.GetComponentInChildren<Text> ().text);
-			star.GetComponentInChildren<Text> ().text = "";
-			clickedStars.Remove(star);
+			SelectStar (star, false);
 			redoStars.Add(star);
+			//IMPORTANT: Remove by index, removing by object won't work when selecting the same star more than once
+			clickedStars.RemoveAt (clickedStars.Count-1);
+			//Remove letter if the star has no more selections
+			if(!clickedStars.Contains(star)){
+				model.ReturnLetterToList (star.GetComponentInChildren<Text> ().text);
+				star.GetComponentInChildren<Text> ().text = "";	
+			}
+		
 
 			CheckButtons();
+		}
+
+
+
+		void SelectStar (GameObject star, bool select)
+		{
+			Sprite starSprite = star.transform.GetChild (0).GetComponent<Image> ().sprite;
+			Sprite newSprite;
+			Debug.Log ("Label"+star.GetComponentInChildren<Text> ().text);
+			if (select) {
+				if (starSprite == starImage)
+					newSprite = starSelectedImage;
+				else if (starSprite == pinkStar)
+					newSprite = pinkStarSelected;
+				else
+					newSprite = blueStarSelected;
+
+			} else {
+				if (starSprite == starSelectedImage)
+					newSprite = starImage;
+				else if (starSprite == pinkStarSelected)
+					newSprite = pinkStar;
+				else
+					newSprite = blueStar;
+			}
+			star.transform.GetChild (0).GetComponent<Image> ().sprite = newSprite;
 		}
 
 		public void OkClick(){
@@ -229,7 +297,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 
 		void CheckButtons() {
 			redoBtn.interactable = redoLines.Count != 0;
-			undoBtn.interactable = lines.Count != 0;
+			undoBtn.interactable = clickedStars.Count != 0;
 
 			okBtn.interactable = lines.Count > 0;
 
@@ -248,10 +316,10 @@ namespace Assets.Scripts.Games.Constelaciones {
 		}
 
 		public void Line(Vector3 from, Vector3 to){
-			VectorLine line = new VectorLine("Curve", new List<Vector2> { from, to }, null, 6.0f, LineType.Discrete);
+			VectorLine line = new VectorLine("Curve", new List<Vector2> { from, to }, null, 6.0f, LineType.Continuous);
 
 			line.SetCanvas(FindObjectOfType<Canvas>());
-
+			line.material = dottedLineMateriallMaterial;
 			line.textureScale = 1f;
 			line.color = LINE_COLOR;
 			line.Draw();
