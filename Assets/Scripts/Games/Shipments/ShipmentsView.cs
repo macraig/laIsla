@@ -559,7 +559,7 @@ namespace Assets.Scripts.Games.Shipments
             
             if (timerActive)
             {
-                EndGame(60, 0, 1250);
+                EndGame(60, 0, 800);
             }
             else
             {

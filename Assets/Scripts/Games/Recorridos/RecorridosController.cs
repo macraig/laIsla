@@ -183,7 +183,7 @@ namespace Assets.Scripts.Games.Recorridos
 			if (!withTime) {
 				GameOver (false);
 			} else {
-				view.EndGame(60, 0, 1250);
+				view.EndGame(0, 0, 800);
 			}
 
 		}
