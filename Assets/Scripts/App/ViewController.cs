@@ -36,6 +36,7 @@ namespace Assets.Scripts.App
         internal void LoadMainMenu()
         {
             ChangeCurrentObject(LoadPrefab("MainMenu"));
+
         }    
 
        

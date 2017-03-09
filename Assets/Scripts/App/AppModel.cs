@@ -12,6 +12,7 @@ namespace Assets.Scripts.App
         private Game currentGame;
         private int currentLevel;
 		private List<int> gameOrder = new List<int>(){1,2,3,4,6,5,7};
+		private List<bool> gameStatus = new List<bool>(){true,false,false,false,false,false};
 
 		private List<Game> games; 
 		private Sprite[] icons;
@@ -21,6 +22,14 @@ namespace Assets.Scripts.App
 			loadGames ();
 
         }
+
+		public void UpdateEnabledGames(List<bool> newGamesStatus){
+			gameStatus = newGamesStatus;
+		}
+
+		public List<bool> GetGamesStatus(){
+			return gameStatus;
+		}
 
 		void loadGames ()
 		{

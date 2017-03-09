@@ -31,9 +31,11 @@ namespace Assets.Scripts.MainMenu
 
 		public void SetStartState ()
 		{
-			startStatus = new List<bool> ();
-			foreach (Toggle toggle in gameToggles) {
-				startStatus.Add (toggle.isOn);
+			startStatus = AppController.GetController ().GetAppModel ().GetGamesStatus ();
+
+
+			for (int i = 0;i<gameToggles.Count;i++) {
+				gameToggles [i].isOn = startStatus [i];
 			}
 		}
 
@@ -46,6 +48,7 @@ namespace Assets.Scripts.MainMenu
 				}
 
 				MainMenuController.GetController ().EnableGames (gamesStatus);
+				AppController.GetController ().GetAppModel ().UpdateEnabledGames (gamesStatus);
 				inputText.text = "";
 				this.gameObject.SetActive (false);
 			} else {

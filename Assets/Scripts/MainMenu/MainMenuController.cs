@@ -16,6 +16,8 @@ namespace Assets.Scripts.MainMenu
         public GamePreview gamePreview;
 		public BlockPanel blockPanel;
 
+		private List<bool> gamesStatusList;
+
 
         [SerializeField]
         // numbering, geometry, ability, data
@@ -72,6 +74,7 @@ namespace Assets.Scripts.MainMenu
 		public void EnableGames (List<bool> gamesStatus)
 		{
 			menuView.EnableGames (gamesStatus);
+			gamesStatusList = gamesStatus;
 		}
 
         internal void ShowSettings()

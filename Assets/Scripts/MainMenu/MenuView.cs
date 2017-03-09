@@ -12,15 +12,13 @@ namespace Assets.Scripts.MainMenu {
 
 		public GameObject metricsPanel, detailsPanel;
 		public List<Button> gameButtons;
-      
-
         private List<GameButton> currentGames;
 
 
         void Start() {
             
             currentGames = new List<GameButton>();
-           
+			EnableGames (AppController.GetController().GetAppModel().GetGamesStatus());
         }
 
         void Update()
