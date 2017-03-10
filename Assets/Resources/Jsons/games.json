@@ -36,7 +36,7 @@
 		"id": "6",
 		"icon": "5",
 		"name": "Constelaciones",
-		"description": "Busquemos las constelaciones en el cielo.\n\n",
+		"description": "Busquemos las constelaciones en el cielo.\n\nConstrucción de figura geométricas simples y complejas por unión de puntos en el espacio.",
 		"prefabName":"ConstelacionesActivity"
 	}
 ]

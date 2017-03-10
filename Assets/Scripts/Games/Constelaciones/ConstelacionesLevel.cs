@@ -15,10 +15,10 @@ namespace Assets.Scripts.Games.Constelaciones {
 			instructions = new List<string>();
 
 			foreach(JSONNode star in source["stars"].AsArray) {
-				stars.Add(new Vector2(star.AsArray[0].AsInt, star.AsArray[1].AsInt));
+				stars.Add(new Vector2(star.AsArray[0].AsFloat, star.AsArray[1].AsFloat));
 			}
 			foreach(JSONNode fakeStar in source["fakeStars"].AsArray) {
-				fakeStars.Add(new Vector2(fakeStar.AsArray[0].AsInt, fakeStar.AsArray[1].AsInt));
+				fakeStars.Add(new Vector2(fakeStar.AsArray[0].AsFloat, fakeStar.AsArray[1].AsFloat));
 			}
 			foreach(JSONNode instruction in source["consignas"].AsArray) {
 				instructions.Add(instruction.Value);

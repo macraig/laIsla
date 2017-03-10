@@ -1,88 +1,88 @@
 ﻿{
 	"levels": [
 	{
-		"stars": [[-8,-8],[8,-8],[0,0],[-8,-8]],
+		"stars": [[-8,-7],[8,-7],[0,1],[-8,-7]],
 		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con aquella que está en línea horizontal hacia su derecha.",
-			          "Buscar la estrella que forme un ángulo de 45° en sentido antihorario con el segmento AB.",
-			          "Volver a la estrella más brillante."],
+		"consignas": ["Unir la estrella celeste con aquella que está en línea horizontal hacia su derecha.",
+			          "Buscar la estrella que forme un ángulo de 45° con el segmento AB midiendo desde B.",
+			          "Volver a la estrella celeste."],
 		"image":"volcano"
 	},
 
 {
 		"stars": [[-8,-8],[8,-8],[8,8],[-8,8],[-8,-8]],
-		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con la que está a su derecha.",
-			          "Buscar la que forme un ángulo de 90° con el segmento AB.",
+		"fakeStars": [[6,4],[-6,4],[0,0],[-5,2]],
+		"consignas": ["Unir la estrella celeste con la que está a su derecha.",
+			          "Buscar la estrella que forme un ángulo de 90° con el segmento AB midiendo desde B.",
 			          "La próxima estrella está a la izquierda de C.",
-					  "Volver a la estrella más brillante."],
+					  "Volver a la estrella celeste."],
 		"image":"dice"
 	},
 
 {
-		"stars": [[-4,-8],[4,-8],[4,8],[-4,8],[-4,-8]],
-		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con la que está a su derecha.",
-			          "Buscar la que forme un ángulo de 90° con el segmento AB.",
+		"stars": [[-6,-8],[6,-8],[6,8],[-6,8],[-6,-8]],
+		"fakeStars": [[4,4],[-4,4],[-8,2],[8,2]],
+		"consignas": ["Unir la estrella celeste con la que está a su derecha.",
+			          "Buscar la estrella que forme un ángulo de 90° con el segmento AB midiendo desde B.",
 			          "Buscar la estrella que forme un ángulo de 90° con el segmento BC.",
-			          "Volver a la estrella más brillante."],
+			          "Volver a la estrella celeste."],
 		"image":"book"
 	},
 
 {
-		"stars": [[-9,-9],[9,-9],[0,6.58],[-9,-9]],
-		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con aquella que está en línea horizontal hacia su derecha.",
-			          "Buscar la estrella que forme un ángulo de 60° en sentido antihorario con el segmento AB.",
-			          "Formar un ángulo de 60° con el segmento BC y unir con la estrella que se encuentre para formar el nuevo segmento."],
+		"stars": [[-8,-9],[8,-9],[0,8],[-8,-9]],
+		"fakeStars": [[6,4],[-6,4],[0,0],[-9,2],[7,3]],
+		"consignas": ["Unir la estrella celeste con aquella que está en línea horizontal hacia su derecha.",
+			          "Buscar la estrella que forme un ángulo de 60° con el segmento AB midiendo desde B.",
+			          "Volver a la estrella celeste."],
 		"image":"mountain"
 	},
 	
 {
-		"stars": [[-3,5],[-3,0],[6.4,0],[-9,-9],[9,-9]],
-		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con la que está abajo suyo.",
-			          "Buscar la estrella que forme un ángulo de 90° en sentido horario con el segmento AB.",
-			          "Buscar la estrella que forme un ángulo de 30° en sentido antihorario con el segmento BC.",
-			          "Buscar la estrella que forme un ángulo de 30° en sentido horario con el segmento CD."],
+		"stars": [[-3,6],[-3,1],[6.4,1],[-9,-7],[9,-7]],
+		"fakeStars": [[6,4],[-6,4],[-10,1],[10,4]],
+		"consignas": ["Unir la estrella celeste con la que está abajo suyo.",
+			          "Buscar la estrella que forme un ángulo de 90° con el segmento AB midiendo desde B.",
+			          "Buscar la estrella que forme un ángulo de 330° con el segmento BC midiendo desde C.",
+			          "Buscar la estrella que forme un ángulo de 30° con el segmento CD midiendo desde D."],
 		"image":"snake"
 	},
 	{
 		"stars": [[-8,-8],[8,-8],[8,8],[4,4],[-4,4],[-8,8],[-8,-8]],
-		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con aquella que forme una línea horizontal hacia la derecha.",
-			          "Unir la última estrella con aquella que forme un segmento a a 90° del anterior.",
-			          "La siguiente estrella se encuentra a 45° girando en sentido horario.",
-			          "Unir la nueva estrella formando una paralela con la primera unión trazada.",
-					  "La siguiente estrella se encuentra a 45° girando en sentido horario",
-			          "Volver a la a estrella más brillante."],
+		"fakeStars": [[6,4],[-10,2],[-2,2],[10,3]],
+		"consignas": ["Unir la estrella celeste con aquella que forme una línea horizontal hacia la derecha.",
+			          "Unir la última estrella con aquella que forme un segmento a 90° del segmento anterior.",
+			          "La siguiente estrella se encuentra a 45° respecto al segmento anterior.",
+			          "Unir la nueva estrella formando una paralela con el segmento AB.",
+					  "La siguiente estrella se encuentra a 225° del segmento DE.",
+			          "Volver a la a estrella celeste."],
 		"image":"cat"
 	},
 
 	{
-		"stars": [[-6,6],[6,6],[9,9],[9,0],[0,-9],[-9,0],[-9,9],[-6,6]],
-		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con aquella que esté a su derecha formando un segmento horizontal.",
-			          "Buscar la estrella que forme un segmento a 135°  en sentido horario de AB.",
-			          "Buscar una estrella que forme un segmento a 45° en sentido antihorario con el segmento BC.",
-			          "Unir con la estrella que forme un ángulo de 135° en sentido antihorario con el segmento CD.",
-			          "Unir con la estrella que forma un ángulo de 90°  en sentido antihorario con el segmento DE.",
+		"stars": [[-6,4],[6,4],[9,7],[9,0],[0,-9],[-9,0],[-9,7],[-6,4]],
+		"fakeStars": [[0,0],[-10,-3],[10,-3]],
+		"consignas": ["Unir la estrella celeste con aquella que esté a su derecha formando un segmento horizontal.",
+			          "Buscar la estrella que forme un ángulo de 135° con el semento AB.",
+			          "Buscar una estrella que forme un ángulo de 315° con el segmento BC midiendo desde C.",
+			          "Unir con la estrella que forme un ángulo de 225° con el segmento CD midiendo desde la última estrella.",
+			          "Unir con la estrella que forma un ángulo de 270° con el segmento DE.",
 			          "Unir la última estrella con aquella que esté arriba suyo.",
-			          "Volver a la estrella más brillante."],
+			          "Volver a la estrella celeste."],
 		"image":"fox"
 	},
 
 	{
-		"stars": [[-8,-6],[8,-6],[8,3],[10,4],[4,4],[6,3],[6,0],[-8,0],[-8,-6]],
-		"fakeStars": [[6,4],[-6,4]],
-		"consignas": ["Unir la estrella más brillante con aquella que está a su derecha.",
-			          "Buscar una estrella que forme con B un segmento a 90° en sentido horario con AB.",
-			          "La siguiente estrella se encuentra a 120° girando en sentido antihorario.",
-			          "La próxima estrella se encuentra a la izquierda de D.",
+		"stars": [[-8,-5],[8,-5],[8,6],[10,7],[1,7],[3,6],[3,3],[-8,3],[-8,-5]],
+		"fakeStars": [[6,4],[-6,4],[-10,-8],[10,-8],[-6,-7],[6,-7]],
+		"consignas": ["Unir la estrella celeste con aquella que está a su derecha.",
+			          "Buscar una estrella que forme con B un segmento a 90° con el segmento AB midiendo desde B.",
+			          "La siguiente estrella se encuentra a 240° respecto al segmento anterior.",
+			          "La próxima estrella forma un segmento con D que es paralela a AB.",
 			          "Unir la última estrella con aquella que se encuentre a la misma altura que C y que forme un ángulo de igual medida que el ángulo anterior.",
-			          "La nueva estrella forma un ángulo de 120° en sentido antihorario al segmento EF.",
+			          "La siguiente estrella se encuentra debajo de F.",
 			          "La nueva estrella forma una paralela con la primera unión trazada.",
-			          "Unir la última estrella con la estrella más brillante."],
+			          "Unir la última estrella con la estrella celeste."],
 		"image":"whale"
 	}]
 }
