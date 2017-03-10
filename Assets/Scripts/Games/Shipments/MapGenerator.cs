@@ -19,6 +19,7 @@ public class MapGenerator : MonoBehaviour {
 
     public Sprite[] CrosSprites;
     public Sprite[] PlacesSprites;
+    public Sprite FirstPlaceSprite;
 
     private List<VectorLine> lines;
 
@@ -113,7 +114,7 @@ public class MapGenerator : MonoBehaviour {
 
     private void SetFirstPlace(ShipmentNode node, float xMax, float yMax)
     {
-        Places[0].SetData(node.Id, PlacesSprites[node.Id], CrosSprites[node.Type == ShipmentNodeType.Other ? 1 : 0], node.Type);
+        Places[0].SetData(node.Id, FirstPlaceSprite, CrosSprites[node.Type == ShipmentNodeType.Other ? 1 : 0], node.Type);
         Places[0].transform.localPosition = new Vector2(-xMax, yMax);
     }
     /*

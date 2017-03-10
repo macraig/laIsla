@@ -27,6 +27,7 @@ public class MapPlace : MonoBehaviour
         CrossReference.sprite = crossSprite;
         GetComponent<Image>().sprite = placesSprite;
         Type = type;
+        CrossReference.gameObject.SetActive(Type != ShipmentNodeType.Start);
     }
 
     private void OnClickMapPlace()

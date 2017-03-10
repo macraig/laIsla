@@ -23,6 +23,7 @@ namespace Assets.Scripts.Games.Shipments
         private List<int> _edgesBySolutionPath;
 
         private bool lastCorrect;
+        private bool _recentlyUpdatedToOptimizedPath;
         private int timer;
 
 
@@ -55,6 +56,12 @@ namespace Assets.Scripts.Games.Shipments
         {
             get { return _remainExercises; }
             set { _remainExercises = value; }
+        }
+
+        public bool RecentlyUpdatedToOptimizedPath
+        {
+            get { return _recentlyUpdatedToOptimizedPath; }
+            set { _recentlyUpdatedToOptimizedPath = value; }
         }
 
 
@@ -329,6 +336,7 @@ namespace Assets.Scripts.Games.Shipments
                 if (edge == null)
                 {
                     lastCorrect = false;
+                    LogAnswer(false);
                     return false;
                 }
             }
@@ -351,7 +359,11 @@ namespace Assets.Scripts.Games.Shipments
                     return false;
                 }
             }
-            if (lastCorrect && isCorrectDestine) _currentLevel++;
+            if (lastCorrect && isCorrectDestine)
+            {
+                RecentlyUpdatedToOptimizedPath = _currentLevel == 4;
+                _currentLevel++;
+            }
             lastCorrect = isCorrectDestine;
             LogAnswer(isCorrectDestine);
             return isCorrectDestine;
