@@ -49,7 +49,7 @@
 	},
 	{
 		"stars": [[-8,-8],[8,-8],[8,8],[4,4],[-4,4],[-8,8],[-8,-8]],
-		"fakeStars": [[6,4],[-10,2],[0,-10],[-2,2],[10,3]],
+		"fakeStars": [[6,4],[-10,2],[-2,2],[10,3]],
 		"consignas": ["Unir la estrella celeste con aquella que forme una línea horizontal hacia la derecha.",
 			          "Unir la última estrella con aquella que forme un segmento a 90° del segmento anterior.",
 			          "La siguiente estrella se encuentra a 45° respecto al segmento anterior.",

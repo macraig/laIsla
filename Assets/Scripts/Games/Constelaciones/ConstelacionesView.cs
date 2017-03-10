@@ -260,8 +260,13 @@ namespace Assets.Scripts.Games.Constelaciones {
 		}
 
 		void EndLevel(){
+			compass.ToggleCompassVisibility(false);
 			undoBtn.interactable = false;
 			redoBtn.interactable = false;
+			ShowRightAnswerAnimation ();
+		}
+
+		override public void OnRightAnimationEnd(){
 			ShowEndImage ();
 			nextBtn.gameObject.SetActive (true);
 		}
@@ -274,7 +279,8 @@ namespace Assets.Scripts.Games.Constelaciones {
 
 		public void OnClickNextButton(){
 			model.NextLvl();
-			ShowRightAnswerAnimation();
+			EnableComponents (true);
+			Next ();
 
 		}
 
