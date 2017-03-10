@@ -100,7 +100,7 @@ public class TravesiaActivityView : LevelView {
 			instructionsImage.gameObject.SetActive (true);
 			instructionsImage.sprite = shieldSprites[shieldIndex];
 			instructionsShipImage.gameObject.SetActive (true);
-			boardEndText.gameObject.SetActive (false);
+			boardEndText.gameObject.SetActive (true);
 		}
 	}
 
