@@ -1,7 +1,7 @@
 ﻿{
 	"levels": [
 	{
-		"stars": [[-8,-7],[8,-7],[0,1],[-8,-1]],
+		"stars": [[-8,-7],[8,-7],[0,1],[-8,-7]],
 		"fakeStars": [[6,4],[-6,4]],
 		"consignas": ["Unir la estrella celeste con aquella que está en línea horizontal hacia su derecha.",
 			          "Buscar la estrella que forme un ángulo de 45° con el segmento AB midiendo desde B.",
@@ -40,28 +40,28 @@
 	
 {
 		"stars": [[-3,6],[-3,1],[6.4,1],[-9,-7],[9,-7]],
-		"fakeStars": [[6,4],[-6,4],[-10,-6],[-10,1],[10,4]],
+		"fakeStars": [[6,4],[-6,4],[-10,1],[10,4]],
 		"consignas": ["Unir la estrella celeste con la que está abajo suyo.",
 			          "Buscar la estrella que forme un ángulo de 90° con el segmento AB midiendo desde B.",
-			          "Buscar la estrella que forme un ángulo de 330° en sentido antihorario con el segmento BC midiendo desde C.",
+			          "Buscar la estrella que forme un ángulo de 330° con el segmento BC midiendo desde C.",
 			          "Buscar la estrella que forme un ángulo de 30° con el segmento CD midiendo desde D."],
 		"image":"snake"
 	},
 	{
 		"stars": [[-8,-8],[8,-8],[8,8],[4,4],[-4,4],[-8,8],[-8,-8]],
-		"fakeStars": [[6,4],[-10,2],[0,0],[-2,2],[10,3]],
+		"fakeStars": [[6,4],[-10,2],[0,-10],[-2,2],[10,3]],
 		"consignas": ["Unir la estrella celeste con aquella que forme una línea horizontal hacia la derecha.",
 			          "Unir la última estrella con aquella que forme un segmento a 90° del segmento anterior.",
 			          "La siguiente estrella se encuentra a 45° respecto al segmento anterior.",
 			          "Unir la nueva estrella formando una paralela con el segmento AB.",
-					  "La siguiente estrella se encuentra a 225° del segmento DE",
+					  "La siguiente estrella se encuentra a 225° del segmento DE.",
 			          "Volver a la a estrella celeste."],
 		"image":"cat"
 	},
 
 	{
 		"stars": [[-6,4],[6,4],[9,7],[9,0],[0,-9],[-9,0],[-9,7],[-6,4]],
-		"fakeStars": [[0,0],[-7,-3],[7,-3]],
+		"fakeStars": [[0,0],[-10,-3],[10,-3]],
 		"consignas": ["Unir la estrella celeste con aquella que esté a su derecha formando un segmento horizontal.",
 			          "Buscar la estrella que forme un ángulo de 135° con el semento AB.",
 			          "Buscar una estrella que forme un ángulo de 315° con el segmento BC midiendo desde C.",
@@ -80,7 +80,7 @@
 			          "La siguiente estrella se encuentra a 240° respecto al segmento anterior.",
 			          "La próxima estrella forma un segmento con D que es paralela a AB.",
 			          "Unir la última estrella con aquella que se encuentre a la misma altura que C y que forme un ángulo de igual medida que el ángulo anterior.",
-			          "La siguiente estrela se encuentra debajo de F.",
+			          "La siguiente estrella se encuentra debajo de F.",
 			          "La nueva estrella forma una paralela con la primera unión trazada.",
 			          "Unir la última estrella con la estrella celeste."],
 		"image":"whale"

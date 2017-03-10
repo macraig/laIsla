@@ -18,7 +18,7 @@ namespace Assets.Scripts.Games.Constelaciones {
 		private List<VectorLine> lines, redoLines;
 		private List<GameObject> stars, clickedStars, redoStars;
 		private int currentInstruction;
-		private Sprite starImage,pinkStar,blueStar, starSelectedImage,blueStarSelected,pinkStarSelected;
+		private Sprite starImage,blueStar, starSelectedImage,blueStarSelected;
 		public Image endImage;
 		public Material dottedLineMateriallMaterial;
 
@@ -30,8 +30,8 @@ namespace Assets.Scripts.Games.Constelaciones {
 			starSelectedImage  = Resources.Load<Sprite> ("Sprites/Constelaciones/starSelected");
 			blueStar = Resources.Load<Sprite> ("Sprites/Constelaciones/starBlue");
 			blueStarSelected = Resources.Load<Sprite> ("Sprites/Constelaciones/starBlueSelected");
-			pinkStar = Resources.Load<Sprite> ("Sprites/Constelaciones/starPink");
-			pinkStarSelected = Resources.Load<Sprite> ("Sprites/Constelaciones/starPinkSelected");
+//			pinkStar = Resources.Load<Sprite> ("Sprites/Constelaciones/starPink");
+//			pinkStarSelected = Resources.Load<Sprite> ("Sprites/Constelaciones/starPinkSelected");
 
 			Begin();
 		}
@@ -83,11 +83,11 @@ namespace Assets.Scripts.Games.Constelaciones {
 				}
 				GameObject star = ViewController.GetController().GetStarPrefab(mapPanel);
 				if(correctStars && i == 0) 
-					star.transform.GetChild(0).GetComponent<Image>().sprite = pinkStar;	
+					star.transform.GetChild(0).GetComponent<Image>().sprite = blueStar;	
 				
 
-				if(correctStars && i == 1) 
-					star.transform.GetChild(0).GetComponent<Image>().sprite = blueStar;
+//				if(correctStars && i == 1) 
+//					star.transform.GetChild(0).GetComponent<Image>().sprite = blueStar;
 				
 
 				float starX = starsModel[i].x * widthStep;
@@ -231,16 +231,16 @@ namespace Assets.Scripts.Games.Constelaciones {
 			if (select) {
 				if (starSprite == starImage)
 					newSprite = starSelectedImage;
-				else if (starSprite == pinkStar)
-					newSprite = pinkStarSelected;
+//				else if (starSprite == pinkStar)
+//					newSprite = pinkStarSelected;
 				else
 					newSprite = blueStarSelected;
 
 			} else {
 				if (starSprite == starSelectedImage)
 					newSprite = starImage;
-				else if (starSprite == pinkStarSelected)
-					newSprite = pinkStar;
+//				else if (starSprite == pinkStarSelected)
+//					newSprite = pinkStar;
 				else
 					newSprite = blueStar;
 			}
