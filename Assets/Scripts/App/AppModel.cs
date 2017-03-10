@@ -12,7 +12,7 @@ namespace Assets.Scripts.App
         private Game currentGame;
         private int currentLevel;
 		private List<int> gameOrder = new List<int>(){1,2,3,4,6,5,7};
-		private List<bool> gameStatus = new List<bool>(){true,false,false,false,false,false};
+		private List<bool> gameStatus = new List<bool>(){true,false,false,false,false,true};
 
 		private List<Game> games; 
 		private Sprite[] icons;
