@@ -18,7 +18,7 @@ namespace Assets.Scripts.MainMenu {
         void Start() {
             
             currentGames = new List<GameButton>();
-			EnableGames (AppController.GetController().GetAppModel().GetGamesStatus());
+//			EnableGames (AppController.GetController().GetAppModel().GetGamesStatus());
         }
 
         void Update()

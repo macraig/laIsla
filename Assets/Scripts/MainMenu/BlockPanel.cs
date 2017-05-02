@@ -26,13 +26,11 @@ namespace Assets.Scripts.MainMenu
 			for (int i = 0; i < gameToggles.Count; i++) {
 				gameToggles [i].isOn = startStatus [i];
 			}
-				
 		}
 
 		public void SetStartState ()
 		{
 			startStatus = AppController.GetController ().GetAppModel ().GetGamesStatus ();
-
 
 			for (int i = 0;i<gameToggles.Count;i++) {
 				gameToggles [i].isOn = startStatus [i];
@@ -47,16 +45,13 @@ namespace Assets.Scripts.MainMenu
 					gamesStatus.Add (toggle.isOn);
 				}
 
-				MainMenuController.GetController ().EnableGames (gamesStatus);
-				AppController.GetController ().GetAppModel ().UpdateEnabledGames (gamesStatus);
+//				MainMenuController.GetController ().EnableGames (gamesStatus);
+//				AppController.GetController ().GetAppModel ().UpdateEnabledGames (gamesStatus);
 				inputText.text = "";
 				this.gameObject.SetActive (false);
 			} else {
 				incorrectCode.GetComponent<IncorrectCodeScript>().ShowAnimation();
 			}
-
-
-
 		}
 
 
